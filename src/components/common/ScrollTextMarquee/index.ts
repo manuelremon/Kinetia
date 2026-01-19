@@ -1,0 +1,1 @@
+export { ScrollTextMarquee } from './ScrollTextMarquee';

@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:claude.ai)",
-      "Bash(copy:*)"
+      "Bash(copy:*)",
+      "Bash(tsc:*)",
+      "WebFetch(domain:www.youtube.com)",
+      "Bash(node -e \"\nconst fs = require\\(''fs''\\);\nfs.writeFileSync\\(''src/components/common/AnimatedLetters/AnimatedLetters.module.scss'', \\\\`.container {\n  display: inline;\n}\n\n.space {\n  display: inline;\n}\n\\\\`\\);\nfs.writeFileSync\\(''src/components/common/AnimatedLetters/index.ts'', \"\"export { AnimatedLetters } from ''./AnimatedLetters'';\\\\n\"\"\\);\nconsole.log\\(''Files created''\\);\n\")"
     ]
   }
 }

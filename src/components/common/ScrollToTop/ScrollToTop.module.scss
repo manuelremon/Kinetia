@@ -1,0 +1,152 @@
+.button {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  width: 140px;
+  height: 56px;
+  overflow: hidden;
+  border: none;
+  color: $color-text-primary;
+  background: none;
+  padding-bottom: 2em;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  // Underline animation
+  &::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    background: $color-accent-primary;
+    transition: transform 0.25s ease-out;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  > div,
+  > svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  svg {
+    width: 20px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-50deg);
+    transition: 0.2s ease-out;
+
+    path {
+      fill: $color-accent-primary;
+    }
+  }
+
+  &:hover svg {
+    transform: translateY(-50%) rotate(-90deg);
+  }
+}
+
+.text,
+.clone {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  > span {
+    opacity: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: $font-body;
+    transition: 0.2s;
+    margin-left: 2px;
+    letter-spacing: 1px;
+  }
+}
+
+.clone > span {
+  transform: translateY(60px);
+}
+
+.button:hover .clone > span {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.button:hover .text > span {
+  opacity: 1;
+  transform: translateY(-60px);
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+// Staggered animation delays for clone
+.button:hover .clone > span:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.button:hover .clone > span:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.button:hover .clone > span:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.button:hover .clone > span:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.button:hover .clone > span:nth-child(5) {
+  transition-delay: 0.25s;
+}
+
+.button:hover .clone > span:nth-child(6) {
+  transition-delay: 0.3s;
+}
+
+// Staggered animation delays for text
+.button:hover .text > span:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.button:hover .text > span:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.button:hover .text > span:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.button:hover .text > span:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.button:hover .text > span:nth-child(5) {
+  transition-delay: 0.25s;
+}
+
+.button:hover .text > span:nth-child(6) {
+  transition-delay: 0.3s;
+}

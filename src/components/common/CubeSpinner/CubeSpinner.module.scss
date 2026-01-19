@@ -1,0 +1,59 @@
+.spinner {
+  animation: cubeRotate 1.6s infinite ease;
+  transform-style: preserve-3d;
+  position: relative;
+  display: block;
+
+  > div {
+    background-color: rgba($color-accent-primary, 0.15);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    border: 3px solid $color-accent-primary;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+  }
+
+  div:nth-of-type(1) {
+    transform: translateZ(calc(var(--cube-depth, 35px) * -1)) rotateY(180deg);
+  }
+
+  div:nth-of-type(2) {
+    transform: rotateY(-270deg) translateX(50%);
+    transform-origin: top right;
+  }
+
+  div:nth-of-type(3) {
+    transform: rotateY(270deg) translateX(-50%);
+    transform-origin: center left;
+  }
+
+  div:nth-of-type(4) {
+    transform: rotateX(90deg) translateY(-50%);
+    transform-origin: top center;
+  }
+
+  div:nth-of-type(5) {
+    transform: rotateX(-90deg) translateY(50%);
+    transform-origin: bottom center;
+  }
+
+  div:nth-of-type(6) {
+    transform: translateZ(var(--cube-depth, 35px));
+  }
+}
+
+@keyframes cubeRotate {
+  0% {
+    transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+  }
+
+  50% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+  }
+
+  100% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+  }
+}

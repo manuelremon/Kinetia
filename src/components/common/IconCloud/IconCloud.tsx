@@ -21,16 +21,19 @@ export function IconCloud({ images }: IconCloudProps) {
   const iconPositions = useMemo<IconPosition[]>(() => {
     const positions: IconPosition[] = [];
     const count = images.length;
-    const radius = 180;
+    // Óvalo alargado horizontalmente
+    const radiusX = 500;
+    const radiusY = 120;
+    const radiusZ = 150;
 
     for (let i = 0; i < count; i++) {
       const phi = Math.acos(-1 + (2 * i) / count);
       const theta = Math.sqrt(count * Math.PI) * phi;
 
       positions.push({
-        x: radius * Math.cos(theta) * Math.sin(phi),
-        y: radius * Math.sin(theta) * Math.sin(phi),
-        z: radius * Math.cos(phi),
+        x: radiusX * Math.cos(theta) * Math.sin(phi),
+        y: radiusY * Math.sin(theta) * Math.sin(phi),
+        z: radiusZ * Math.cos(phi),
         url: images[i],
       });
     }
@@ -39,8 +42,8 @@ export function IconCloud({ images }: IconCloudProps) {
 
   const animate = useCallback(() => {
     setRotation((prev) => {
-      const targetX = mouseRef.current.isHovering ? mouseRef.current.y * 0.0002 : 0.001;
-      const targetY = mouseRef.current.isHovering ? mouseRef.current.x * 0.0002 : 0.003;
+      const targetX = mouseRef.current.isHovering ? mouseRef.current.y * 0.00008 : 0.001;
+      const targetY = mouseRef.current.isHovering ? mouseRef.current.x * 0.00008 : 0.002;
 
       return {
         x: prev.x + targetX,

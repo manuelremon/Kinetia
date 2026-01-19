@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import type { TerminalCommand } from '@/types';
 
 interface TerminalLine {
@@ -23,10 +23,12 @@ export function useTerminalEffect({
   restartDelay = 2500
 }: UseTerminalEffectOptions) {
   const [lines, setLines] = useState<TerminalLine[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
+
+  const currentLineIndexRef = useRef(0);
+  const currentCharIndexRef = useRef(0);
+  const timeoutRef = useRef<number | null>(null);
 
   const startTerminal = useCallback(() => {
     setIsStarted(true);
@@ -34,37 +36,47 @@ export function useTerminalEffect({
 
   const reset = useCallback(() => {
     setLines([]);
-    setCurrentLineIndex(0);
-    setCurrentCharIndex(0);
+    currentLineIndexRef.current = 0;
+    currentCharIndexRef.current = 0;
     setIsTyping(false);
   }, []);
 
   useEffect(() => {
     if (!isStarted) return;
 
-    // All commands completed
-    if (currentLineIndex >= commands.length) {
-      const timeout = setTimeout(() => {
-        reset();
-      }, restartDelay);
-      return () => clearTimeout(timeout);
-    }
+    const tick = () => {
+      const currentLineIndex = currentLineIndexRef.current;
+      const currentCharIndex = currentCharIndexRef.current;
 
-    const currentCommand = commands[currentLineIndex];
-    const speed = currentCommand.type === 'command' ? commandSpeed : outputSpeed;
+      // All commands completed
+      if (currentLineIndex >= commands.length) {
+        timeoutRef.current = window.setTimeout(() => {
+          reset();
+          // Restart the animation
+          timeoutRef.current = window.setTimeout(tick, 100);
+        }, restartDelay);
+        return;
+      }
 
-    // Starting a new line
-    if (currentCharIndex === 0 && !lines[currentLineIndex]) {
-      setLines(prev => [
-        ...prev,
-        { type: currentCommand.type, text: '', isComplete: false }
-      ]);
-      setIsTyping(true);
-    }
+      const currentCommand = commands[currentLineIndex];
+      const speed = currentCommand.type === 'command' ? commandSpeed : outputSpeed;
 
-    // Typing the current line
-    if (currentCharIndex < currentCommand.text.length) {
-      const timeout = setTimeout(() => {
+      // Starting a new line
+      if (currentCharIndex === 0) {
+        setLines(prev => {
+          if (prev.length <= currentLineIndex) {
+            return [
+              ...prev,
+              { type: currentCommand.type, text: '', isComplete: false }
+            ];
+          }
+          return prev;
+        });
+        setIsTyping(true);
+      }
+
+      // Typing the current line
+      if (currentCharIndex < currentCommand.text.length) {
         setLines(prev => {
           const newLines = [...prev];
           if (newLines[currentLineIndex]) {
@@ -75,44 +87,40 @@ export function useTerminalEffect({
           }
           return newLines;
         });
-        setCurrentCharIndex(prev => prev + 1);
-      }, speed);
-      return () => clearTimeout(timeout);
-    }
+        currentCharIndexRef.current += 1;
+        timeoutRef.current = window.setTimeout(tick, speed);
+        return;
+      }
 
-    // Line complete, move to next
-    if (currentCharIndex === currentCommand.text.length) {
-      setLines(prev => {
-        const newLines = [...prev];
-        if (newLines[currentLineIndex]) {
-          newLines[currentLineIndex] = {
-            ...newLines[currentLineIndex],
-            isComplete: true
-          };
-        }
-        return newLines;
-      });
-      setIsTyping(false);
+      // Line complete, move to next
+      if (currentCharIndex === currentCommand.text.length) {
+        setLines(prev => {
+          const newLines = [...prev];
+          if (newLines[currentLineIndex]) {
+            newLines[currentLineIndex] = {
+              ...newLines[currentLineIndex],
+              isComplete: true
+            };
+          }
+          return newLines;
+        });
+        setIsTyping(false);
 
-      const delay = currentCommand.type === 'command' ? delayBetweenLines : delayBetweenLines / 2;
-      const timeout = setTimeout(() => {
-        setCurrentLineIndex(prev => prev + 1);
-        setCurrentCharIndex(0);
-      }, delay);
-      return () => clearTimeout(timeout);
-    }
-  }, [
-    commands,
-    currentLineIndex,
-    currentCharIndex,
-    commandSpeed,
-    outputSpeed,
-    delayBetweenLines,
-    restartDelay,
-    lines,
-    reset,
-    isStarted
-  ]);
+        const delay = currentCommand.type === 'command' ? delayBetweenLines : delayBetweenLines / 2;
+        currentLineIndexRef.current += 1;
+        currentCharIndexRef.current = 0;
+        timeoutRef.current = window.setTimeout(tick, delay);
+      }
+    };
+
+    tick();
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [isStarted, commands, commandSpeed, outputSpeed, delayBetweenLines, restartDelay, reset]);
 
   return { lines, isTyping, startTerminal };
 }

@@ -1,108 +1,149 @@
 .section {
-  padding: $section-padding 0;
+  position: relative;
+  // Disable scroll-snap for this section to allow stacking cards effect
+  scroll-snap-align: none !important;
+  scroll-snap-stop: unset !important;
+}
+
+.header {
+  text-align: center;
+  padding: $section-padding 0 60px;
 
   @include respond-to('md') {
-    padding: $section-padding-mobile 0;
+    padding: $section-padding-mobile 0 40px;
   }
 }
 
-.stepsGrid {
+.stepsWrapper {
+  position: relative;
+}
+
+.stepContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+}
+
+.stepCard {
   display: flex;
   flex-direction: column;
-  gap: 70px;
-}
-
-.step {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-
-  &.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  &:nth-child(even) {
-    direction: rtl;
-
-    > * {
-      direction: ltr;
-    }
-  }
+  position: relative;
+  height: 450px;
+  width: 70%;
+  max-width: 900px;
+  border-radius: $border-radius-xl;
+  padding: 40px;
+  transform-origin: top;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 
   @include respond-to('lg') {
-    grid-template-columns: 1fr;
-    gap: 30px;
-
-    &:nth-child(even) {
-      direction: ltr;
-    }
+    width: 85%;
+    height: 480px;
+    padding: 32px;
   }
+
+  @include respond-to('md') {
+    width: 92%;
+    height: auto;
+    min-height: 420px;
+    padding: 24px;
+  }
+}
+
+.stepHeader {
+  margin-bottom: 24px;
 }
 
 .stepNumber {
   font-family: $font-display;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  color: $color-accent-orange;
-  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.9);
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .stepNumberCircle {
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(135deg, $color-accent-primary, $color-accent-primary-hover);
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   @include flex-center;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 700;
   color: $color-text-light;
-  box-shadow: 0 0 20px $color-accent-primary-glow;
+}
+
+.stepBody {
+  display: flex;
+  gap: 40px;
+  flex: 1;
+  align-items: center;
+
+  @include respond-to('md') {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.stepContent {
+  flex: 1;
 }
 
 .stepTitle {
-  font-size: 30px;
-  margin-bottom: 14px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
   line-height: 1.2;
+  color: $color-text-light;
 
   @include respond-to('md') {
-    font-size: 24px;
+    font-size: 26px;
   }
 }
 
 .stepDescription {
-  color: $color-text-secondary;
-  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
   line-height: 1.7;
-}
 
-.stepCard {
-  @include card-base;
-  padding: 28px;
-  transition: all $transition-medium;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: $shadow-lg;
+  @include respond-to('md') {
+    font-size: 15px;
   }
 }
 
-// Terminal mini styles
+.stepVisual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include respond-to('md') {
+    width: 100%;
+  }
+}
+
+// Terminal styles
 .terminal {
-  background: $color-bg-terminal;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: $border-radius-lg;
   overflow: hidden;
+  width: 100%;
+  max-width: 320px;
 }
 
 .terminalHeader {
-  background: $color-bg-terminal-header;
+  background: rgba(0, 0, 0, 0.3);
   padding: 12px 16px;
   display: flex;
   align-items: center;
@@ -123,7 +164,7 @@
 .terminalBody {
   padding: 16px;
   font-family: $font-mono;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .terminalLine {
@@ -135,7 +176,7 @@
 }
 
 .prompt {
-  color: $color-accent-primary;
+  color: rgba(255, 255, 255, 0.6);
   margin-right: 8px;
 }
 
@@ -151,15 +192,22 @@
 
 // Plan card
 .planCard {
-  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: $border-radius-lg;
+  padding: 24px;
+  width: 100%;
+  max-width: 280px;
 }
 
 .planItem {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  font-size: 13px;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: $color-text-light;
 
   &:last-child {
     margin-bottom: 0;
@@ -167,47 +215,60 @@
 }
 
 .planNumber {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
   @include flex-center;
-  font-size: 11px;
+  font-size: 12px;
   color: $color-text-light;
-  font-weight: 600;
+  font-weight: 700;
 
-  &.orange { background: $color-accent-primary; }
-  &.cyan { background: $color-accent-teal; }
-  &.purple { background: $color-accent-secondary; }
+  &.orange { background: #ff9500; }
+  &.cyan { background: #5ac8fa; }
+  &.purple { background: #af52de; }
 }
 
 // Generate card
 .generateCard {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: $border-radius-lg;
   text-align: center;
-  padding: 25px;
+  padding: 40px;
+  width: 100%;
+  max-width: 220px;
 }
 
 .generateIcon {
-  font-size: 40px;
-  margin-bottom: 12px;
+  font-size: 48px;
+  margin-bottom: 16px;
 }
 
 .generateText {
-  color: $color-success;
-  font-size: 13px;
+  color: $color-text-light;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 // Verify card
 .verifyCard {
-  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: $border-radius-lg;
+  padding: 24px;
+  width: 100%;
+  max-width: 260px;
 }
 
 .verifyItem {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-  color: $color-success;
-  font-size: 13px;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: $color-text-light;
+  font-size: 14px;
 
   &:last-child {
     margin-bottom: 0;
@@ -215,5 +276,7 @@
 }
 
 .checkmark {
+  color: #34c759;
   font-weight: bold;
+  font-size: 16px;
 }

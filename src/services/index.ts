@@ -1,0 +1,1 @@
+export { sendMessageToGemini } from './geminiService';

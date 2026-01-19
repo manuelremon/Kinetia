@@ -10,8 +10,6 @@ export function BackgroundLayers() {
         <div className={styles.grid} />
         <div className={styles.noise} />
       </div>
-      <div className={`${styles.liquidBlob} ${styles.blob1}`} />
-      <div className={`${styles.liquidBlob} ${styles.blob2}`} />
     </>
   );
 }

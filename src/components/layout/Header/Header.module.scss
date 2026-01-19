@@ -18,7 +18,8 @@
 .inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
 }
 
 .logo {
@@ -29,6 +30,8 @@
   font-size: 22px;
   font-weight: 700;
   transition: transform $transition-fast;
+  position: absolute;
+  left: 0;
 
   &:hover {
     transform: scale(1.05);

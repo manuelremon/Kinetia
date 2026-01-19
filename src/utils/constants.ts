@@ -5,11 +5,11 @@ import type { TerminalCommand, FlipCardData, StatData, NavLink, FooterColumn } f
 // ============================================
 
 export const TYPING_PHRASES = [
-  'que se construye sola',
-  'que escala infinitamente',
-  'que se auto-repara',
-  'que nunca duerme',
-  'impulsada por agentes IA'
+  'tu negocio',
+  'tus procesos',
+  'tu inventario',
+  'tu operación',
+  'con inteligencia artificial'
 ];
 
 // ============================================

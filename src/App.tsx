@@ -7,9 +7,14 @@ import {
   Hero,
   StatsTools,
   Services,
+  Stats,
   Features,
   HowItWorks,
-  CTA
+  CTA,
+  About,
+  TerminalSection,
+  ChatWidget,
+  ScrollToTop
 } from '@/components';
 
 import '@/styles/main.scss';
@@ -28,14 +33,23 @@ function App() {
       {/* Main Content */}
       <main>
         <Hero />
-        <StatsTools />
         <Services />
+        <StatsTools />
+        <Stats />
         <Features />
         <HowItWorks />
         <CTA />
+        <About />
+        <TerminalSection />
       </main>
 
       <Footer />
+
+      {/* Chat Widget */}
+      <ChatWidget />
+
+      {/* Scroll to Top */}
+      <ScrollToTop />
     </>
   );
 }

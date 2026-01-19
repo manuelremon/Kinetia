@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Container, SliceButton, RandomizedTextEffect } from '@/components/common';
+import { Container, SliceButton, RandomizedTextEffect, DemoModal } from '@/components/common';
 import { NAV_LINKS } from '@/utils/constants';
 import styles from './Header.module.scss';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,10 +77,11 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <SliceButton>Solicitar Demo</SliceButton>
           </nav>
         </div>
       </Container>
+
+      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
     </header>
   );
 }

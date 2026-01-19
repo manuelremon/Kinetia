@@ -6,3 +6,5 @@ export { Services } from './Services';
 export { Features } from './Features';
 export { HowItWorks } from './HowItWorks';
 export { CTA } from './CTA';
+export { About } from './About';
+export { TerminalSection } from './TerminalSection';

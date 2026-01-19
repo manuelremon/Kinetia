@@ -6,7 +6,7 @@
 // Abstracts (variables, mixins, animations)
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
-@use 'abstracts/animations';
+// animations se inyecta globalmente via vite.config.ts
 
 // Base styles (reset, typography)
 @use 'base/reset';

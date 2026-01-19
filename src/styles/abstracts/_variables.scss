@@ -1,43 +1,43 @@
 // ============================================
-// COLOR PALETTE - iOS Light Mode
+// COLOR PALETTE - Dark Mode
 // ============================================
 
-// Background colors (Light)
-$color-bg-primary: #ffffff;
-$color-bg-secondary: #f2f2f7;
-$color-bg-tertiary: #e5e5ea;
-$color-bg-card: rgba(255, 255, 255, 0.8);
-$color-bg-glass: rgba(255, 255, 255, 0.7);
+// Background colors (Dark)
+$color-bg-primary: #0a0a0f;
+$color-bg-secondary: #12121a;
+$color-bg-tertiary: #1a1a24;
+$color-bg-card: rgba(18, 18, 26, 0.8);
+$color-bg-glass: rgba(10, 10, 15, 0.7);
 
-// Terminal (mantener oscuro para contraste)
-$color-bg-terminal: #1c1c1e;
-$color-bg-terminal-header: #2c2c2e;
+// Terminal
+$color-bg-terminal: #0d0d12;
+$color-bg-terminal-header: #16161e;
 
 // Border colors
-$color-border: rgba(0, 0, 0, 0.08);
-$color-border-hover: rgba(0, 0, 0, 0.15);
+$color-border: rgba(255, 255, 255, 0.08);
+$color-border-hover: rgba(255, 255, 255, 0.15);
 
 // Text colors
-$color-text-primary: #1c1c1e;
-$color-text-secondary: #3c3c43;
-$color-text-muted: #8e8e93;
+$color-text-primary: #ffffff;
+$color-text-secondary: #a1a1aa;
+$color-text-muted: #71717a;
 $color-text-light: #ffffff;
 
 // Accent colors - iOS System Colors
 $color-accent-primary: #007aff;
-$color-accent-primary-hover: #0056b3;
-$color-accent-primary-glow: rgba(0, 122, 255, 0.25);
-$color-accent-primary-subtle: rgba(0, 122, 255, 0.08);
+$color-accent-primary-hover: #3395ff;
+$color-accent-primary-glow: rgba(0, 122, 255, 0.35);
+$color-accent-primary-subtle: rgba(0, 122, 255, 0.15);
 
 $color-accent-secondary: #5856d6;
-$color-accent-secondary-glow: rgba(88, 86, 214, 0.2);
+$color-accent-secondary-glow: rgba(88, 86, 214, 0.3);
 
 $color-accent-teal: #5ac8fa;
-$color-accent-teal-glow: rgba(90, 200, 250, 0.2);
+$color-accent-teal-glow: rgba(90, 200, 250, 0.3);
 
 $color-success: #34c759;
 
-// Aliases for backwards compatibility (orange -> primary blue)
+// Aliases for backwards compatibility
 $color-accent-orange: $color-accent-primary;
 $color-accent-orange-hover: $color-accent-primary-hover;
 $color-accent-orange-glow: $color-accent-primary-glow;
@@ -48,13 +48,13 @@ $color-accent-purple: $color-accent-secondary;
 $color-accent-purple-glow: $color-accent-secondary-glow;
 
 // ============================================
-// SHADOWS - iOS Style
+// SHADOWS - Dark Mode
 // ============================================
 
-$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-$shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+$shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.6);
 
 // ============================================
 // TYPOGRAPHY
@@ -63,6 +63,31 @@ $shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
 $font-display: 'Space Grotesk', sans-serif;
 $font-body: 'Inter', sans-serif;
 $font-mono: 'JetBrains Mono', monospace;
+
+// Font sizes - Semantic scale
+$font-size-xs: 0.75rem;      // 12px - Labels, captions
+$font-size-sm: 0.875rem;     // 14px - Small text, navigation
+$font-size-base: 1rem;       // 16px - Body text
+$font-size-md: 1.125rem;     // 18px - Lead paragraphs
+$font-size-lg: 1.25rem;      // 20px - Subheadings
+$font-size-xl: 1.5rem;       // 24px - Section subtitles
+$font-size-2xl: 2rem;        // 32px - H3
+$font-size-3xl: 2.5rem;      // 40px - H2
+$font-size-4xl: 3rem;        // 48px - H1
+$font-size-5xl: 3.5rem;      // 56px - Hero titles
+$font-size-6xl: 4rem;        // 64px - Display
+
+// Line heights
+$line-height-tight: 1.1;
+$line-height-snug: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.7;
+
+// Font weights
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
 
 // ============================================
 // SPACING
