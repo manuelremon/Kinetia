@@ -1,26 +1,23 @@
 .footer {
-  padding: 70px 0 35px;
+  padding: 60px 0 30px;
+  background: $color-bg-secondary;
   border-top: 1px solid $color-border;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 50px;
-  margin-bottom: 50px;
-
-  @include respond-to('lg') {
-    grid-template-columns: 1fr 1fr;
-    gap: 35px;
-  }
-
-  @include respond-to('md') {
-    grid-template-columns: 1fr;
-  }
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+  margin-bottom: 40px;
 }
 
+// Brand Section
 .brand {
-  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
@@ -28,102 +25,128 @@
   align-items: center;
   gap: 10px;
   font-family: $font-display;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
-  margin-bottom: 14px;
+  color: $color-text-primary;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .logoIcon {
-  height: 28px;
+  height: 32px;
   width: auto;
   object-fit: contain;
 }
 
-.description {
+.tagline {
   color: $color-text-muted;
-  font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 320px;
 }
 
-.social {
+// Navigation
+.nav {
   display: flex;
-  gap: 10px;
-}
-
-.socialLink {
-  width: 36px;
-  height: 36px;
-  background: $color-bg-card;
-  border: 1px solid $color-border;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  color: $color-text-secondary;
-  font-size: 12px;
-  transition: all $transition-medium;
-
-  &:hover {
-    border-color: $color-accent-orange;
-    color: $color-accent-orange;
-    transform: translateY(-3px) rotate(5deg);
-  }
 }
 
-.column {
+.navGroup {
   h4 {
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 18px;
+    color: $color-text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
   }
 }
 
-.links {
-  list-style: none;
+.navLinks {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 32px;
 
   a {
-    color: $color-text-muted;
-    font-size: 13px;
-    transition: all $transition-fast;
-    display: inline-block;
+    color: $color-text-secondary;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color $transition-fast;
 
     &:hover {
-      color: $color-accent-orange;
-      transform: translateX(5px);
+      color: $color-accent-primary;
     }
   }
 }
 
+// Contact (in bottom bar)
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.email {
+  color: $color-text-muted;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-accent-primary;
+  }
+}
+
+.separator {
+  color: $color-text-muted;
+  font-size: 13px;
+}
+
+.location {
+  color: $color-text-muted;
+  font-size: 13px;
+}
+
+// Bottom
 .bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 35px;
+  padding-top: 24px;
   border-top: 1px solid $color-border;
 
   @include respond-to('md') {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     text-align: center;
+
+    .contact {
+      order: -1;
+    }
   }
 }
 
 .copyright {
   color: $color-text-muted;
-  font-size: 12px;
+  font-size: 13px;
+  margin: 0;
 }
 
 .legal {
   display: flex;
-  gap: 20px;
+  gap: 24px;
+  margin-right: 60px;
 
   a {
     color: $color-text-muted;
-    font-size: 12px;
+    font-size: 13px;
+    text-decoration: none;
     transition: color $transition-fast;
 
     &:hover {

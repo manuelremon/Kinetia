@@ -10,9 +10,8 @@ import {
   Stats,
   Features,
   HowItWorks,
-  CTA,
   About,
-  TerminalSection,
+  Contact,
   ChatWidget,
   ScrollToTop
 } from '@/components';
@@ -38,9 +37,8 @@ function App() {
         <Stats />
         <Features />
         <HowItWorks />
-        <CTA />
         <About />
-        <TerminalSection />
+        <Contact />
       </main>
 
       <Footer />

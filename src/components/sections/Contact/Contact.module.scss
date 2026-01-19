@@ -1,0 +1,319 @@
+.section {
+  padding: 100px 0;
+  background: $color-bg-primary;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  @include respond-to('lg') {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    max-width: 600px;
+  }
+}
+
+// Left side - Info
+.info {
+  padding-top: 20px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 48px;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin-bottom: 20px;
+  line-height: 1.2;
+
+  @include respond-to('md') {
+    font-size: 36px;
+  }
+}
+
+.description {
+  font-size: 17px;
+  color: $color-text-secondary;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.contactMethods {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contactIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba($color-accent-primary, 0.1);
+  border-radius: 12px;
+  flex-shrink: 0;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    color: $color-accent-primary;
+  }
+}
+
+.contactLabel {
+  display: block;
+  font-size: 13px;
+  color: $color-text-muted;
+  margin-bottom: 2px;
+}
+
+.contactValue {
+  font-size: 16px;
+  font-weight: 500;
+  color: $color-text-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-accent-primary;
+  }
+}
+
+// Social Section
+.socialSection {
+  margin-top: 32px;
+}
+
+.socialTitle {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-text-secondary;
+  margin-bottom: 16px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 16px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border-radius: 12px;
+  border: 1px solid;
+  transition: all $transition-fast;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  // YouTube - Red
+  &.youtube {
+    color: #FF0000;
+    border-color: #FF0000;
+
+    &:hover {
+      background: rgba(#FF0000, 0.1);
+    }
+  }
+
+  // X (Twitter) - White
+  &.x {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+
+    &:hover {
+      background: rgba(#FFFFFF, 0.1);
+    }
+  }
+
+  // LinkedIn - Blue
+  &.linkedin {
+    color: #0A66C2;
+    border-color: #0A66C2;
+
+    &:hover {
+      background: rgba(#0A66C2, 0.1);
+    }
+  }
+
+  // Instagram - Gradient (using pink as base)
+  &.instagram {
+    color: #E4405F;
+    border-color: #E4405F;
+
+    &:hover {
+      background: rgba(#E4405F, 0.1);
+    }
+  }
+}
+
+// Right side - Form
+.formContainer {
+  position: relative;
+}
+
+.formCard {
+  background: $color-bg-secondary;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-xl;
+  padding: 40px;
+  box-shadow: $shadow-lg;
+
+  @include respond-to('sm') {
+    padding: 30px 24px;
+  }
+}
+
+.formTitle {
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: 600;
+  color: $color-text-primary;
+  margin-bottom: 8px;
+}
+
+.formSubtitle {
+  font-size: 14px;
+  color: $color-text-secondary;
+  margin-bottom: 28px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-text-primary;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: $color-text-primary;
+    background: $color-bg-tertiary;
+    border: 1px solid $color-border;
+    border-radius: $border-radius-md;
+    transition: all $transition-fast;
+    font-family: inherit;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-accent-primary;
+      box-shadow: 0 0 0 3px $color-accent-primary-subtle;
+    }
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+// Success Message
+.successMessage {
+  text-align: center;
+  padding: 40px 20px;
+
+  h4 {
+    font-family: $font-display;
+    font-size: 24px;
+    font-weight: 600;
+    color: $color-text-primary;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 14px;
+    color: $color-text-secondary;
+    margin-bottom: 24px;
+  }
+}
+
+.successIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba($color-success, 0.1);
+  color: $color-success;
+  font-size: 28px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.resetButton {
+  background: transparent;
+  border: 1px solid $color-border;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-text-secondary;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-accent-primary;
+    color: $color-accent-primary;
+  }
+}

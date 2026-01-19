@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import { Container } from '@/components/common';
 import styles from './HowItWorks.module.scss';
 
 interface StepData {
@@ -15,84 +14,35 @@ interface StepData {
 const STEPS: StepData[] = [
   {
     number: 1,
-    label: 'Describir',
-    title: 'Expresa tu intención',
-    description: 'Comienza describiendo lo que necesitas — un nuevo modelo dbt, DAG de Airflow o flujo ELT completo.',
-    color: '#007aff',
-    content: (
-      <div className={styles.terminal}>
-        <div className={styles.terminalHeader}>
-          <span className={`${styles.dot} ${styles.red}`} />
-          <span className={`${styles.dot} ${styles.yellow}`} />
-          <span className={`${styles.dot} ${styles.green}`} />
-        </div>
-        <div className={styles.terminalBody}>
-          <div className={styles.terminalLine}>
-            <span className={styles.prompt}>$</span>
-            <span className={styles.command}>kinetia crear</span>
-          </div>
-          <div className={styles.terminalLine}>
-            <span className={styles.output}>→ ¿Qué te gustaría construir?</span>
-          </div>
-        </div>
-      </div>
-    ),
+    label: 'Diagnóstico estratégico',
+    title: 'Analizamos tu situación',
+    description: 'Realizamos un análisis exhaustivo de la situación actual de tu empresa: infraestructura tecnológica, procesos operativos y cultura organizacional. Evaluamos competencias internas, identificamos cuellos de botella y oportunidades de mejora, y analizamos el mercado y a la competencia para establecer una línea base y definir objetivos claros.',
+    color: 'transparent',
+    content: null,
   },
   {
     number: 2,
-    label: 'Planificar',
-    title: 'La IA genera un plan',
-    description: 'Nuestra IA crea un plan estructurado adaptado a tu infraestructura y estándares de código.',
-    color: '#5856d6',
-    content: (
-      <div className={styles.planCard}>
-        <div className={styles.planItem}>
-          <span className={`${styles.planNumber} ${styles.orange}`}>1</span>
-          <span>Crear modelo dbt</span>
-        </div>
-        <div className={styles.planItem}>
-          <span className={`${styles.planNumber} ${styles.cyan}`}>2</span>
-          <span>Añadir pruebas de esquema</span>
-        </div>
-        <div className={styles.planItem}>
-          <span className={`${styles.planNumber} ${styles.purple}`}>3</span>
-          <span>Crear DAG de Airflow</span>
-        </div>
-      </div>
-    ),
+    label: 'Diseño a medida',
+    title: 'Creamos tu roadmap de éxito',
+    description: 'Con el diagnóstico como guía, definimos una estrategia alineada con la visión y objetivos de negocio. Diseñamos soluciones personalizadas y un roadmap detallado con hitos, cronogramas y asignación de recursos. Seleccionamos las tecnologías más adecuadas, aplicamos principios de diseño centrado en el usuario y planificamos la gestión del cambio para garantizar una adopción fluida.',
+    color: 'transparent',
+    content: null,
   },
   {
     number: 3,
-    label: 'Generar',
-    title: 'Pipeline en segundos',
-    description: 'Pipeline completo generado instantáneamente con estructura adecuada y mejores prácticas.',
-    color: '#34c759',
-    content: (
-      <div className={styles.generateCard}>
-        <div className={styles.generateIcon}>⚡</div>
-        <p className={styles.generateText}>¡Pipeline Generado!</p>
-      </div>
-    ),
+    label: 'Implementación ágil',
+    title: 'Desarrollamos e integramos',
+    description: 'Construimos e integramos la solución mediante ciclos iterativos y entregas incrementales, siguiendo marcos ágiles como Scrum o Kanban. Gestionamos la comunicación y la formación para superar la resistencia al cambio: involucramos a los equipos desde el inicio, comunicamos beneficios y ofrecemos capacitaciones personalizadas.',
+    color: 'transparent',
+    content: null,
   },
   {
     number: 4,
-    label: 'Verificar',
-    title: 'Siempre validado',
-    description: 'El dry-run automático asegura que todo funcione antes del despliegue.',
-    color: '#5ac8fa',
-    content: (
-      <div className={styles.verifyCard}>
-        <div className={styles.verifyItem}>
-          <span className={styles.checkmark}>✓</span> Todas las pruebas pasaron
-        </div>
-        <div className={styles.verifyItem}>
-          <span className={styles.checkmark}>✓</span> Esquema validado
-        </div>
-        <div className={styles.verifyItem}>
-          <span className={styles.checkmark}>✓</span> Listo para desplegar
-        </div>
-      </div>
-    ),
+    label: 'Optimización continua',
+    title: 'Mejoramos sin límites',
+    description: 'Tras el despliegue, la optimización no se detiene. Medimos resultados, revisamos KPIs y analizamos métricas de uso para evaluar el impacto de la solución. Ajustamos parámetros, automatizamos tareas repetitivas y escalamos la solución según el crecimiento del negocio, garantizando eficiencia sostenida y máximo retorno de inversión.',
+    color: 'transparent',
+    content: null,
   },
 ];
 
@@ -112,9 +62,8 @@ function StepCard({ step, index, progress, range, targetScale }: StepCardProps) 
     <div ref={container} className={styles.stepContainer}>
       <motion.div
         style={{
-          backgroundColor: step.color,
           scale,
-          top: `calc(-5vh + ${index * 25}px)`,
+          top: `calc(${index * 25}px)`,
         }}
         className={styles.stepCard}
       >
@@ -126,13 +75,8 @@ function StepCard({ step, index, progress, range, targetScale }: StepCardProps) 
         </div>
 
         <div className={styles.stepBody}>
-          <div className={styles.stepContent}>
-            <h3 className={styles.stepTitle}>{step.title}</h3>
-            <p className={styles.stepDescription}>{step.description}</p>
-          </div>
-          <div className={styles.stepVisual}>
-            {step.content}
-          </div>
+          <h3 className={styles.stepTitle}>{step.title}</h3>
+          <p className={styles.stepDescription}>{step.description}</p>
         </div>
       </motion.div>
     </div>
@@ -146,16 +90,14 @@ export function HowItWorks() {
     offset: ['start start', 'end end'],
   });
 
+  // Fade out title when reaching end of section (after 85% scroll)
+  const titleOpacity = useTransform(scrollYProgress, [0.8, 0.95], [1, 0]);
+
   return (
     <section id="how-it-works" className={styles.section} ref={sectionRef}>
-      <Container>
-        <div className={styles.header}>
-          <span className="section-label">Proceso</span>
-          <h2 className="section-title">
-            Cómo <span className="text-gradient-animated">funciona</span>
-          </h2>
-        </div>
-      </Container>
+      <motion.div className={styles.header} style={{ opacity: titleOpacity }}>
+        <h2 className={styles.sectionTitle}><span className="text-gradient-animated">Cómo trabajamos</span></h2>
+      </motion.div>
 
       <div className={styles.stepsWrapper}>
         {STEPS.map((step, i) => {

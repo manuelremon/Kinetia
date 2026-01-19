@@ -27,9 +27,8 @@ export function Features() {
       <Container>
         <ScrollReveal>
           <div className={styles.header}>
-            <span className="section-label">Características</span>
             <h2 className={styles.title}>
-              El sistema de datos <span className="text-gradient-animated">agéntico</span>
+              <span className="text-gradient-animated">Sistema de datos agéntico</span>
             </h2>
           </div>
         </ScrollReveal>
