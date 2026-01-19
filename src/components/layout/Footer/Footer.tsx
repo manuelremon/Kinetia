@@ -9,14 +9,8 @@ export function Footer() {
         <div className={styles.grid}>
           <div className={styles.brand}>
             <a href="#" className={styles.logo}>
-              <div className={styles.logoIcon}>
-                <svg viewBox="0 0 24 24" width="16" height="16">
-                  <path fill="#fff" d="M12 2L2 7L12 12L22 7L12 2Z"/>
-                  <path fill="none" stroke="#fff" strokeWidth="2" d="M2 17L12 22L22 17"/>
-                  <path fill="none" stroke="#fff" strokeWidth="2" d="M2 12L12 17L22 12"/>
-                </svg>
-              </div>
-              TensorStax
+              <img src="/logo.png" alt="KINETIA" className={styles.logoIcon} />
+              KINETIA
             </a>
             <p className={styles.description}>
               IA Autónoma para Ingeniería de Datos. Construye y mantiene pipelines de producción automáticamente.
@@ -43,7 +37,7 @@ export function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <p className={styles.copyright}>TensorStax &copy; 2025</p>
+          <p className={styles.copyright}>KINETIA &copy; 2025</p>
           <div className={styles.legal}>
             <a href="#">Privacidad</a>
             <a href="#">Términos</a>

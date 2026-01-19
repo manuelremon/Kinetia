@@ -34,13 +34,9 @@
 }
 
 .logoIcon {
-  width: 28px;
   height: 28px;
-  background: linear-gradient(135deg, $color-accent-orange, $color-accent-cyan);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: auto;
+  object-fit: contain;
 }
 
 .description {

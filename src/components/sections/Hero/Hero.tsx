@@ -9,7 +9,7 @@ export function Hero() {
         <div className={styles.content}>
           <div className={styles.badge}>
             <span className={styles.badgeDot} />
-            Presentamos TensorStax
+            Presentamos KINETIA
           </div>
 
           <h1 className={styles.title}>

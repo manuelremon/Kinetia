@@ -2,7 +2,7 @@
 @use '../abstracts/mixins' as *;
 
 // ============================================
-// CSS RESET
+// CSS RESET - iOS Light Mode
 // ============================================
 
 *,
@@ -25,11 +25,6 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none;
-
-  @include respond-to('md') {
-    cursor: auto;
-  }
 }
 
 a {
@@ -39,11 +34,7 @@ a {
 
 button {
   font-family: inherit;
-  cursor: none;
-
-  @include respond-to('md') {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
 ul, ol {

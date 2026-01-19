@@ -58,7 +58,7 @@ export function HowItWorks() {
               <div className={styles.terminalBody}>
                 <div className={styles.terminalLine}>
                   <span className={styles.prompt}>$</span>
-                  <span className={styles.command}>tensorstax crear</span>
+                  <span className={styles.command}>kinetia crear</span>
                 </div>
                 <div className={styles.terminalLine}>
                   <span className={styles.output}>→ ¿Qué te gustaría construir?</span>

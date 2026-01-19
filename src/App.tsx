@@ -1,13 +1,12 @@
 import {
   PageLoader,
-  CustomCursor,
   BackgroundLayers,
   ExplosionCanvas,
   Header,
   Footer,
   Hero,
-  LogosCarousel,
-  Stats,
+  StatsTools,
+  Services,
   Features,
   HowItWorks,
   CTA
@@ -21,7 +20,6 @@ function App() {
       {/* Global Effects */}
       <PageLoader />
       <ExplosionCanvas />
-      <CustomCursor />
       <BackgroundLayers />
 
       {/* Layout */}
@@ -30,20 +28,14 @@ function App() {
       {/* Main Content */}
       <main>
         <Hero />
-        <LogosCarousel />
-        <Stats />
+        <StatsTools />
+        <Services />
         <Features />
         <HowItWorks />
         <CTA />
       </main>
 
       <Footer />
-
-      {/* Click instruction tooltip */}
-      <div className="click-instruction">
-        <div className="click-instruction-icon">✨</div>
-        <span>¡Haz clic en cualquier lugar para explosión de partículas!</span>
-      </div>
     </>
   );
 }

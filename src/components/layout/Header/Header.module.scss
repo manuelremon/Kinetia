@@ -36,28 +36,9 @@
 }
 
 .logoIcon {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, $color-accent-orange, $color-accent-cyan);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.4) 50%, transparent 60%);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-  }
-
-  .logo:hover &::after {
-    transform: translateX(100%);
-  }
+  height: 38px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav {
@@ -77,30 +58,97 @@
   }
 }
 
+.hasDropdown {
+  position: relative;
+}
+
 .navLink {
   font-size: 14px;
+  font-weight: 500;
   color: $color-text-secondary;
-  transition: all $transition-fast;
+  transition: color $transition-fast;
   position: relative;
   padding: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 
   &::before {
     content: '';
+    width: 0%;
+    height: 2px;
+    background: $color-accent-primary;
+    display: block;
+    transition: 0.4s ease;
+    margin-left: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: $color-accent-primary;
+    display: block;
+    transition: 0.4s ease;
     position: absolute;
     bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, $color-accent-orange, $color-accent-cyan);
-    transition: all $transition-medium;
-    transform: translateX(-50%);
+    left: 0;
   }
 
   &:hover {
     color: $color-text-primary;
 
-    &::before {
+    &::before,
+    &::after {
       width: 100%;
     }
+  }
+}
+
+.arrow {
+  font-size: 10px;
+  transition: transform $transition-fast;
+
+  .hasDropdown:hover & {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  min-width: 200px;
+  background: $color-bg-primary;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-lg;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all $transition-medium;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.dropdownItem {
+  display: block;
+  padding: 12px 20px;
+  font-size: 14px;
+  color: $color-text-secondary;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-bg-secondary;
+    color: $color-accent-primary;
+    padding-left: 25px;
   }
 }

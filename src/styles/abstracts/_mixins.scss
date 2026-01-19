@@ -17,17 +17,19 @@
 }
 
 // ============================================
-// VISUAL EFFECT MIXINS
+// VISUAL EFFECT MIXINS - iOS Light Mode
 // ============================================
 
 @mixin glass-effect {
   background: $color-bg-glass;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid $color-border;
+  box-shadow: $shadow-sm;
 }
 
 @mixin gradient-text {
-  background: linear-gradient(90deg, $color-accent-orange, $color-accent-cyan);
+  background: linear-gradient(90deg, $color-accent-primary, $color-accent-teal);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -36,11 +38,10 @@
 @mixin animated-gradient-text {
   background: linear-gradient(
     90deg,
-    $color-accent-orange,
-    #fbbf24,
-    $color-accent-cyan,
-    $color-accent-purple,
-    $color-accent-orange
+    $color-accent-primary,
+    $color-accent-teal,
+    $color-accent-secondary,
+    $color-accent-primary
   );
   background-size: 300% 100%;
   -webkit-background-clip: text;
@@ -53,6 +54,7 @@
   background: $color-bg-card;
   border: 1px solid $color-border;
   border-radius: $border-radius-xl;
+  box-shadow: $shadow-md;
 }
 
 @mixin card-hover {
@@ -60,8 +62,8 @@
 
   &:hover {
     transform: translateY(-8px);
-    border-color: $color-accent-orange;
-    box-shadow: 0 20px 40px rgba($color-accent-orange, 0.15);
+    border-color: $color-accent-primary;
+    box-shadow: $shadow-lg, 0 0 0 1px $color-accent-primary-subtle;
   }
 }
 
@@ -109,14 +111,14 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: $color-accent-orange;
+  color: $color-accent-primary;
   margin-bottom: 16px;
 
   &::before {
     content: '';
     width: 8px;
     height: 8px;
-    background: $color-accent-orange;
+    background: $color-accent-primary;
     border-radius: 50%;
     animation: pulse 2s infinite;
   }
@@ -127,6 +129,7 @@
   font-size: 44px;
   font-weight: 600;
   margin-bottom: 14px;
+  color: $color-text-primary;
 
   @include respond-to('md') {
     font-size: 32px;

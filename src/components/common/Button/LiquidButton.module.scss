@@ -8,17 +8,13 @@
   font-family: $font-display;
   font-size: 14px;
   font-weight: 600;
-  color: $color-bg-primary;
+  color: $color-text-light;
   background: transparent;
   border: none;
-  cursor: none;
+  cursor: pointer;
   overflow: hidden;
   z-index: 1;
   transition: color 0.4s ease, transform 0.3s ease;
-
-  @include respond-to('md') {
-    cursor: pointer;
-  }
 
   &::before {
     content: '';
@@ -62,14 +58,14 @@
   }
 
   .blob {
-    background: $color-accent-orange;
+    background: $color-accent-primary;
   }
 
   &:hover {
-    color: $color-bg-primary;
+    color: $color-text-light;
 
     &::before {
-      border-color: $color-accent-orange;
+      border-color: $color-accent-primary;
     }
   }
 }

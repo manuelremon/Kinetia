@@ -58,12 +58,12 @@
 .stepNumberCircle {
   width: 30px;
   height: 30px;
-  background: linear-gradient(135deg, $color-accent-orange, $color-accent-orange-hover);
+  background: linear-gradient(135deg, $color-accent-primary, $color-accent-primary-hover);
   border-radius: 50%;
   @include flex-center;
   font-size: 13px;
-  color: $color-bg-primary;
-  box-shadow: 0 0 20px $color-accent-orange-glow;
+  color: $color-text-light;
+  box-shadow: 0 0 20px $color-accent-primary-glow;
 }
 
 .stepTitle {
@@ -89,25 +89,25 @@
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: $shadow-lg;
   }
 }
 
 // Terminal mini styles
 .terminal {
-  background: $color-bg-secondary;
-  border: 1px solid $color-border;
+  background: $color-bg-terminal;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: $border-radius-lg;
   overflow: hidden;
 }
 
 .terminalHeader {
-  background: $color-bg-tertiary;
+  background: $color-bg-terminal-header;
   padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
-  border-bottom: 1px solid $color-border;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dot {
@@ -135,16 +135,16 @@
 }
 
 .prompt {
-  color: $color-accent-orange;
+  color: $color-accent-primary;
   margin-right: 8px;
 }
 
 .command {
-  color: $color-text-primary;
+  color: $color-text-light;
 }
 
 .output {
-  color: $color-text-secondary;
+  color: rgba(255, 255, 255, 0.7);
   padding-left: 16px;
   display: block;
 }
@@ -172,12 +172,12 @@
   border-radius: 6px;
   @include flex-center;
   font-size: 11px;
-  color: #000;
+  color: $color-text-light;
   font-weight: 600;
 
-  &.orange { background: $color-accent-orange; }
-  &.cyan { background: $color-accent-cyan; }
-  &.purple { background: $color-accent-purple; }
+  &.orange { background: $color-accent-primary; }
+  &.cyan { background: $color-accent-teal; }
+  &.purple { background: $color-accent-secondary; }
 }
 
 // Generate card

@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { EXPLOSION_COLORS } from '@/utils/constants';
 import styles from './ExplosionCanvas.module.scss';
+
+// Solo 2 colores iOS
+const PARTICLE_COLORS = ['rgba(0, 122, 255, 0.6)', 'rgba(90, 200, 250, 0.5)'];
 
 interface ExplosionParticle {
   x: number;
@@ -8,14 +10,10 @@ interface ExplosionParticle {
   size: number;
   vx: number;
   vy: number;
-  gravity: number;
   friction: number;
   opacity: number;
   decay: number;
   color: string;
-  rotation: number;
-  rotationSpeed: number;
-  shape: number;
 }
 
 export function ExplosionCanvas() {
@@ -38,95 +36,44 @@ export function ExplosionCanvas() {
 
     const createParticle = (x: number, y: number): ExplosionParticle => {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 8 + 4;
+      const speed = Math.random() * 4 + 2;
       return {
         x,
         y,
-        size: Math.random() * 8 + 3,
+        size: Math.random() * 4 + 2,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        gravity: 0.15,
-        friction: 0.98,
-        opacity: 1,
-        decay: Math.random() * 0.02 + 0.015,
-        color: EXPLOSION_COLORS[Math.floor(Math.random() * EXPLOSION_COLORS.length)],
-        rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.3,
-        shape: Math.floor(Math.random() * 4)
+        friction: 0.96,
+        opacity: Math.random() * 0.3 + 0.4,
+        decay: Math.random() * 0.015 + 0.01,
+        color: PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)]
       };
     };
 
     const createExplosion = (x: number, y: number) => {
-      const particleCount = 30 + Math.floor(Math.random() * 20);
+      const particleCount = 8 + Math.floor(Math.random() * 6);
       for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push(createParticle(x, y));
       }
     };
 
-    const drawStar = (cx: number, cy: number, spikes: number, outerRadius: number, innerRadius: number) => {
-      let rot = Math.PI / 2 * 3;
-      const step = Math.PI / spikes;
-
-      ctx.beginPath();
-      ctx.moveTo(cx, cy - outerRadius);
-      for (let i = 0; i < spikes; i++) {
-        let x = cx + Math.cos(rot) * outerRadius;
-        let y = cy + Math.sin(rot) * outerRadius;
-        ctx.lineTo(x, y);
-        rot += step;
-        x = cx + Math.cos(rot) * innerRadius;
-        y = cy + Math.sin(rot) * innerRadius;
-        ctx.lineTo(x, y);
-        rot += step;
-      }
-      ctx.lineTo(cx, cy - outerRadius);
-      ctx.closePath();
-      ctx.fill();
-    };
-
     const drawParticle = (p: ExplosionParticle) => {
       ctx.save();
       ctx.globalAlpha = p.opacity;
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rotation);
       ctx.fillStyle = p.color;
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = 10;
-
-      switch (p.shape) {
-        case 0: // Circle
-          ctx.beginPath();
-          ctx.arc(0, 0, p.size, 0, Math.PI * 2);
-          ctx.fill();
-          break;
-        case 1: // Square
-          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-          break;
-        case 2: // Triangle
-          ctx.beginPath();
-          ctx.moveTo(0, -p.size);
-          ctx.lineTo(p.size, p.size);
-          ctx.lineTo(-p.size, p.size);
-          ctx.closePath();
-          ctx.fill();
-          break;
-        case 3: // Star
-          drawStar(0, 0, 5, p.size, p.size / 2);
-          break;
-      }
-
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
       ctx.restore();
     };
 
     const updateParticle = (p: ExplosionParticle) => {
       p.vx *= p.friction;
       p.vy *= p.friction;
-      p.vy += p.gravity;
       p.x += p.vx;
       p.y += p.vy;
       p.opacity -= p.decay;
-      p.size *= 0.98;
-      p.rotation += p.rotationSpeed;
+      p.size *= 0.97;
     };
 
     const animate = () => {

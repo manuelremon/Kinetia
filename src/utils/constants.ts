@@ -17,12 +17,12 @@ export const TYPING_PHRASES = [
 // ============================================
 
 export const TERMINAL_COMMANDS: TerminalCommand[] = [
-  { type: 'command', text: 'tensorstax init --proyecto pipeline' },
+  { type: 'command', text: 'kinetia init --proyecto pipeline' },
   { type: 'output', text: '✓ Proyecto inicializado' },
-  { type: 'command', text: 'tensorstax generar --modelo usuarios' },
+  { type: 'command', text: 'kinetia generar --modelo usuarios' },
   { type: 'output', text: '→ Analizando esquema...' },
   { type: 'success', text: '✓ Modelo creado exitosamente!' },
-  { type: 'command', text: 'tensorstax validar' },
+  { type: 'command', text: 'kinetia validar' },
   { type: 'success', text: '✓ Todas las pruebas pasaron!' }
 ];
 
@@ -90,9 +90,26 @@ export const FEATURES: FlipCardData[] = [
 
 export const NAV_LINKS: NavLink[] = [
   { href: '#', label: 'Inicio' },
-  { href: '#features', label: 'Características' },
-  { href: '#how-it-works', label: 'Cómo Funciona' },
-  { href: '#', label: 'Docs' }
+  {
+    href: '#',
+    label: 'Servicios',
+    dropdown: [
+      { href: '#', label: 'Automatización de Procesos' },
+      { href: '#', label: 'Optimización de Inventarios' },
+      { href: '#', label: 'Sistemas Personalizados' },
+      { href: '#', label: 'Agentic / Entrenamiento Agentes' }
+    ]
+  },
+  {
+    href: '#',
+    label: 'Proyectos',
+    dropdown: [
+      { href: '#', label: 'Portfolio' },
+      { href: '#', label: 'Casos de Éxito' },
+      { href: '#', label: 'Open Source' }
+    ]
+  },
+  { href: '#about', label: 'Sobre KINETIA' }
 ];
 
 // ============================================
@@ -135,14 +152,14 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Contacto',
     links: [
-      { href: 'mailto:info@tensorstax.com', label: 'info@tensorstax.com' }
+      { href: 'mailto:info@kinetia.com', label: 'info@kinetia.com' }
     ]
   }
 ];
 
 // ============================================
-// PARTICLE COLORS
+// PARTICLE COLORS - iOS Style
 // ============================================
 
-export const EXPLOSION_COLORS = ['#f97316', '#06b6d4', '#a855f7', '#fbbf24', '#22c55e'];
-export const BG_PARTICLE_COLORS = ['#f97316', '#06b6d4'];
+export const EXPLOSION_COLORS = ['#007aff', '#5ac8fa', '#5856d6', '#34c759', '#ff9500'];
+export const BG_PARTICLE_COLORS = ['#007aff', '#5ac8fa'];

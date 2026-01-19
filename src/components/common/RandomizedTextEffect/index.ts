@@ -1,0 +1,1 @@
+export { RandomizedTextEffect } from './RandomizedTextEffect';

@@ -2,14 +2,13 @@
   position: fixed;
   width: 20px;
   height: 20px;
-  border: 2px solid $color-accent-orange;
+  border: 2px solid $color-accent-primary;
   border-radius: 50%;
   pointer-events: none;
   z-index: $z-cursor;
   transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease,
               background 0.3s ease, border-radius 0.3s ease, border-color 0.3s ease;
   transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
 
   @include respond-to('md') {
     display: none;
@@ -18,8 +17,8 @@
   &.hover {
     width: 60px;
     height: 60px;
-    background: rgba($color-accent-orange, 0.1);
-    border-color: $color-accent-cyan;
+    background: rgba($color-accent-primary, 0.1);
+    border-color: $color-accent-teal;
   }
 
   &.click {
@@ -31,7 +30,7 @@
     height: 80px;
     border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
     animation: cursorMorph 2s ease-in-out infinite;
-    border-color: $color-accent-purple;
+    border-color: $color-accent-secondary;
   }
 }
 
@@ -39,7 +38,7 @@
   position: fixed;
   width: 6px;
   height: 6px;
-  background: $color-accent-orange;
+  background: $color-accent-primary;
   border-radius: 50%;
   pointer-events: none;
   z-index: $z-cursor + 1;

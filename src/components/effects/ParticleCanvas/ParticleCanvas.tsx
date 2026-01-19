@@ -78,7 +78,7 @@ export function ParticleCanvas() {
 
           if (distance < CONNECTION_DISTANCE) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(249, 115, 22, ${0.06 * (1 - distance / CONNECTION_DISTANCE)})`;
+            ctx.strokeStyle = `rgba(0, 122, 255, ${0.08 * (1 - distance / CONNECTION_DISTANCE)})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);

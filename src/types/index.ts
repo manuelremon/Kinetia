@@ -35,6 +35,7 @@ export interface StatData {
 export interface NavLink {
   href: string;
   label: string;
+  dropdown?: { href: string; label: string }[];
 }
 
 export interface FooterColumn {

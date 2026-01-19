@@ -1,0 +1,204 @@
+.section {
+  padding: 120px 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: $color-accent-primary-subtle;
+  color: $color-accent-primary;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 48px;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin-bottom: 20px;
+  line-height: 1.2;
+
+  @include respond-to('md') {
+    font-size: 32px;
+  }
+}
+
+.subtitle {
+  font-size: 18px;
+  color: $color-text-secondary;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+
+  @include respond-to('md') {
+    font-size: 16px;
+  }
+}
+
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+
+  @include respond-to('md') {
+    gap: 60px;
+  }
+}
+
+.serviceCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+
+  @include respond-to('md') {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  &.reverse {
+    .content {
+      order: 2;
+
+      @include respond-to('md') {
+        order: 1;
+      }
+    }
+
+    .visual {
+      order: 1;
+
+      @include respond-to('md') {
+        order: 2;
+      }
+    }
+  }
+}
+
+.content {
+  order: 1;
+}
+
+.visual {
+  order: 2;
+}
+
+.serviceIcon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.serviceSubtitle {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-accent-primary;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.serviceTitle {
+  font-family: $font-display;
+  font-size: 36px;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin-bottom: 20px;
+  line-height: 1.2;
+
+  @include respond-to('md') {
+    font-size: 28px;
+  }
+}
+
+.serviceDescription {
+  font-size: 16px;
+  color: $color-text-secondary;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.features {
+  list-style: none;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: $color-text-secondary;
+  }
+}
+
+.checkIcon {
+  color: $color-success;
+  font-weight: 700;
+}
+
+.visualInner {
+  position: relative;
+  aspect-ratio: 1;
+  max-width: 400px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, $color-accent-primary-subtle, transparent);
+  border-radius: $border-radius-xl;
+  border: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba($color-accent-primary, 0.1), transparent 60%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 70%, rgba($color-accent-teal, 0.1), transparent 60%);
+  }
+}
+
+.iconLarge {
+  font-size: 120px;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+  animation: float 6s ease-in-out infinite;
+
+  @include respond-to('md') {
+    font-size: 80px;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}

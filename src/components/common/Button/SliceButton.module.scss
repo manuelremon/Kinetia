@@ -1,0 +1,62 @@
+.slice {
+  --c1: #{$color-text-light};
+  --c2: #{$color-accent-primary};
+  --size-letter: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6em 1.2em;
+  font-size: var(--size-letter);
+  font-family: $font-display;
+  text-decoration: none;
+
+  background-color: transparent;
+  border: calc(var(--size-letter) / 6) solid var(--c2);
+  border-radius: 0.3em;
+  cursor: pointer;
+
+  overflow: hidden;
+  position: relative;
+  transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+
+  .text {
+    font-weight: 600;
+    color: var(--c2);
+    position: relative;
+    z-index: 1;
+    transition: color 500ms cubic-bezier(0.83, 0, 0.17, 1);
+  }
+
+  &::after {
+    content: "";
+    width: 0;
+    height: calc(300% + 1em);
+    position: absolute;
+    translate: -50% -50%;
+    inset: 50%;
+    rotate: 30deg;
+    background-color: var(--c2);
+    transition: 800ms cubic-bezier(0.83, 0, 0.17, 1);
+  }
+
+  &:hover {
+    .text {
+      color: var(--c1);
+    }
+
+    &::after {
+      width: calc(120% + 1em);
+    }
+  }
+
+  &:active {
+    scale: 0.98;
+    filter: brightness(0.9);
+  }
+}
+
+.small {
+  --size-letter: 13px;
+  padding: 0.5em 1em;
+}

@@ -21,11 +21,10 @@
   perspective: 1000px;
   width: 100%;
   height: 350px;
-  cursor: none;
+  cursor: pointer;
 
   @include respond-to('md') {
     height: 300px;
-    cursor: auto;
   }
 }
 
@@ -157,29 +156,25 @@
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: $color-bg-primary;
+  color: $color-text-light;
 }
 
 .backText {
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 20px;
 }
 
 .backBtn {
   padding: 10px 20px;
-  background: $color-bg-primary;
-  color: $color-text-primary;
+  background: $color-text-light;
+  color: $color-accent-primary;
   border: none;
   border-radius: $border-radius-md;
   font-size: 13px;
   font-weight: 500;
-  cursor: none;
+  cursor: pointer;
   transition: all 0.3s ease;
-
-  @include respond-to('md') {
-    cursor: pointer;
-  }
 
   &:hover {
     transform: scale(1.05);

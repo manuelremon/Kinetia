@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Container, LiquidButton, GlitchText } from '@/components/common';
+import { Container, SliceButton, RandomizedTextEffect } from '@/components/common';
 import { NAV_LINKS } from '@/utils/constants';
 import styles from './Header.module.scss';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,31 +31,52 @@ export function Header() {
       <Container>
         <div className={styles.inner}>
           <a href="#" className={styles.logo}>
-            <div className={styles.logoIcon}>
-              <svg viewBox="0 0 24 24" width="22" height="22">
-                <path fill="#fff" d="M12 2L2 7L12 12L22 7L12 2Z"/>
-                <path fill="none" stroke="#fff" strokeWidth="2" d="M2 17L12 22L22 17"/>
-                <path fill="none" stroke="#fff" strokeWidth="2" d="M2 12L12 17L22 12"/>
-              </svg>
-            </div>
-            <GlitchText text="TensorStax" />
+            <img src="/logo.png" alt="KINETIA" className={styles.logoIcon} />
+            <RandomizedTextEffect text="KINETIA" />
           </a>
 
           <nav className={styles.nav}>
             <ul className={styles.navLinks}>
               {NAV_LINKS.map((link) => (
-                <li key={link.label}>
+                <li
+                  key={link.label}
+                  className={link.dropdown ? styles.hasDropdown : ''}
+                  onMouseEnter={() => link.dropdown && setActiveDropdown(link.label)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
                   <a
                     href={link.href}
                     className={styles.navLink}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                    onClick={(e) => {
+                      if (link.dropdown) {
+                        e.preventDefault();
+                      } else {
+                        handleNavClick(e, link.href);
+                      }
+                    }}
                   >
                     {link.label}
+                    {link.dropdown && <span className={styles.arrow}>▾</span>}
                   </a>
+
+                  {link.dropdown && (
+                    <div className={`${styles.dropdown} ${activeDropdown === link.label ? styles.active : ''}`}>
+                      {link.dropdown.map((item) => (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          className={styles.dropdownItem}
+                          onClick={(e) => handleNavClick(e, item.href)}
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
-            <LiquidButton>Solicitar Demo</LiquidButton>
+            <SliceButton>Solicitar Demo</SliceButton>
           </nav>
         </div>
       </Container>
