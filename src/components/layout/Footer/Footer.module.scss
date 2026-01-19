@@ -1,0 +1,137 @@
+.footer {
+  padding: 70px 0 35px;
+  border-top: 1px solid $color-border;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 50px;
+
+  @include respond-to('lg') {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+
+  @include respond-to('md') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brand {
+  max-width: 280px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-display;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.logoIcon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, $color-accent-orange, $color-accent-cyan);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.description {
+  color: $color-text-muted;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+}
+
+.socialLink {
+  width: 36px;
+  height: 36px;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-secondary;
+  font-size: 12px;
+  transition: all $transition-medium;
+
+  &:hover {
+    border-color: $color-accent-orange;
+    color: $color-accent-orange;
+    transform: translateY(-3px) rotate(5deg);
+  }
+}
+
+.column {
+  h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  a {
+    color: $color-text-muted;
+    font-size: 13px;
+    transition: all $transition-fast;
+    display: inline-block;
+
+    &:hover {
+      color: $color-accent-orange;
+      transform: translateX(5px);
+    }
+  }
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 35px;
+  border-top: 1px solid $color-border;
+
+  @include respond-to('md') {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+.copyright {
+  color: $color-text-muted;
+  font-size: 12px;
+}
+
+.legal {
+  display: flex;
+  gap: 20px;
+
+  a {
+    color: $color-text-muted;
+    font-size: 12px;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-text-primary;
+    }
+  }
+}

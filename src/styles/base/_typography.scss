@@ -1,0 +1,70 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(42px, 7vw, 72px);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 44px;
+
+  @include respond-to('md') {
+    font-size: 32px;
+  }
+}
+
+h3 {
+  font-size: 30px;
+
+  @include respond-to('md') {
+    font-size: 24px;
+  }
+}
+
+h4 {
+  font-size: 24px;
+}
+
+p {
+  color: $color-text-secondary;
+  line-height: 1.7;
+}
+
+// ============================================
+// TEXT UTILITIES
+// ============================================
+
+.text-gradient-animated {
+  @include animated-gradient-text;
+}
+
+.text-gradient {
+  @include gradient-text;
+}
+
+.text-muted {
+  color: $color-text-muted;
+}
+
+.text-secondary {
+  color: $color-text-secondary;
+}
+
+// ============================================
+// CODE / MONO TEXT
+// ============================================
+
+code, pre, .mono {
+  font-family: $font-mono;
+}

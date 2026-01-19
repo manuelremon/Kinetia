@@ -1,0 +1,219 @@
+.section {
+  padding: $section-padding 0;
+
+  @include respond-to('md') {
+    padding: $section-padding-mobile 0;
+  }
+}
+
+.stepsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:nth-child(even) {
+    direction: rtl;
+
+    > * {
+      direction: ltr;
+    }
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: 1fr;
+    gap: 30px;
+
+    &:nth-child(even) {
+      direction: ltr;
+    }
+  }
+}
+
+.stepNumber {
+  font-family: $font-display;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-accent-orange;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepNumberCircle {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, $color-accent-orange, $color-accent-orange-hover);
+  border-radius: 50%;
+  @include flex-center;
+  font-size: 13px;
+  color: $color-bg-primary;
+  box-shadow: 0 0 20px $color-accent-orange-glow;
+}
+
+.stepTitle {
+  font-size: 30px;
+  margin-bottom: 14px;
+  line-height: 1.2;
+
+  @include respond-to('md') {
+    font-size: 24px;
+  }
+}
+
+.stepDescription {
+  color: $color-text-secondary;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.stepCard {
+  @include card-base;
+  padding: 28px;
+  transition: all $transition-medium;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Terminal mini styles
+.terminal {
+  background: $color-bg-secondary;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+}
+
+.terminalHeader {
+  background: $color-bg-tertiary;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid $color-border;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+
+  &.red { background: #ef4444; }
+  &.yellow { background: #eab308; }
+  &.green { background: #22c55e; }
+}
+
+.terminalBody {
+  padding: 16px;
+  font-family: $font-mono;
+  font-size: 12px;
+}
+
+.terminalLine {
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.prompt {
+  color: $color-accent-orange;
+  margin-right: 8px;
+}
+
+.command {
+  color: $color-text-primary;
+}
+
+.output {
+  color: $color-text-secondary;
+  padding-left: 16px;
+  display: block;
+}
+
+// Plan card
+.planCard {
+  padding: 16px;
+}
+
+.planItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.planNumber {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  @include flex-center;
+  font-size: 11px;
+  color: #000;
+  font-weight: 600;
+
+  &.orange { background: $color-accent-orange; }
+  &.cyan { background: $color-accent-cyan; }
+  &.purple { background: $color-accent-purple; }
+}
+
+// Generate card
+.generateCard {
+  text-align: center;
+  padding: 25px;
+}
+
+.generateIcon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.generateText {
+  color: $color-success;
+  font-size: 13px;
+}
+
+// Verify card
+.verifyCard {
+  padding: 16px;
+}
+
+.verifyItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: $color-success;
+  font-size: 13px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.checkmark {
+  font-weight: bold;
+}

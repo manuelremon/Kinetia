@@ -1,0 +1,83 @@
+// ============================================
+// COLOR PALETTE
+// ============================================
+
+// Background colors
+$color-bg-primary: #050505;
+$color-bg-secondary: #0a0a0a;
+$color-bg-tertiary: #111111;
+$color-bg-card: rgba(20, 20, 20, 0.6);
+$color-bg-glass: rgba(255, 255, 255, 0.03);
+
+// Border colors
+$color-border: rgba(255, 255, 255, 0.08);
+$color-border-hover: rgba(255, 255, 255, 0.15);
+
+// Text colors
+$color-text-primary: #ffffff;
+$color-text-secondary: rgba(255, 255, 255, 0.7);
+$color-text-muted: rgba(255, 255, 255, 0.5);
+
+// Accent colors
+$color-accent-orange: #f97316;
+$color-accent-orange-hover: #ea580c;
+$color-accent-orange-glow: rgba(249, 115, 22, 0.4);
+$color-accent-orange-subtle: rgba(249, 115, 22, 0.1);
+$color-accent-cyan: #06b6d4;
+$color-accent-cyan-glow: rgba(6, 182, 212, 0.3);
+$color-accent-purple: #a855f7;
+$color-accent-purple-glow: rgba(168, 85, 247, 0.3);
+$color-success: #22c55e;
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+$font-display: 'Space Grotesk', sans-serif;
+$font-body: 'Inter', sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+// ============================================
+// SPACING
+// ============================================
+
+$section-padding: 120px;
+$section-padding-mobile: 70px;
+$container-max: 1200px;
+
+// ============================================
+// TRANSITIONS
+// ============================================
+
+$transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// ============================================
+// BORDER RADIUS
+// ============================================
+
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 20px;
+$border-radius-xl: 24px;
+
+// ============================================
+// BREAKPOINTS
+// ============================================
+
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1200px;
+
+// ============================================
+// Z-INDEX LAYERS
+// ============================================
+
+$z-background: 0;
+$z-content: 1;
+$z-header: 1000;
+$z-cursor: 10000;
+$z-loader: 10001;

@@ -1,0 +1,83 @@
+// ============================================
+// MAIN STYLES
+// Import order matters!
+// ============================================
+
+// Abstracts (variables, mixins, animations)
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'abstracts/animations';
+
+// Base styles (reset, typography)
+@use 'base/reset';
+@use 'base/typography';
+
+// ============================================
+// GLOBAL UTILITIES
+// ============================================
+
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: $z-content;
+}
+
+// ============================================
+// SECTION HELPERS
+// ============================================
+
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-label {
+  @include section-label;
+}
+
+.section-title {
+  @include section-title;
+}
+
+.section-subtitle {
+  @include section-subtitle;
+}
+
+// ============================================
+// CLICK INSTRUCTION
+// ============================================
+
+.click-instruction {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  padding: 12px 20px;
+  font-size: 12px;
+  color: $color-text-muted;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeSlideUp 0.5s ease forwards 2s;
+
+  @include respond-to('md') {
+    display: none;
+  }
+}
+
+.click-instruction-icon {
+  width: 24px;
+  height: 24px;
+  background: $color-accent-orange-subtle;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: clickPulse 1.5s ease infinite;
+}

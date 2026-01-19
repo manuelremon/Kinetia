@@ -1,0 +1,6 @@
+.typingText {
+  font-family: $font-mono;
+  border-right: 3px solid $color-accent-orange;
+  padding-right: 8px;
+  animation: cursorBlink 1s infinite;
+}

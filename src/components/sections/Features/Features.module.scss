@@ -1,0 +1,188 @@
+.section {
+  padding: $section-padding 0;
+
+  @include respond-to('md') {
+    padding: $section-padding-mobile 0;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+
+  @include respond-to('lg') {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Flip Card Styles
+.flipCard {
+  perspective: 1000px;
+  width: 100%;
+  height: 350px;
+  cursor: none;
+
+  @include respond-to('md') {
+    height: 300px;
+    cursor: auto;
+  }
+}
+
+.flipCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+
+  .flipCard:hover & {
+    transform: rotateY(180deg);
+  }
+}
+
+.flipCardFront,
+.flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: $border-radius-xl;
+  overflow: hidden;
+}
+
+.flipCardFront {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+}
+
+.flipCardBack {
+  background: linear-gradient(135deg, $color-accent-orange, $color-accent-cyan);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+  @include glass-effect;
+  border-radius: 16px;
+  @include flex-center;
+  font-size: 28px;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+
+  .flipCard:hover & {
+    transform: scale(1.1) rotate(10deg);
+  }
+}
+
+.label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-accent-orange;
+  background: $color-accent-orange-subtle;
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.cardDescription {
+  color: $color-text-secondary;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+// Flip indicator
+.flipIndicator {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: $color-text-muted;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+
+  .flipCard:hover & {
+    opacity: 0;
+  }
+}
+
+.flipIndicatorIcon {
+  width: 20px;
+  height: 20px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  @include flex-center;
+  animation: flipHint 2s ease-in-out infinite;
+}
+
+// Back side
+.backIcon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  @include flex-center;
+  font-size: 36px;
+  margin-bottom: 20px;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.backTitle {
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: $color-bg-primary;
+}
+
+.backText {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+
+.backBtn {
+  padding: 10px 20px;
+  background: $color-bg-primary;
+  color: $color-text-primary;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: none;
+  transition: all 0.3s ease;
+
+  @include respond-to('md') {
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+}

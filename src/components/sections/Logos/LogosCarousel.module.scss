@@ -1,0 +1,76 @@
+.section {
+  padding: 70px 0;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  overflow: hidden;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 10;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, $color-bg-primary, transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(-90deg, $color-bg-primary, transparent);
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 13px;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 35px;
+}
+
+.track {
+  display: flex;
+  animation: scrollLogos 25s linear infinite;
+}
+
+.slide {
+  display: flex;
+  gap: 50px;
+  padding: 0 25px;
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  height: 40px;
+  opacity: 0.4;
+  transition: all $transition-medium;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.15);
+
+    .logoPlaceholder {
+      color: $color-accent-orange;
+      text-shadow: 0 0 20px $color-accent-orange-glow;
+    }
+  }
+}
+
+.logoPlaceholder {
+  font-family: $font-display;
+  font-size: 16px;
+  font-weight: 600;
+  color: $color-text-secondary;
+  white-space: nowrap;
+  transition: all $transition-medium;
+}

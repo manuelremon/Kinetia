@@ -1,0 +1,139 @@
+@use 'variables' as *;
+
+// ============================================
+// LAYOUT MIXINS
+// ============================================
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ============================================
+// VISUAL EFFECT MIXINS
+// ============================================
+
+@mixin glass-effect {
+  background: $color-bg-glass;
+  backdrop-filter: blur(10px);
+  border: 1px solid $color-border;
+}
+
+@mixin gradient-text {
+  background: linear-gradient(90deg, $color-accent-orange, $color-accent-cyan);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin animated-gradient-text {
+  background: linear-gradient(
+    90deg,
+    $color-accent-orange,
+    #fbbf24,
+    $color-accent-cyan,
+    $color-accent-purple,
+    $color-accent-orange
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 8s linear infinite;
+}
+
+@mixin card-base {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-xl;
+}
+
+@mixin card-hover {
+  transition: all $transition-medium;
+
+  &:hover {
+    transform: translateY(-8px);
+    border-color: $color-accent-orange;
+    box-shadow: 0 20px 40px rgba($color-accent-orange, 0.15);
+  }
+}
+
+// ============================================
+// RESPONSIVE MIXINS
+// ============================================
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+}
+
+@mixin hide-on-mobile {
+  @include respond-to('md') {
+    display: none;
+  }
+}
+
+// ============================================
+// ANIMATION ENTRY MIXINS
+// ============================================
+
+@mixin fade-slide-up($delay: 0s) {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.8s ease forwards $delay;
+}
+
+// ============================================
+// TYPOGRAPHY MIXINS
+// ============================================
+
+@mixin section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-accent-orange;
+  margin-bottom: 16px;
+
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: $color-accent-orange;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+}
+
+@mixin section-title {
+  font-family: $font-display;
+  font-size: 44px;
+  font-weight: 600;
+  margin-bottom: 14px;
+
+  @include respond-to('md') {
+    font-size: 32px;
+  }
+}
+
+@mixin section-subtitle {
+  font-size: 17px;
+  color: $color-text-secondary;
+}
