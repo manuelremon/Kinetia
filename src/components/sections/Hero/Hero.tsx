@@ -1,4 +1,4 @@
-import { Container, AnimatedButton, TypingText } from '@/components/common';
+import { Container, GlitchText, LiquidButton, SliceButton, TypingText } from '@/components/common';
 import { motion } from 'framer-motion';
 import { TYPING_PHRASES } from '@/utils/constants';
 import styles from './Hero.module.scss';
@@ -8,30 +8,39 @@ export function Hero() {
     <section className={styles.hero}>
       <Container>
         <div className={styles.content}>
-          <h2 className={styles.title}>
-            Infraestructura{' '}
-            <span className={styles.typingContainer}>
+          <div className={styles.glitchContainer}>
+            <div>POTENCIAMOS TU</div>
+            <GlitchText text="INFRAESTRUCTURA" />
+            <div style={{ fontSize: '0.5em', marginTop: '10px' }}>
               <TypingText phrases={TYPING_PHRASES} />
-            </span>
-          </h2>
-
-          <div className={styles.divider} />
-
-          <div className={styles.cta}>
-            <AnimatedButton variant="secondary">Conocer Más</AnimatedButton>
-            <AnimatedButton variant="primary">Solicitar Demo</AnimatedButton>
+            </div>
           </div>
 
           <motion.p
-            className={styles.subtitle}
-            initial={{ opacity: 0, y: 20 }}
+            className={styles.description}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
             Combinamos tecnología de vanguardia con experiencia en la industria para crear soluciones que generan resultados reales.
           </motion.p>
+
+          <motion.div 
+            className={styles.ctaGroup}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <LiquidButton>COMENZAR PROYECTO</LiquidButton>
+            <SliceButton>VER DEMO</SliceButton>
+          </motion.div>
         </div>
       </Container>
+      
+      <div className={styles.scrollIndicator}>
+        <span>SCROLL</span>
+        <div className={styles.mouse}></div>
+      </div>
     </section>
   );
 }

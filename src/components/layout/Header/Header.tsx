@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, SliceButton, RandomizedTextEffect, DemoModal } from '@/components/common';
+import { Container, RandomizedTextEffect, DemoModal } from '@/components/common';
 import { NAV_LINKS } from '@/utils/constants';
 import styles from './Header.module.scss';
 

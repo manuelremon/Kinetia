@@ -1,5 +1,6 @@
-export { useTypingEffect } from './useTypingEffect';
-export { useTerminalEffect } from './useTerminalEffect';
-export { useAnimatedCounter } from './useAnimatedCounter';
-export { useIntersectionObserver, useScrollReveal } from './useIntersectionObserver';
-export { useChat } from './useChat';
+export * from './useAnimatedCounter';
+export * from './useChat';
+export * from './useIntersectionObserver';
+export * from './useTerminalEffect';
+export * from './useTypingEffect';
+export * from './useSmoothScroll';

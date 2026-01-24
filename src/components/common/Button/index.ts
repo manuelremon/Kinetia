@@ -1,2 +1,2 @@
-export { LiquidButton } from './LiquidButton';
-export { SliceButton } from './SliceButton';
+export * from './LiquidButton';
+export * from './SliceButton';

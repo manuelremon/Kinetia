@@ -1,40 +1,37 @@
 .container {
   width: 100%;
-  height: 450px;
+  height: 300px; // Altura más reducida
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1000px;
+  perspective: 1200px;
   cursor: grab;
+  overflow: hidden;
 
   &:active {
     cursor: grabbing;
   }
 
   @include respond-to('md') {
-    height: 350px;
+    height: 250px; // Altura reducida para móvil
   }
 }
 
 .cloud {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 100%; // Ocupar todo el ancho
+  max-width: 1400px; // Límite razonable para pantallas ultra-wide
+  height: 100%;
   transform-style: preserve-3d;
-
-  @include respond-to('md') {
-    width: 300px;
-    height: 300px;
-  }
 }
 
 .icon {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50px;
-  height: 50px;
-  margin: -25px 0 0 -25px;
+  width: 32px; // Antes 50px
+  height: 32px; // Antes 50px
+  margin: -16px 0 0 -16px; // Ajustado (la mitad del tamaño)
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,9 +39,9 @@
   will-change: transform, opacity;
 
   @include respond-to('md') {
-    width: 40px;
-    height: 40px;
-    margin: -20px 0 0 -20px;
+    width: 24px; // Antes 40px
+    height: 24px; // Antes 40px
+    margin: -12px 0 0 -12px;
   }
 
   img {

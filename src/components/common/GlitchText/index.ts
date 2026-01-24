@@ -1,1 +1,1 @@
-export { GlitchText } from './GlitchText';
+export * from './GlitchText';

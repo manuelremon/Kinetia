@@ -1,54 +1,19 @@
-import type { ReactNode, MouseEvent } from 'react';
 import styles from './LiquidButton.module.scss';
 
-interface LiquidButtonProps {
-  children: ReactNode;
+interface LiquidButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
   variant?: 'primary' | 'secondary';
-  onClick?: () => void;
-  className?: string;
 }
 
-export function LiquidButton({
-  children,
-  variant = 'primary',
-  onClick,
-  className = ''
-}: LiquidButtonProps) {
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    // Create ripple
-    const ripple = document.createElement('span');
-    ripple.className = styles.ripple;
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
-    ripple.style.width = ripple.style.height = `${Math.max(rect.width, rect.height)}px`;
-
-    button.appendChild(ripple);
-
-    ripple.addEventListener('animationend', () => {
-      ripple.remove();
-    });
-
-    onClick?.();
-  };
-
-  const buttonClasses = [
-    styles.btnLiquid,
-    variant === 'secondary' && styles.secondary,
-    className
-  ].filter(Boolean).join(' ');
-
+export function LiquidButton({ children, className = '', ...props }: LiquidButtonProps) {
+  // Nota: Para una implementación real de "Liquid" completa se necesita Paper.js o un canvas complejo.
+  // Aquí implementaremos una versión CSS avanzada con un "blob" animado para simplificar dependencias
+  // pero manteniendo el efecto visual impactante.
+  
   return (
-    <button className={buttonClasses} onClick={handleClick}>
-      <span className={styles.blob} />
-      <span className={styles.text}>
-        {children}
-        <span className={styles.arrow}>→</span>
-      </span>
+    <button className={`${styles.liquidBtn} ${className} btn-liquid`} {...props}>
+      <span>{children}</span>
+      <div className={styles.blob}></div>
     </button>
   );
 }

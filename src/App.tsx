@@ -15,10 +15,13 @@ import {
   ChatWidget,
   ScrollToTop
 } from '@/components';
+import { useSmoothScroll } from '@/hooks';
 
 import '@/styles/main.scss';
 
 function App() {
+  useSmoothScroll();
+
   return (
     <>
       {/* Global Effects */}

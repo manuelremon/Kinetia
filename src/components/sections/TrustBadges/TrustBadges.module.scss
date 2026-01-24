@@ -1,0 +1,129 @@
+@use '@/styles/abstracts/variables' as *;
+
+.trustBadges {
+  padding: 40px 0 80px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  transition: all $transition-medium;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba($color-accent-primary, 0.15) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity $transition-medium;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba($color-accent-primary, 0.5) 0%,
+      transparent 50%,
+      rgba($color-accent-secondary, 0.5) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $transition-medium;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba($color-accent-primary, 0.3);
+    box-shadow:
+      0 8px 32px rgba($color-accent-primary, 0.15),
+      0 0 40px rgba($color-accent-primary, 0.1);
+
+    &::before {
+      opacity: 1;
+    }
+
+    &::after {
+      opacity: 1;
+    }
+
+    .icon {
+      transform: scale(1.1);
+      color: $color-accent-primary;
+    }
+  }
+}
+
+.icon {
+  font-size: 28px;
+  transition: all $transition-medium;
+  filter: drop-shadow(0 0 0 transparent);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.subtitle {
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+}
+
+// Responsive
+@media (max-width: $breakpoint-md) {
+  .trustBadges {
+    padding: 30px 0 60px;
+  }
+
+  .container {
+    gap: 16px;
+  }
+
+  .badge {
+    padding: 12px 18px;
+    flex: 1 1 calc(50% - 16px);
+    min-width: 160px;
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+
+  .title {
+    font-size: $font-size-xs;
+  }
+}

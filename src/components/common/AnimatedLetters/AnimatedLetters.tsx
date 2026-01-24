@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import * as anime from 'animejs';
+import { Timeline } from 'animejs';
 import styles from './AnimatedLetters.module.scss';
 
 interface AnimatedLettersProps {
@@ -16,21 +16,22 @@ export function AnimatedLetters({ text, className = '', loop = true }: AnimatedL
 
     const letters = containerRef.current.querySelectorAll('.letter');
 
-    const animation = anime.timeline({ loop })
+    // @ts-ignore
+    const animation = new Timeline({ loop })
       .add({
         targets: letters,
         opacity: [0, 1],
         easing: 'easeInOutQuad',
         duration: 2250,
-        delay: (_el: Element, i: number) => 150 * (i + 1)
-      })
+        delay: (_el: any, i: number) => 150 * (i + 1)
+      } as any)
       .add({
         targets: containerRef.current,
         opacity: 0,
         duration: 1000,
         easing: 'easeOutExpo',
         delay: 1000
-      });
+      } as any);
 
     return () => {
       animation.pause();

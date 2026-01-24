@@ -1,36 +1,36 @@
-import { ReactNode } from 'react';
+import React from 'react';
 import styles from './SliceButton.module.scss';
 
-interface SliceButtonProps {
-  children: ReactNode;
-  onClick?: () => void;
+interface SliceButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: string;
   href?: string;
-  variant?: 'primary' | 'small';
-  type?: 'button' | 'submit' | 'reset';
-  disabled?: boolean;
+  onClick?: () => void;
 }
 
-export function SliceButton({
-  children,
-  onClick,
-  href,
-  variant = 'primary',
-  type = 'button',
-  disabled = false
-}: SliceButtonProps) {
-  const className = `${styles.slice} ${variant === 'small' ? styles.small : ''} ${disabled ? styles.disabled : ''}`;
-
+export function SliceButton({ children, className = '', href, onClick, ...props }: SliceButtonProps) {
   if (href) {
     return (
-      <a href={href} className={className} onClick={onClick as any}>
-        <span className={styles.text}>{children}</span>
+      <a 
+        href={href} 
+        className={`${styles.sliceBtn} ${className}`} 
+        data-content={children}
+        onClick={() => {
+          if (onClick) onClick();
+        }}
+      >
+        {children}
       </a>
     );
   }
 
   return (
-    <button type={type} className={className} onClick={onClick} disabled={disabled}>
-      <span className={styles.text}>{children}</span>
+    <button 
+      className={`${styles.sliceBtn} ${className}`} 
+      data-content={children} 
+      onClick={onClick}
+      {...props}
+    >
+      {children}
     </button>
   );
 }

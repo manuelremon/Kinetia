@@ -21,10 +21,10 @@ export function IconCloud({ images }: IconCloudProps) {
   const iconPositions = useMemo<IconPosition[]>(() => {
     const positions: IconPosition[] = [];
     const count = images.length;
-    // Óvalo alargado horizontalmente
-    const radiusX = 500;
-    const radiusY = 120;
-    const radiusZ = 150;
+    // Nube extra ancha y aplanada
+    const radiusX = 800; 
+    const radiusY = 70; // Más aplanado
+    const radiusZ = 180; 
 
     for (let i = 0; i < count; i++) {
       const phi = Math.acos(-1 + (2 * i) / count);

@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Container, SliceButton, GridLoader, CubeSpinner, MorphLoader, RobotIcon, Modal } from '@/components/common';
+import { Container, SliceButton, GridLoader, CubeSpinner, MorphLoader, RobotIcon, Modal, SpotlightCard } from '@/components/common';
 import styles from './Services.module.scss';
+
 
 const SERVICES = [
   {
@@ -146,12 +147,10 @@ const SERVICES = [
 
 interface ServiceSectionProps {
   service: typeof SERVICES[0];
-  index: number;
-  isActive: boolean;
   onLearnMore: () => void;
 }
 
-function ServiceSection({ service, index, isActive, onLearnMore }: ServiceSectionProps) {
+function ServiceSection({ service, onLearnMore }: ServiceSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5 });
 
@@ -171,7 +170,7 @@ function ServiceSection({ service, index, isActive, onLearnMore }: ServiceSectio
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
+      transition: { duration: 0.6 }
     }
   };
 
@@ -183,57 +182,59 @@ function ServiceSection({ service, index, isActive, onLearnMore }: ServiceSectio
       data-section-name={service.id}
     >
       <Container>
-        <motion.div
-          className={styles.serviceContent}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-        >
-          <motion.div className={styles.serviceHeader} variants={itemVariants}>
-            <div className={styles.serviceIcon}>
-              {service.icon === '⚙️' ? <GridLoader size={60} /> :
-               service.icon === '📦' ? <CubeSpinner size={60} /> :
-               service.icon === '🛠️' ? <MorphLoader size={60} /> :
-               service.icon === '🤖' ? <RobotIcon size={70} /> : service.icon}
-            </div>
-            <span className={styles.serviceSubtitle}>
-              {service.subtitle}
-            </span>
+        <SpotlightCard className={styles.serviceContent}>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            style={{ width: '100%' }}
+          >
+            <motion.div className={styles.serviceHeader} variants={itemVariants}>
+              <div className={styles.serviceIcon}>
+                {service.icon === '⚙️' ? <GridLoader size={60} /> :
+                 service.icon === '📦' ? <CubeSpinner size={60} /> :
+                 service.icon === '🛠️' ? <MorphLoader size={60} /> :
+                 service.icon === '🤖' ? <RobotIcon size={70} /> : service.icon}
+              </div>
+              <span className={styles.serviceSubtitle}>
+                {service.subtitle}
+              </span>
+            </motion.div>
+
+            <motion.h3 className={styles.serviceTitle} variants={itemVariants}>
+              {service.title}
+            </motion.h3>
+
+            <motion.p className={styles.serviceDescription} variants={itemVariants}>
+              {service.description}
+            </motion.p>
+
+            <motion.ul className={styles.features} variants={itemVariants}>
+              {service.features.map((feature, i) => (
+                <motion.li
+                  key={i}
+                  variants={itemVariants}
+                >
+                  <span className={styles.checkIcon}>✓</span>
+                  {feature}
+                </motion.li>
+              ))}
+            </motion.ul>
+
+            <motion.div variants={itemVariants}>
+              <button className={styles.learnMoreBtn} onClick={onLearnMore}>
+                Saber más
+              </button>
+            </motion.div>
           </motion.div>
-
-          <motion.h3 className={styles.serviceTitle} variants={itemVariants}>
-            {service.title}
-          </motion.h3>
-
-          <motion.p className={styles.serviceDescription} variants={itemVariants}>
-            {service.description}
-          </motion.p>
-
-          <motion.ul className={styles.features} variants={itemVariants}>
-            {service.features.map((feature, i) => (
-              <motion.li
-                key={i}
-                variants={itemVariants}
-              >
-                <span className={styles.checkIcon}>✓</span>
-                {feature}
-              </motion.li>
-            ))}
-          </motion.ul>
-
-          <motion.div variants={itemVariants}>
-            <button className={styles.learnMoreBtn} onClick={onLearnMore}>
-              Saber más
-            </button>
-          </motion.div>
-        </motion.div>
+        </SpotlightCard>
       </Container>
     </div>
   );
 }
 
 export function Services() {
-  const [activeSection, setActiveSection] = useState(0);
+  const [, setActiveSection] = useState(0);
   const [selectedService, setSelectedService] = useState<typeof SERVICES[0] | null>(null);
   const containerRef = useRef<HTMLElement>(null);
 
@@ -243,7 +244,6 @@ export function Services() {
 
     const handleScroll = () => {
       const sections = container.querySelectorAll(`.${styles.serviceSection}`);
-      const containerTop = container.getBoundingClientRect().top;
 
       sections.forEach((section, index) => {
         const rect = section.getBoundingClientRect();
@@ -285,12 +285,10 @@ export function Services() {
 
       {/* Services sections */}
       <div className={styles.servicesContainer}>
-        {SERVICES.map((service, index) => (
+        {SERVICES.map((service) => (
           <ServiceSection
             key={service.id}
             service={service}
-            index={index}
-            isActive={activeSection === index}
             onLearnMore={() => setSelectedService(service)}
           />
         ))}
