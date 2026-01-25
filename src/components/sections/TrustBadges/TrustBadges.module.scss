@@ -1,7 +1,17 @@
 @use '@/styles/abstracts/variables' as *;
 
 .trustBadges {
-  padding: 40px 0 80px;
+  padding: 80px 0;
+  background: #878d96;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: #0043ce;
+  margin-bottom: 48px;
 }
 
 .container {
@@ -16,65 +26,23 @@
   align-items: center;
   gap: 12px;
   padding: 16px 24px;
-  background: $color-bg-card;
-  border: 1px solid $color-border;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: $border-radius-lg;
   transition: all $transition-medium;
   cursor: default;
   position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at center,
-      rgba($color-accent-primary, 0.15) 0%,
-      transparent 70%
-    );
-    opacity: 0;
-    transition: opacity $transition-medium;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      rgba($color-accent-primary, 0.5) 0%,
-      transparent 50%,
-      rgba($color-accent-secondary, 0.5) 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity $transition-medium;
-  }
+  min-width: 200px;
+  width: 200px;
 
   &:hover {
     transform: translateY(-2px);
-    border-color: rgba($color-accent-primary, 0.3);
-    box-shadow:
-      0 8px 32px rgba($color-accent-primary, 0.15),
-      0 0 40px rgba($color-accent-primary, 0.1);
-
-    &::before {
-      opacity: 1;
-    }
-
-    &::after {
-      opacity: 1;
-    }
+    border-color: #c6c6c6;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 
     .icon {
-      transform: scale(1.1);
-      color: $color-accent-primary;
+      transform: scale(1.05);
+      color: #0f62fe;
     }
   }
 }
@@ -82,7 +50,7 @@
 .icon {
   font-size: 28px;
   transition: all $transition-medium;
-  filter: drop-shadow(0 0 0 transparent);
+  color: #161616;
 }
 
 .content {
@@ -95,12 +63,12 @@
   font-family: $font-display;
   font-size: $font-size-sm;
   font-weight: $font-weight-semibold;
-  color: $color-text-primary;
+  color: #161616;
 }
 
 .subtitle {
   font-size: $font-size-xs;
-  color: $color-text-muted;
+  color: #8d8d8d;
 }
 
 // Responsive

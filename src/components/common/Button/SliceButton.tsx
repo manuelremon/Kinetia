@@ -10,27 +10,25 @@ interface SliceButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
 export function SliceButton({ children, className = '', href, onClick, ...props }: SliceButtonProps) {
   if (href) {
     return (
-      <a 
-        href={href} 
-        className={`${styles.sliceBtn} ${className}`} 
-        data-content={children}
+      <a
+        href={href}
+        className={`${styles.sliceBtn} ${className}`}
         onClick={() => {
           if (onClick) onClick();
         }}
       >
-        {children}
+        <span>{children}</span>
       </a>
     );
   }
 
   return (
-    <button 
-      className={`${styles.sliceBtn} ${className}`} 
-      data-content={children} 
+    <button
+      className={`${styles.sliceBtn} ${className}`}
       onClick={onClick}
       {...props}
     >
-      {children}
+      <span>{children}</span>
     </button>
   );
 }

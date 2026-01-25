@@ -43,25 +43,23 @@ export function Contact() {
             <div className={styles.contactMethods}>
               <div className={styles.contactItem}>
                 <span className={styles.contactIcon}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  <svg viewBox="0 0 32 32" fill="currentColor">
+                    <path d="M28,6H4A2,2,0,0,0,2,8V24a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V8A2,2,0,0,0,28,6ZM25.8,8,16,14.78,6.2,8ZM4,24V8.91l11.43,7.91a1,1,0,0,0,1.14,0L28,8.91V24Z"/>
                   </svg>
                 </span>
                 <div>
-                  <span className={styles.contactLabel}>Email</span>
                   <a href="mailto:info@kinetia.com" className={styles.contactValue}>info@kinetia.com</a>
                 </div>
               </div>
 
               <div className={styles.contactItem}>
                 <span className={styles.contactIcon}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <svg viewBox="0 0 32 32" fill="currentColor">
+                    <path d="M16,18c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S18.8,18,16,18z"/>
+                    <path d="M16,30l-8.4-9.9c0-0.1-0.3-0.5-0.3-0.5C5.8,17.7,5,15.4,5,13C5,6.9,9.9,2,16,2s11,4.9,11,11c0,2.4-0.8,4.7-2.2,6.6l0,0 c0,0-0.3,0.4-0.3,0.4L16,30z M8.8,18.4c0,0,0.2,0.3,0.3,0.4l6.9,8.1l6.9-8.1c0-0.1,0.3-0.4,0.3-0.4C24.4,16.8,25,15,25,13 c0-5-4-9-9-9s-9,4-9,9C7,15,7.6,16.8,8.8,18.4L8.8,18.4z"/>
                   </svg>
                 </span>
                 <div>
-                  <span className={styles.contactLabel}>Ubicación</span>
                   <span className={styles.contactValue}>Neuquén, Argentina</span>
                 </div>
               </div>

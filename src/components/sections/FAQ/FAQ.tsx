@@ -28,11 +28,7 @@ export function FAQ() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className={styles.label}>FAQ</span>
           <h2 className={styles.title}>Preguntas Frecuentes</h2>
-          <p className={styles.subtitle}>
-            Encuentra respuestas a las preguntas más comunes sobre nuestros servicios
-          </p>
         </motion.div>
 
         <motion.div

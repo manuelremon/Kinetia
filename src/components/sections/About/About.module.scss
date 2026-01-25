@@ -22,15 +22,11 @@
 
 .title {
   font-family: $font-display;
-  font-size: 42px;
-  font-weight: 700;
-  color: $color-text-primary;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: #161616;
   margin-bottom: 28px;
   line-height: 1.2;
-
-  @include respond-to('md') {
-    font-size: 32px;
-  }
 }
 
 .description {
@@ -51,15 +47,11 @@
 
 .valuesTitle {
   font-family: $font-display;
-  font-size: 42px;
-  font-weight: 700;
-  color: $color-text-primary;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: #161616;
   margin-bottom: 28px;
   line-height: 1.2;
-
-  @include respond-to('md') {
-    font-size: 32px;
-  }
 }
 
 .values {

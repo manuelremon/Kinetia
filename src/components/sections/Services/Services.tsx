@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Container, SliceButton, GridLoader, CubeSpinner, MorphLoader, RobotIcon, Modal, SpotlightCard } from '@/components/common';
 import styles from './Services.module.scss';
 
@@ -18,6 +18,7 @@ const SERVICES = [
     ],
     icon: '⚙️',
     color: '#007aff',
+    badge: 'Más solicitado',
     detailedContent: {
       benefits: [
         'Reducción de hasta un 70% en tiempos de procesamiento y costes operativos',
@@ -152,34 +153,43 @@ interface ServiceSectionProps {
 
 function ServiceSection({ service, onLearnMore }: ServiceSectionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.5 });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  // Subtle parallax - only Y movement, no opacity changes
+  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.08,
+        delayChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { duration: 0.5 }
     }
   };
 
   return (
-    <div
+    <motion.div
       ref={ref}
       className={styles.serviceSection}
       id={service.id}
       data-section-name={service.id}
+      style={{ y }}
     >
       <Container>
         <SpotlightCard className={styles.serviceContent}>
@@ -189,6 +199,12 @@ function ServiceSection({ service, onLearnMore }: ServiceSectionProps) {
             animate={isInView ? 'visible' : 'hidden'}
             style={{ width: '100%' }}
           >
+            {service.badge && (
+              <motion.div className={styles.popularBadge} variants={itemVariants}>
+                <span className={styles.popularBadgePulse} />
+                {service.badge}
+              </motion.div>
+            )}
             <motion.div className={styles.serviceHeader} variants={itemVariants}>
               <div className={styles.serviceIcon}>
                 {service.icon === '⚙️' ? <GridLoader size={60} /> :
@@ -229,60 +245,15 @@ function ServiceSection({ service, onLearnMore }: ServiceSectionProps) {
           </motion.div>
         </SpotlightCard>
       </Container>
-    </div>
+    </motion.div>
   );
 }
 
 export function Services() {
-  const [, setActiveSection] = useState(0);
   const [selectedService, setSelectedService] = useState<typeof SERVICES[0] | null>(null);
-  const containerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      const sections = container.querySelectorAll(`.${styles.serviceSection}`);
-
-      sections.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        const sectionMiddle = rect.top + rect.height / 2;
-        const viewportMiddle = window.innerHeight / 2;
-
-        if (Math.abs(sectionMiddle - viewportMiddle) < rect.height / 2) {
-          setActiveSection(index);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (index: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const sections = container.querySelectorAll(`.${styles.serviceSection}`);
-    sections[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  };
 
   return (
-    <section className={styles.section} id="servicios" ref={containerRef}>
-
-      {/* Comienza button */}
-      <div className={styles.lightButton}>
-        <button className={styles.bt} onClick={() => scrollToSection(0)}>
-                    <div className={styles.buttonHolder}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-            </svg>
-            <span>Comienza</span>
-          </div>
-        </button>
-      </div>
-
+    <section className={styles.section} id="servicios">
       {/* Services sections */}
       <div className={styles.servicesContainer}>
         {SERVICES.map((service) => (
@@ -292,6 +263,34 @@ export function Services() {
             onLearnMore={() => setSelectedService(service)}
           />
         ))}
+      </div>
+
+      {/* CTA Estratégico */}
+      <div className={styles.servicesCta}>
+        <Container>
+          <motion.div
+            className={styles.ctaCard}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className={styles.ctaTitle}>¿No sabes por dónde empezar?</h3>
+            <p className={styles.ctaText}>
+              Solicita un diagnóstico gratuito y descubre qué procesos puedes automatizar
+            </p>
+            <button
+              className={styles.ctaButton}
+              onClick={() => {
+                const contact = document.getElementById('contact');
+                contact?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Solicitar diagnóstico gratis
+              <span>→</span>
+            </button>
+          </motion.div>
+        </Container>
       </div>
 
       {/* Service Detail Modal */}

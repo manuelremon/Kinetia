@@ -160,3 +160,68 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+// Text reveal (for TextReveal component)
+@keyframes textReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+// Shimmer effect (for LogoCarousel)
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+// Float animation (for floating elements)
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+// Glow pulse (for badges)
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba($color-accent-primary, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba($color-accent-primary, 0.4);
+  }
+}
+
+// Slide in from bottom
+@keyframes slideInBottom {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Scale in
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Gradient shift
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

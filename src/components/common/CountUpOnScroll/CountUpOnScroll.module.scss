@@ -1,0 +1,22 @@
+@use '@/styles/abstracts/variables' as *;
+
+.countUp {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.number {
+  font-family: $font-display;
+  font-weight: $font-weight-bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.suffix {
+  font-family: $font-display;
+  font-weight: $font-weight-bold;
+}
+
+.prefix {
+  font-family: $font-display;
+  font-weight: $font-weight-bold;
+}

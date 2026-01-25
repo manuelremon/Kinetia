@@ -1,0 +1,23 @@
+@use '@/styles/abstracts/variables' as *;
+
+.scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: $z-header + 1;
+  background: transparent;
+  pointer-events: none;
+}
+
+.bar {
+  height: 100%;
+  background: linear-gradient(90deg,
+    $color-accent-primary 0%,
+    $color-accent-teal 50%,
+    $color-accent-secondary 100%
+  );
+  transform-origin: left;
+  box-shadow: 0 0 10px rgba($color-accent-primary, 0.5);
+}

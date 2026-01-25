@@ -1,36 +1,82 @@
+@use '@/styles/abstracts/variables' as *;
+
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 300px;
   display: flex;
   align-items: center;
-  justify-content: flex-start; // Alineación izquierda para dar espacio a visuales de fondo
-  padding: 120px 0 80px;
+  justify-content: center;
+  padding: 155px 0 60px;
   overflow: hidden;
   z-index: 10;
+  background: #4589ff;
 }
 
 .content {
   position: relative;
   z-index: 20;
-  max-width: 1200px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.glitchContainer {
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: #f4f4f4;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  font-size: $font-size-sm;
+  color: #525252;
+  margin-bottom: 24px;
+}
+
+.badgePulse {
+  width: 8px;
+  height: 8px;
+  background: #24a148;
+  border-radius: 50%;
+}
+
+.title {
   font-family: $font-display;
-  font-size: clamp(3rem, 8vw, 7rem); // Massive size
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  margin-bottom: 2rem;
-  color: $color-text-primary;
-  text-transform: uppercase;
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  width: 100%;
+  overflow: visible;
+}
+
+.subtitle {
+  font-family: $font-body;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: #001d6c;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.highlight {
+  color: #21272a;
+  display: inline;
+  vertical-align: baseline;
 }
 
 .subHeadline {
-  font-family: 'Space Mono', monospace; // Tech vibe
+  font-family: $font-body;
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: $color-accent-teal;
+  color: #0f62fe;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
@@ -45,21 +91,89 @@
 }
 
 .description {
-  font-size: clamp(1.1rem, 1.5vw, 1.5rem);
-  color: $color-text-secondary;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  color: #525252;
   max-width: 600px;
-  margin-bottom: 3rem;
-  line-height: 1.6;
-  backdrop-filter: blur(4px);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
   padding: 1rem;
-  border-left: 2px solid rgba($color-accent-primary, 0.3);
-  background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+  border-left: 2px solid #0f62fe;
+  background: transparent;
 }
 
 .ctaGroup {
   display: flex;
   gap: 20px;
   align-items: center;
+  margin-bottom: 3rem;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.floatingStats {
+  display: flex;
+  gap: 40px;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: $border-radius-lg;
+  max-width: fit-content;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  @media (max-width: $breakpoint-md) {
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px;
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  padding-right: 40px;
+
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 40px;
+    background: #e0e0e0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    flex: 1 1 calc(50% - 12px);
+    padding-right: 0;
+
+    &:not(:last-child)::after {
+      display: none;
+    }
+  }
+}
+
+.statValue {
+  font-family: $font-display;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: #161616;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: #8d8d8d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .scrollIndicator {
@@ -72,21 +186,25 @@
   align-items: center;
   gap: 10px;
   opacity: 0.7;
-  
+
   span {
     font-size: 10px;
     letter-spacing: 4px;
     text-transform: uppercase;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    display: none;
   }
 }
 
 .mouse {
   width: 26px;
   height: 42px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(22, 22, 22, 0.3);
   border-radius: 20px;
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -95,7 +213,7 @@
     transform: translateX(-50%);
     width: 4px;
     height: 4px;
-    background: #fff;
+    background: #161616;
     border-radius: 50%;
     animation: scrollMouse 2s infinite;
   }

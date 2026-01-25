@@ -14,8 +14,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
+  // Lenis handles smooth scrolling - no CSS scroll behaviors needed
 }
 
 body {
@@ -96,11 +95,6 @@ small, .small {
   font-weight: $font-weight-semibold;
 }
 
-// Scroll snap for main sections
-main > section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
 
 a {
   color: inherit;

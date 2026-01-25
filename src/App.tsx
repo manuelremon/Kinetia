@@ -1,19 +1,25 @@
 import {
   PageLoader,
-  BackgroundLayers,
-  ExplosionCanvas,
   Header,
   Footer,
   Hero,
-  StatsTools,
+  ChooseRoute,
+  LogoCarousel,
+  ProblemSolution,
+  TrustBadges,
   Services,
+  Testimonials,
+  CaseStudies,
   Stats,
   Features,
   HowItWorks,
   About,
+  FAQ,
+  FinalCTA,
   Contact,
   ChatWidget,
-  ScrollToTop
+  ScrollToTop,
+  ScrollProgress
 } from '@/components';
 import { useSmoothScroll } from '@/hooks';
 
@@ -26,8 +32,7 @@ function App() {
     <>
       {/* Global Effects */}
       <PageLoader />
-      <ExplosionCanvas />
-      <BackgroundLayers />
+      <ScrollProgress />
 
       {/* Layout */}
       <Header />
@@ -35,12 +40,19 @@ function App() {
       {/* Main Content */}
       <main>
         <Hero />
+        <ChooseRoute />
+        <ProblemSolution />
         <Services />
-        <StatsTools />
+        <Testimonials />
+        <CaseStudies />
         <Stats />
+        <TrustBadges />
+        <LogoCarousel />
         <Features />
         <HowItWorks />
         <About />
+        <FAQ />
+        <FinalCTA />
         <Contact />
       </main>
 

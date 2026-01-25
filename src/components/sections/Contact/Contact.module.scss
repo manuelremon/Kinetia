@@ -25,15 +25,11 @@
 
 .title {
   font-family: $font-display;
-  font-size: 48px;
-  font-weight: 700;
-  color: $color-text-primary;
-  margin-bottom: 20px;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: #161616;
+  margin-bottom: 32px;
   line-height: 1.2;
-
-  @include respond-to('md') {
-    font-size: 36px;
-  }
 }
 
 .description {
@@ -59,16 +55,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: rgba($color-accent-primary, 0.1);
-  border-radius: 12px;
   flex-shrink: 0;
 
   svg {
-    width: 22px;
-    height: 22px;
-    color: $color-accent-primary;
+    width: 24px;
+    height: 24px;
+    color: #0f62fe;
   }
 }
 
@@ -139,13 +131,13 @@
     }
   }
 
-  // X (Twitter) - White
+  // X (Twitter) - Black
   &.x {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
+    color: #161616;
+    border-color: #161616;
 
     &:hover {
-      background: rgba(#FFFFFF, 0.1);
+      background: rgba(#161616, 0.1);
     }
   }
 

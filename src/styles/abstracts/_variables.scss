@@ -1,41 +1,47 @@
 // ============================================
-// COLOR PALETTE - Dark Mode
+// COLOR PALETTE - IBM Plex Light Theme
 // ============================================
 
-// Background colors (Dark)
-$color-bg-primary: #0a0a0f;
-$color-bg-secondary: #12121a;
-$color-bg-tertiary: #1a1a24;
-$color-bg-card: rgba(18, 18, 26, 0.8);
-$color-bg-glass: rgba(10, 10, 15, 0.7);
+// Background colors (Light Theme)
+$color-bg-primary: #ffffff;      // Pure white background
+$color-bg-secondary: #f4f4f4;    // Light gray for sections
+$color-bg-tertiary: #e0e0e0;     // Slightly darker gray
+$color-bg-card: #ffffff;         // White cards
+$color-bg-glass: rgba(255, 255, 255, 0.9);
 
-// Terminal
-$color-bg-terminal: #0d0d12;
-$color-bg-terminal-header: #16161e;
+// Terminal (keep dark for contrast)
+$color-bg-terminal: #161616;
+$color-bg-terminal-header: #262626;
 
-// Border colors
-$color-border: rgba(255, 255, 255, 0.08);
-$color-border-hover: rgba(255, 255, 255, 0.15);
+// Border colors (Light Theme)
+$color-border: #e0e0e0;          // Subtle light border
+$color-border-hover: #c6c6c6;    // Darker on hover
 
-// Text colors
-$color-text-primary: #ffffff;
-$color-text-secondary: #a1a1aa;
-$color-text-muted: #71717a;
-$color-text-light: #ffffff;
+// Text colors (Light Theme - High Contrast)
+$color-text-primary: #161616;    // Near black
+$color-text-secondary: #525252;  // Dark gray
+$color-text-muted: #8d8d8d;      // Medium gray
+$color-text-light: #ffffff;      // White (for dark backgrounds)
 
-// Accent colors - iOS System Colors
-$color-accent-primary: #007aff;
-$color-accent-primary-hover: #3395ff;
-$color-accent-primary-glow: rgba(0, 122, 255, 0.35);
-$color-accent-primary-subtle: rgba(0, 122, 255, 0.15);
+// Accent colors - IBM Blue
+$color-accent-primary: #0f62fe;  // IBM Blue
+$color-accent-primary-hover: #0353e9;  // Darker blue on hover
+$color-accent-primary-glow: rgba(15, 98, 254, 0.2);
+$color-accent-primary-subtle: rgba(15, 98, 254, 0.1);
 
-$color-accent-secondary: #5856d6;
-$color-accent-secondary-glow: rgba(88, 86, 214, 0.3);
+// Secondary accent - Gray
+$color-accent-secondary: #525252;  // Neutral gray
+$color-accent-secondary-glow: rgba(82, 82, 82, 0.2);
 
-$color-accent-teal: #5ac8fa;
-$color-accent-teal-glow: rgba(90, 200, 250, 0.3);
+// Teal accent (subtle use)
+$color-accent-teal: #0f62fe;     // Use IBM blue consistently
+$color-accent-teal-glow: rgba(15, 98, 254, 0.2);
 
-$color-success: #34c759;
+// Support colors (IBM Design)
+$color-success: #24a148;         // Green
+$color-error: #da1e28;           // Red
+$color-warning: #f1c21b;         // Yellow
+$color-info: #0f62fe;            // Blue
 
 // Aliases for backwards compatibility
 $color-accent-orange: $color-accent-primary;
@@ -48,21 +54,21 @@ $color-accent-purple: $color-accent-secondary;
 $color-accent-purple-glow: $color-accent-secondary-glow;
 
 // ============================================
-// SHADOWS - Dark Mode
+// SHADOWS - Light Mode (Subtle)
 // ============================================
 
-$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-$shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.6);
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
 
 // ============================================
 // TYPOGRAPHY
 // ============================================
 
-$font-display: 'Space Grotesk', sans-serif;
-$font-body: 'Inter', sans-serif;
-$font-mono: 'JetBrains Mono', monospace;
+$font-display: 'IBM Plex Sans', sans-serif;
+$font-body: 'IBM Plex Sans', sans-serif;
+$font-mono: 'IBM Plex Sans', sans-serif;
 
 // Font sizes - Semantic scale
 $font-size-xs: 0.75rem;      // 12px - Labels, captions

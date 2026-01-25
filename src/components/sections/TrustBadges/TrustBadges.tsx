@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Container } from '@/components/common';
 import { TRUST_BADGES } from '@/utils/constants';
 import styles from './TrustBadges.module.scss';
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -14,14 +14,14 @@ const containerVariants = {
   }
 };
 
-const badgeVariants = {
+const badgeVariants: Variants = {
   hidden: { opacity: 0, y: 20, scale: 0.9 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       stiffness: 100,
       damping: 15
     }
@@ -32,6 +32,15 @@ export function TrustBadges() {
   return (
     <section className={styles.trustBadges}>
       <Container>
+        <motion.h2
+          className={styles.sectionTitle}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Calidad y Seguridad
+        </motion.h2>
         <motion.div
           className={styles.container}
           variants={containerVariants}

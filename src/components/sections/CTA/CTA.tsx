@@ -18,7 +18,7 @@ export function CTA() {
             </p>
             <div className={styles.buttons}>
               <LiquidButton>Solicitar Demo</LiquidButton>
-              <LiquidButton variant="secondary">Ver Documentación</LiquidButton>
+              <LiquidButton>Ver Documentación</LiquidButton>
             </div>
           </div>
         </div>

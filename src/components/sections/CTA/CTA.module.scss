@@ -1,5 +1,6 @@
 .section {
   padding: $section-padding 0;
+  background: #f4f4f4;
 
   @include respond-to('md') {
     padding: $section-padding-mobile 0;
@@ -7,8 +8,8 @@
 }
 
 .card {
-  background: linear-gradient(135deg, rgba($color-accent-orange, 0.08), rgba($color-accent-cyan, 0.04));
-  border: 1px solid $color-border;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: $border-radius-xl;
   padding: 70px;
   text-align: center;
@@ -17,28 +18,6 @@
 
   @include respond-to('md') {
     padding: 35px 20px;
-  }
-
-  // Animated gradient border
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: $border-radius-xl;
-    padding: 2px;
-    background: linear-gradient(
-      90deg,
-      $color-accent-orange,
-      $color-accent-cyan,
-      $color-accent-purple,
-      $color-accent-orange
-    );
-    background-size: 300% 100%;
-    animation: borderGradient 4s linear infinite;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
   }
 }
 
@@ -52,13 +31,14 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: $color-accent-orange;
+  color: #0f62fe;
   margin-bottom: 14px;
 }
 
 .title {
   font-size: 42px;
   margin-bottom: 14px;
+  color: #161616;
 
   @include respond-to('md') {
     font-size: 28px;
@@ -67,7 +47,7 @@
 
 .subtitle {
   font-size: 17px;
-  color: $color-text-secondary;
+  color: #525252;
   margin-bottom: 35px;
 }
 

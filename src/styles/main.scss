@@ -3,6 +3,12 @@
 // Import order matters!
 // ============================================
 
+// Carbon Design System - White Theme
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme' with (
+  $theme: themes.$white
+);
+
 // Abstracts (variables, mixins, animations)
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
@@ -58,18 +64,19 @@
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: $color-bg-card;
-  border: 1px solid $color-border;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: $border-radius-md;
   padding: 12px 20px;
   font-size: 12px;
-  color: $color-text-muted;
+  color: #8d8d8d;
   z-index: 100;
   display: flex;
   align-items: center;
   gap: 10px;
   opacity: 0;
   animation: fadeSlideUp 0.5s ease forwards 2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 
   @include respond-to('md') {
     display: none;
@@ -79,10 +86,9 @@
 .click-instruction-icon {
   width: 24px;
   height: 24px;
-  background: $color-accent-orange-subtle;
+  background: rgba(15, 98, 254, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: clickPulse 1.5s ease infinite;
 }

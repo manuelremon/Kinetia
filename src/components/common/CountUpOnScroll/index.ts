@@ -1,0 +1,1 @@
+export { CountUpOnScroll } from './CountUpOnScroll';

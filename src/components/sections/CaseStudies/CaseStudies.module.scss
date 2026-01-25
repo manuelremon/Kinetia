@@ -1,0 +1,262 @@
+@use '@/styles/abstracts/variables' as *;
+
+.caseStudies {
+  padding: $section-padding 0;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: #161616;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-xl;
+  overflow: hidden;
+  transition: all $transition-medium;
+  cursor: pointer;
+
+  &:hover {
+    border-color: rgba($color-accent-primary, 0.4);
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+
+    .image::after {
+      opacity: 0.7;
+    }
+
+    .overlay {
+      opacity: 1;
+    }
+
+    .arrow {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+}
+
+.image {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(135deg, $color-bg-tertiary, $color-bg-secondary);
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+    opacity: 0.4;
+    transition: opacity $transition-medium;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: linear-gradient(135deg,
+    rgba($color-accent-primary, 0.2),
+    rgba($color-accent-secondary, 0.2)
+  );
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color-bg-primary, 0.8);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity $transition-medium;
+}
+
+.overlayContent {
+  text-align: center;
+  padding: 20px;
+}
+
+.overlayTitle {
+  font-family: $font-display;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: 12px;
+}
+
+.overlayText {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-relaxed;
+}
+
+.companyLogo {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 14px;
+  background: rgba($color-bg-primary, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: $border-radius-sm;
+  font-family: $font-display;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  z-index: 2;
+}
+
+.content {
+  padding: 24px;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: 12px;
+  line-height: $line-height-snug;
+}
+
+.description {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-relaxed;
+  margin-bottom: 20px;
+}
+
+.metrics {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metricValue {
+  font-family: $font-display;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  background: linear-gradient(135deg, $color-accent-primary, $color-accent-teal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.metricLabel {
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color-accent-primary, 0.15);
+  border-radius: 50%;
+  color: $color-accent-primary;
+  font-size: 18px;
+  transform: translate(-10px, 10px);
+  opacity: 0;
+  transition: all $transition-medium;
+}
+
+.cta {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: transparent;
+  border: 2px solid $color-border;
+  border-radius: $border-radius-md;
+  font-family: $font-display;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  cursor: pointer;
+  transition: all $transition-medium;
+
+  &:hover {
+    border-color: $color-accent-primary;
+    background: rgba($color-accent-primary, 0.1);
+    color: $color-accent-primary;
+    transform: translateY(-2px);
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-md) {
+  .caseStudies {
+    padding: $section-padding-mobile 0;
+  }
+
+  .header {
+    margin-bottom: 40px;
+  }
+
+  .image {
+    height: 180px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .cta {
+    margin-top: 40px;
+  }
+}
