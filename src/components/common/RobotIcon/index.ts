@@ -1,1 +1,0 @@
-export { RobotIcon } from './RobotIcon';

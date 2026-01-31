@@ -1,49 +1,31 @@
-import { Container } from '@/components/common';
-import { FOOTER_COLUMNS } from '@/utils/constants';
-import styles from './Footer.module.scss';
-
 export function Footer() {
   return (
-    <footer className={styles.footer}>
-      <Container>
-        <div className={styles.grid}>
-          <div className={styles.brand}>
-            <a href="#" className={styles.logo}>
-              <img src="/logo.png" alt="KINETIA" className={styles.logoIcon} />
+    <footer className="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="mb-6 md:mb-0">
+            <a href="#" className="text-2xl font-bold text-white tracking-wider">
               KINETIA
             </a>
-            <p className={styles.description}>
-              IA Autónoma para Ingeniería de Datos. Construye y mantiene pipelines de producción automáticamente.
+            <p className="mt-2 text-sm max-w-sm">
+              Soluciones de software y automatización para la industria moderna.
             </p>
-            <div className={styles.social}>
-              <a href="#" className={styles.socialLink}>✕</a>
-              <a href="#" className={styles.socialLink}>in</a>
-              <a href="#" className={styles.socialLink}>▶</a>
-            </div>
           </div>
 
-          {FOOTER_COLUMNS.map((column) => (
-            <div key={column.title} className={styles.column}>
-              <h4>{column.title}</h4>
-              <ul className={styles.links}>
-                {column.links.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href}>{link.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className={styles.bottom}>
-          <p className={styles.copyright}>KINETIA &copy; 2025</p>
-          <div className={styles.legal}>
-            <a href="#">Privacidad</a>
-            <a href="#">Términos</a>
+          <div className="flex space-x-6">
+            <a href="#" className="hover:text-white transition-colors">GitHub</a>
+            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" className="hover:text-white transition-colors">Twitter</a>
           </div>
         </div>
-      </Container>
+
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+          <p>&copy; {new Date().getFullYear()} Kinetia. Todos los derechos reservados.</p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+             {/* Placeholder links */}
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }

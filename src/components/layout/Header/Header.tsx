@@ -1,12 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Container, SliceButton, RandomizedTextEffect, DemoModal } from '@/components/common';
-import { NAV_LINKS } from '@/utils/constants';
-import styles from './Header.module.scss';
+import { useState, useEffect, MouseEvent } from 'react';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,71 +12,43 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href !== '#' && href.startsWith('#')) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
+  const navLinks = [
+    { label: 'Servicios', href: '#services' },
+    { label: 'Portafolio', href: '#portfolio' },
+    { label: 'Contacto', href: '#contact' },
+  ];
+
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
-      <Container>
-        <div className={styles.inner}>
-          <a href="#" className={styles.logo}>
-            <img src="/logo.png" alt="KINETIA" className={styles.logoIcon} />
-            <RandomizedTextEffect text="KINETIA" />
-          </a>
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-md py-4' : 'bg-transparent py-6'}`}>
+      <div className="container mx-auto px-6 flex justify-between items-center">
+        <a href="#" className="text-2xl font-bold text-white tracking-wider">
+          KINETIA
+        </a>
 
-          <nav className={styles.nav}>
-            <ul className={styles.navLinks}>
-              {NAV_LINKS.map((link) => (
-                <li
-                  key={link.label}
-                  className={link.dropdown ? styles.hasDropdown : ''}
-                  onMouseEnter={() => link.dropdown && setActiveDropdown(link.label)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+        <nav>
+          <ul className="flex space-x-8">
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wide"
                 >
-                  <a
-                    href={link.href}
-                    className={styles.navLink}
-                    onClick={(e) => {
-                      if (link.dropdown) {
-                        e.preventDefault();
-                      } else {
-                        handleNavClick(e, link.href);
-                      }
-                    }}
-                  >
-                    {link.label}
-                    {link.dropdown && <span className={styles.arrow}>▾</span>}
-                  </a>
-
-                  {link.dropdown && (
-                    <div className={`${styles.dropdown} ${activeDropdown === link.label ? styles.active : ''}`}>
-                      {link.dropdown.map((item) => (
-                        <a
-                          key={item.label}
-                          href={item.href}
-                          className={styles.dropdownItem}
-                          onClick={(e) => handleNavClick(e, item.href)}
-                        >
-                          {item.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </Container>
-
-      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
