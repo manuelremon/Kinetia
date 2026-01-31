@@ -1,1 +1,0 @@
-export { IconCloud } from './IconCloud';

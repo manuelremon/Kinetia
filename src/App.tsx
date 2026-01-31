@@ -1,55 +1,31 @@
 import {
-  PageLoader,
-  BackgroundLayers,
-  ExplosionCanvas,
   Header,
   Footer,
   Hero,
-  StatsTools,
   Services,
-  Stats,
-  Features,
-  HowItWorks,
-  CTA,
-  About,
-  TerminalSection,
-  ChatWidget,
-  ScrollToTop
+  Portfolio,
+  Contact
 } from '@/components';
 
-import '@/styles/main.scss';
+// import '@/styles/main.scss'; // Removed SCSS to rely on Tailwind
 
 function App() {
   return (
     <>
-      {/* Global Effects */}
-      <PageLoader />
-      <ExplosionCanvas />
-      <BackgroundLayers />
+      <div className="bg-gray-50 min-h-screen flex flex-col font-sans">
+        {/* Layout */}
+        <Header />
 
-      {/* Layout */}
-      <Header />
+        {/* Main Content */}
+        <main className="flex-grow">
+          <Hero />
+          <Services />
+          <Portfolio />
+          <Contact />
+        </main>
 
-      {/* Main Content */}
-      <main>
-        <Hero />
-        <Services />
-        <StatsTools />
-        <Stats />
-        <Features />
-        <HowItWorks />
-        <CTA />
-        <About />
-        <TerminalSection />
-      </main>
-
-      <Footer />
-
-      {/* Chat Widget */}
-      <ChatWidget />
-
-      {/* Scroll to Top */}
-      <ScrollToTop />
+        <Footer />
+      </div>
     </>
   );
 }
