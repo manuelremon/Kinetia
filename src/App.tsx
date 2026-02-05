@@ -8,7 +8,6 @@ import {
   ProblemSolution,
   TrustBadges,
   Services,
-  Testimonials,
   CaseStudies,
   Stats,
   Features,
@@ -43,7 +42,6 @@ function App() {
         <ChooseRoute />
         <ProblemSolution />
         <Services />
-        <Testimonials />
         <CaseStudies />
         <Stats />
         <TrustBadges />
