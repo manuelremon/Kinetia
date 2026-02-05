@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './ScrollReveal.module.scss';

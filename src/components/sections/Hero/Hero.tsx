@@ -1,3 +1,5 @@
+'use client';
+
 import { Container } from '@/components/common';
 import { motion } from 'framer-motion';
 import styles from './Hero.module.scss';

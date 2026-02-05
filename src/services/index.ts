@@ -1,1 +1,1 @@
-export { sendMessageToGemini } from './geminiService';
+// Services moved to app/actions.ts (Server Actions pattern)

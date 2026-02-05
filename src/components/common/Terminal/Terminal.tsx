@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { useTerminalEffect } from '@/hooks';
 import type { TerminalCommand } from '@/types';

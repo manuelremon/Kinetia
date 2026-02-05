@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /.next/
+Disallow: /node_modules/
+Sitemap: https://kinetia.tech/sitemap.xml

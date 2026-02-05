@@ -60,7 +60,7 @@
   font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 400;
   line-height: 1.4;
-  color: #001d6c;
+  color: #ffffff;
   margin-bottom: 2.5rem;
   text-align: left;
   white-space: nowrap;
@@ -68,9 +68,10 @@
 }
 
 .highlight {
-  color: #21272a;
+  color: #ffffff;
   display: inline;
   vertical-align: baseline;
+  font-weight: 600;
 }
 
 .subHeadline {
@@ -92,12 +93,12 @@
 
 .description {
   font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-  color: #525252;
+  color: #ffffff;
   max-width: 600px;
   margin-bottom: 2.5rem;
   line-height: 1.7;
   padding: 1rem;
-  border-left: 2px solid #0f62fe;
+  border-left: 2px solid #ffffff;
   background: transparent;
 }
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { ChatPanel } from './ChatPanel';
 import styles from './ChatWidget.module.scss';

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Container } from '@/components/common';
 import styles from './Footer.module.scss';
 
@@ -9,7 +10,14 @@ export function Footer() {
           {/* Brand */}
           <div className={styles.brand}>
             <a href="#" className={styles.logo}>
-              <img src="/logo.png" alt="KINETIA" className={styles.logoIcon} />
+              <Image
+                src="/logo.png"
+                alt="KINETIA"
+                width={38}
+                height={38}
+                className={styles.logoIcon}
+                priority
+              />
               KINETIA
             </a>
             <p className={styles.tagline}>

@@ -170,3 +170,56 @@
     display: none;
   }
 }
+
+// Hamburger Menu Button
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  gap: 6px;
+  position: absolute;
+  right: 0;
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  &:hover span {
+    background-color: #4589ff;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+
+  @include respond-to('md') {
+    display: flex;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #4589ff;
+    outline-offset: 2px;
+  }
+}

@@ -1,4 +1,7 @@
+'use client';
+
 import { useRef } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Container } from '@/components/common';
 import { TESTIMONIALS } from '@/utils/constants';
@@ -70,7 +73,7 @@ export function Testimonials() {
               <div className={styles.author}>
                 <div className={styles.avatar}>
                   {testimonial.avatar ? (
-                    <img src={testimonial.avatar} alt={testimonial.name} />
+                    <Image src={testimonial.avatar} alt={testimonial.name} width={48} height={48} className={styles.avatarImage} />
                   ) : (
                     getInitials(testimonial.name)
                   )}

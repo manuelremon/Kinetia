@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useState, MouseEvent } from 'react';
 import styles from './SpotlightCard.module.scss';
 

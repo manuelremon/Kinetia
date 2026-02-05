@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { useTypingEffect } from '@/hooks';
 import styles from './TypingText.module.scss';

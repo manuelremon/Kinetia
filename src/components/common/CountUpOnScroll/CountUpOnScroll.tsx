@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useEffect, useState } from 'react';
 import { useInView, motion, useSpring, useTransform } from 'framer-motion';
 import styles from './CountUpOnScroll.module.scss';

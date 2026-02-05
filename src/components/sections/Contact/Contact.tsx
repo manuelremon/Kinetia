@@ -1,5 +1,8 @@
+'use client';
+
 import { useState } from 'react';
 import { Container, SendButton } from '@/components/common';
+import { submitContactForm } from '@app/actions';
 import styles from './Contact.module.scss';
 
 export function Contact() {
@@ -7,28 +10,53 @@ export function Contact() {
     name: '',
     email: '',
     phone: '',
-    country: '',
-    company: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Validación básica del lado del cliente
+      if (!formData.name.trim() || formData.name.trim().length < 2) {
+        throw new Error('Nombre debe tener al menos 2 caracteres');
+      }
+      if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        throw new Error('Email inválido');
+      }
+      if (!formData.message.trim() || formData.message.trim().length < 10) {
+        throw new Error('Mensaje debe tener al menos 10 caracteres');
+      }
 
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', phone: '', country: '', company: '', message: '' });
+      // Crear FormData para la Server Action
+      const form = e.currentTarget;
+      const fd = new FormData(form);
+
+      // Llamar Server Action
+      const response = await submitContactForm(fd);
+
+      if (!response.success) {
+        throw new Error(response.error || 'Error al enviar formulario');
+      }
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Error desconocido';
+      setError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -112,7 +140,14 @@ export function Contact() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className={styles.form}>
+                <>
+                  {error && (
+                    <div className={styles.errorMessage} role="alert">
+                      <span className={styles.errorIcon}>⚠</span>
+                      <p>{error}</p>
+                    </div>
+                  )}
+                  <form onSubmit={handleSubmit} className={styles.form}>
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                       <label htmlFor="contact-name">Nombre completo</label>
@@ -141,70 +176,15 @@ export function Contact() {
                     </div>
                   </div>
 
-                  <div className={styles.formRow}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="contact-phone">Teléfono (opcional)</label>
-                      <input
-                        type="tel"
-                        id="contact-phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+34 600 000 000"
-                      />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                      <label htmlFor="contact-country">País</label>
-                      <select
-                        id="contact-country"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleChange}
-                        required
-                      >
-                        <option value="">Selecciona un país</option>
-                        <option value="ES">España</option>
-                        <option value="MX">México</option>
-                        <option value="AR">Argentina</option>
-                        <option value="CO">Colombia</option>
-                        <option value="CL">Chile</option>
-                        <option value="PE">Perú</option>
-                        <option value="EC">Ecuador</option>
-                        <option value="VE">Venezuela</option>
-                        <option value="UY">Uruguay</option>
-                        <option value="PY">Paraguay</option>
-                        <option value="BO">Bolivia</option>
-                        <option value="CR">Costa Rica</option>
-                        <option value="PA">Panamá</option>
-                        <option value="GT">Guatemala</option>
-                        <option value="HN">Honduras</option>
-                        <option value="SV">El Salvador</option>
-                        <option value="NI">Nicaragua</option>
-                        <option value="DO">República Dominicana</option>
-                        <option value="PR">Puerto Rico</option>
-                        <option value="CU">Cuba</option>
-                        <option value="US">Estados Unidos</option>
-                        <option value="BR">Brasil</option>
-                        <option value="PT">Portugal</option>
-                        <option value="FR">Francia</option>
-                        <option value="DE">Alemania</option>
-                        <option value="IT">Italia</option>
-                        <option value="GB">Reino Unido</option>
-                        <option value="OTHER">Otro</option>
-                      </select>
-                    </div>
-                  </div>
-
                   <div className={styles.formGroup}>
-                    <label htmlFor="contact-company">Empresa (opcional)</label>
+                    <label htmlFor="contact-phone">Teléfono (opcional)</label>
                     <input
-                      type="text"
-                      id="contact-company"
-                      name="company"
-                      value={formData.company}
+                      type="tel"
+                      id="contact-phone"
+                      name="phone"
+                      value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Nombre de tu empresa"
+                      placeholder="+34 600 000 000"
                     />
                   </div>
 
@@ -225,6 +205,7 @@ export function Contact() {
                     {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
                   </SendButton>
                 </form>
+                </>
               )}
             </div>
           </div>

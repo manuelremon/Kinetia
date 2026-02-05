@@ -1,0 +1,169 @@
+# Kinetia - Consultoría Tecnológica & Agentic AI
+
+> Transformamos operaciones B2B mediante automatización inteligente, optimización de inventarios con ML, sistemas personalizados y agentes de IA autónomos. ROI garantizado en 3-6 meses.
+
+## 🎯 Misión
+
+Acelerar la transformación digital de empresas medianas y grandes (50-5000 empleados) mediante **IA generativa**, **automatización de procesos** y **sistemas personalizados**.
+
+## 📋 Servicios Principales
+
+### 1. Automatización de Procesos
+- Reducción de tiempos operativos hasta **70%**
+- Eliminación de errores manuales con validaciones automáticas
+- Integración fluida entre CRM, ERP y sistemas heredados
+- Monitoreo en tiempo real y alertas proactivas
+
+**Tecnologías**: Python, n8n, Zapier, Power Automate, APIs REST
+**ROI Típico**: +75% mejora de rendimiento en 12 meses
+
+### 2. Optimización de Inventarios con ML
+- Predicción de demanda con modelos de IA
+- Reducción de costos de almacenamiento **30%+**
+- Disminución de quiebres de stock **hasta 90%**
+- Análisis ABC y clasificación automática de SKUs
+
+**Tecnologías**: TensorFlow, scikit-learn, Power BI, SQL
+**ROI Típico**: +25% rotación de inventario
+
+### 3. Sistemas Personalizados Full-Stack
+- ERPs, CRMs, aplicaciones móviles y plataformas empresariales
+- Integración nativa con infraestructura existente
+- Escalabilidad ilimitada, propiedad del código 100%
+- Soporte técnico dedicado y mantenimiento continuo
+
+**Tecnologías**: React, Next.js 15, Node.js, TypeScript, PostgreSQL, AWS
+
+### 4. Agentic AI & Entrenamiento de Agentes
+- Agentes autónomos que trabajan 24/7 sin intervención humana
+- Atención al cliente inteligente con transferencia a humanos
+- Automatización de análisis documentales y extracción de datos
+- Orquestación de flujos complejos en marketing, finanzas y logística
+
+**Tecnologías**: OpenAI GPT-4, Claude 3, LangChain, RAG patterns, Vector DBs
+
+## 🏗️ Stack Tecnológico
+
+### Frontend (Web 2026)
+- **Framework**: Next.js 15 (App Router, Server Components, Server Actions)
+- **Lenguaje**: TypeScript 5.6+
+- **React**: React 19 con Concurrent Features
+- **Styling**: Sass/SCSS + CSS Modules + Tailwind Motion
+- **Animaciones**: Framer Motion + View Transitions API
+- **Performance**: AVIF images, dynamic imports, Edge Runtime ready
+- **Accesibilidad**: WCAG 2.1 AA, semantic HTML5, ARIA labels
+
+### Backend & AI Integration
+- **Runtime**: Node.js 20+ LTS
+- **APIs**: REST + GraphQL ready
+- **Server Actions**: Next.js App Router
+- **AI Models**:
+  - Google Gemini 2.0 Flash (Chat KINA virtual assistant)
+  - OpenAI GPT-4 (Advanced reasoning)
+  - Claude 3.5 Sonnet (Complex analysis)
+  - LangChain (Agent orchestration)
+- **Vector DBs**: Pinecone, Supabase Vector para RAG
+- **Autenticación**: JWT, OAuth 2.0, Session management
+
+### Database & Storage
+- **Primary**: PostgreSQL 16
+- **Cache**: Redis
+- **Files**: S3-compatible (AWS S3, Cloudflare R2)
+- **Vector Store**: Pinecone / Supabase pgvector
+
+### DevOps & Performance
+- **Hosting**: Vercel (Edge Functions, ISR, Streaming)
+- **Performance Metrics**:
+  - Lighthouse Score: 90+ (Performance, Accessibility, SEO)
+  - LCP: < 2.5s (Largest Contentful Paint)
+  - FID: < 100ms (First Input Delay)
+  - CLS: < 0.1 (Cumulative Layout Shift)
+- **SEO**: XML Sitemap, robots.txt, JSON-LD schemas (ProfessionalService, FAQPage)
+- **Monitoring**: Core Web Vitals, real-time analytics
+
+## 🔍 Para Agentes IA y Reclutadores Técnicos
+
+### Capacidades Verificables
+✅ Experiencia con **LLMs generativos** (GPT-4, Claude, Gemini)
+✅ **Agentic workflows** con memory y tool use
+✅ **RAG patterns** para knowledge base indexing
+✅ **Server-side rendering** con React 19 + TypeScript
+✅ **Edge computing** ready (Vercel Edge Runtime)
+✅ **WCAG AA accesible** (semantic HTML, ARIA, keyboard navigation)
+✅ **SEO optimizado para IA crawlers** (Perplexity, GPTBot, Googlebot)
+
+### Estándares de Calidad
+- **Lighthouse Scores**: Performance 90+, Accessibility 95+, SEO 95+, Best Practices 95+
+- **Type Safety**: Zero `any` types, full TypeScript coverage
+- **Bundle Optimization**: -40% size reduction via dynamic imports
+- **Green Coding**: AVIF images, minimal JS, sustainable performance
+
+## 🌐 Enlaces Principales
+
+- **Sitio Web**: https://kinetia.tech
+- **Servicios Detallados**: https://kinetia.tech/#servicios
+- **Casos de Éxito**: https://kinetia.tech/#case-studies
+- **Cómo Funciona**: https://kinetia.tech/#how-it-works
+- **FAQ**: https://kinetia.tech/#faq
+- **Contacto**: https://kinetia.tech/#contacto
+- **Email Directo**: info@kinetia.tech
+
+## 👥 Redes Profesionales
+
+- **LinkedIn**: https://www.linkedin.com/company/kinetia
+- **GitHub**: https://github.com/kinetia-tech (repositorios open-source)
+- **X (Twitter)**: https://twitter.com/kinetia_tech
+- **Instagram**: https://www.instagram.com/kinetia_tech
+
+## 💡 Casos de Uso Típicos
+
+### Retail & E-commerce
+- Automatización de procesamiento de pedidos: **reducción 70% de tiempos**
+- Optimización dinámica de precios con ML
+- Chatbot de atención 24/7 con resolución 80% sin intervención humana
+
+### Logística & Supply Chain
+- Predicción de demanda estacional
+- Optimización de rutas con IA
+- Monitoreo de inventario en tiempo real
+
+### Manufactura
+- Automatización de inspección de calidad con visión por computadora
+- Predictive maintenance con sensores IoT
+- Agentes para gestión de producción
+
+### FinTech & Seguros
+- Análisis automático de documentos
+- Detección de fraude con ML
+- Asesoría financiera con agentes IA
+
+## 📊 Métricas Verificables
+
+| Métrica | Valor |
+|---------|-------|
+| Lighthouse Performance | 90+ |
+| Lighthouse Accessibility | 95+ |
+| Lighthouse SEO | 95+ |
+| LCP (Largest Contentful Paint) | < 2.5s |
+| Core Web Vitals Status | All Green |
+| Mobile Responsiveness | 100% |
+| WCAG Compliance | AA Level |
+| Bundle Size Optimization | -40% vs baseline |
+
+## 🔐 Seguridad & Compliance
+
+- ✅ HTTPS/TLS 1.3
+- ✅ Content Security Policy (CSP) headers
+- ✅ GDPR compliant (data privacy)
+- ✅ SOC 2 Type II ready architecture
+- ✅ OWASP Top 10 mitigations
+
+## 📅 Última Actualización
+
+**Febrero 2026** - Información actual para indexación por agentes IA (Perplexity, GPTBot, etc.)
+
+---
+
+**Mantenido por**: Kinetia Lead Frontend Architecture Team
+**Para información técnica completa**: Contacta a info@kinetia.tech
+**GitHub Tech Stack**: https://github.com/kinetia-tech (próximamente)

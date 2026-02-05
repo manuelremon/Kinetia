@@ -4,3 +4,5 @@ export * from './useIntersectionObserver';
 export * from './useTerminalEffect';
 export * from './useTypingEffect';
 export * from './useSmoothScroll';
+export * from './useViewTransition';
+export * from './useWebVitals';

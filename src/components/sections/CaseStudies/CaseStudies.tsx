@@ -1,3 +1,6 @@
+'use client';
+
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Container } from '@/components/common';
 import { CASE_STUDIES } from '@/utils/constants';
@@ -29,7 +32,7 @@ export function CaseStudies() {
             >
               <div className={styles.image}>
                 {caseStudy.image ? (
-                  <img src={caseStudy.image} alt={caseStudy.title} />
+                  <Image src={caseStudy.image} alt={caseStudy.title} fill className={styles.img} />
                 ) : (
                   <div className={styles.imagePlaceholder}>
                     {caseStudy.icon}

@@ -1,6 +1,8 @@
-import { useState, useCallback, useRef } from 'react';
-import type { ChatMessage } from '@/types/chat';
-import { sendMessageToGemini } from '@/services/geminiService';
+'use client';
+
+import { useState, useCallback } from 'react';
+import { chatWithKina } from '@app/actions';
+import type { ChatMessage, GeminiContent } from '@/types/chat';
 
 const WELCOME_MESSAGE: ChatMessage = {
   id: 'welcome',
@@ -13,69 +15,68 @@ export function useChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([WELCOME_MESSAGE]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const isLoadingRef = useRef(false);
 
   const sendMessage = useCallback(async (content: string) => {
-    if (!content.trim() || isLoadingRef.current) return;
+    if (!content.trim()) return;
 
-    isLoadingRef.current = true;
     setIsLoading(true);
     setError(null);
-
-    const userMessage: ChatMessage = {
-      id: `user-${crypto.randomUUID()}`,
-      role: 'user',
-      content: content.trim(),
-      timestamp: Date.now(),
+    
+    // 1. Optimistic Update (Mostrar mensaje del usuario inmediatamente)
+    const userMsg: ChatMessage = { 
+        role: 'user', 
+        content: content.trim(), 
+        id: `user-${Date.now()}`,
+        timestamp: Date.now()
     };
-
-    // Capturar mensajes actuales y agregar el mensaje del usuario
+    
     let currentMessages: ChatMessage[] = [];
     setMessages(prev => {
-      currentMessages = prev;
-      return [...prev, userMessage];
+        currentMessages = prev;
+        return [...prev, userMsg];
     });
 
     try {
-      // Filtrar mensaje de bienvenida para la API
-      const messagesForAPI = [...currentMessages.filter(m => m.id !== 'welcome'), userMessage];
-      const response = await sendMessageToGemini(messagesForAPI);
+        // 2. Llamada a Server Action (Directa, sin fetch)
+        // Convertimos el historial al formato que espera Gemini
+        const historyForAi: GeminiContent[] = currentMessages
+          .filter(m => m.id !== 'welcome')
+          .map(m => ({
+            role: m.role === 'user' ? ('user' as const) : ('model' as const),
+            parts: [{ text: m.content }]
+          }));
 
-      const assistantMessage: ChatMessage = {
-        id: `assistant-${crypto.randomUUID()}`,
-        role: 'assistant',
-        content: response,
-        timestamp: Date.now(),
-      };
-
-      setMessages(prev => [...prev, assistantMessage]);
+        const response = await chatWithKina(historyForAi, content);
+    
+        if (response.success && response.text) {
+             const assistantMessage: ChatMessage = {
+                id: `assistant-${Date.now()}`,
+                role: 'assistant',
+                content: response.text,
+                timestamp: Date.now(),
+            };
+          setMessages(prev => [...prev, assistantMessage]);
+        } else {
+          // Manejo de errores
+          throw new Error(response.error || 'Error desconocido');
+        }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Error desconocido';
-      setError(errorMessage);
-
-      const errorChatMessage: ChatMessage = {
-        id: `error-${crypto.randomUUID()}`,
-        role: 'assistant',
-        content: 'Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.',
-        timestamp: Date.now(),
-      };
-      setMessages(prev => [...prev, errorChatMessage]);
+        const errorMessage = err instanceof Error ? err.message : 'Lo siento, hubo un error de conexión.';
+        setError(errorMessage);
+        setMessages(prev => [
+            ...prev, 
+            { role: 'assistant', content: errorMessage, id: `error-${Date.now()}`, timestamp: Date.now() }
+          ]);
     } finally {
-      isLoadingRef.current = false;
-      setIsLoading(false);
+        setIsLoading(false);
     }
+    
   }, []);
-
+  
   const clearChat = useCallback(() => {
     setMessages([WELCOME_MESSAGE]);
     setError(null);
   }, []);
 
-  return {
-    messages,
-    isLoading,
-    error,
-    sendMessage,
-    clearChat,
-  };
+  return { messages, isLoading, error, sendMessage, clearChat };
 }

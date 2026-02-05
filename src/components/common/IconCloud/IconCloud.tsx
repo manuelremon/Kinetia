@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useMemo, useState, useRef, useCallback } from 'react';
 import styles from './IconCloud.module.scss';
 

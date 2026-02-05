@@ -1,3 +1,5 @@
+'use client';
+
 import { motion, Variants } from 'framer-motion';
 import { Container } from '@/components/common';
 import { TRUST_BADGES } from '@/utils/constants';

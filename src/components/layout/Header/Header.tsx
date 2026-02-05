@@ -1,11 +1,16 @@
+'use client';
+
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Container, RandomizedTextEffect, DemoModal } from '@/components/common';
+import { MobileMenu } from './MobileMenu';
 import { NAV_LINKS } from '@/utils/constants';
 import styles from './Header.module.scss';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,12 +35,19 @@ export function Header() {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <Container>
         <div className={styles.inner}>
-          <a href="#" className={styles.logo}>
-            <img src="/logo.png" alt="KINETIA" className={styles.logoIcon} />
+          <a href="#" className={styles.logo} aria-label="KINETIA Home">
+            <Image
+              src="/logo.png"
+              alt="KINETIA"
+              width={38}
+              height={38}
+              className={styles.logoIcon}
+              priority
+            />
             <RandomizedTextEffect text="KINETIA" />
           </a>
 
-          <nav className={styles.nav}>
+          <nav className={styles.nav} aria-label="Main navigation">
             <ul className={styles.navLinks}>
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
@@ -57,8 +69,28 @@ export function Header() {
           >
             <span>Solicitar Diagnóstico</span>
           </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            id="mobile-menu-button"
+            className={`${styles.hamburger} ${isMobileMenuOpen ? styles.active : ''}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </Container>
+
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        onCTAClick={() => setIsDemoModalOpen(true)}
+      />
 
       <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
     </header>

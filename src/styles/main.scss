@@ -3,12 +3,6 @@
 // Import order matters!
 // ============================================
 
-// Carbon Design System - White Theme
-@use '@carbon/react/scss/themes';
-@use '@carbon/react/scss/theme' with (
-  $theme: themes.$white
-);
-
 // Abstracts (variables, mixins, animations)
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
@@ -17,6 +11,49 @@
 // Base styles (reset, typography)
 @use 'base/reset';
 @use 'base/typography';
+
+// ============================================
+// VIEW TRANSITIONS API (Web 2026)
+// ============================================
+// Enable smooth morphing transitions between navigations
+// Supported in: Chrome 111+, Edge 111+, Opera 97+
+@supports (view-transition-name: auto) {
+  html {
+    view-transition-name: root;
+  }
+
+  // Auto transitions on all navigations
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+// Keyframe animations for view transitions
+@keyframes slide-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+@keyframes slide-to-left {
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
 
 // ============================================
 // GLOBAL UTILITIES

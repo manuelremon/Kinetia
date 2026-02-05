@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { Timeline } from 'animejs';
 import styles from './AnimatedLetters.module.scss';

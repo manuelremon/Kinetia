@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { ChatMessages } from './ChatMessages';
 import { ChatInput } from './ChatInput';

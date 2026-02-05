@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
 import styles from './TextReveal.module.scss';

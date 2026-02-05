@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { BG_PARTICLE_COLORS } from '@/utils/constants';
 import styles from './ParticleCanvas.module.scss';
