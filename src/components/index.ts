@@ -9,3 +9,6 @@ export * from './sections';
 
 // Effect components
 export * from './effects';
+
+// Feature components
+export * from './features';

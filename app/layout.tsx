@@ -1,15 +1,23 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { IBM_Plex_Sans } from 'next/font/google';
+import { IBM_Plex_Sans, JetBrains_Mono } from 'next/font/google';
 import '@/styles/main.scss'; // Tus estilos globales
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'; // Wrapper cliente
 import { WebVitalsProvider } from '@/components/providers/WebVitalsProvider'; // Web Vitals monitoring
 
-// Optimización de Fuentes (Zero Layout Shift) - Solo 3 pesos esenciales
+// Optimización de Fuentes (Zero Layout Shift) - Solo pesos esenciales
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
   variable: '--font-ibm-plex',
+  display: 'swap',
+});
+
+// JetBrains Mono para Terminal/Code (Zero CLS)
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-jetbrains',
   display: 'swap',
 });
 
@@ -200,7 +208,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={ibmPlexSans.variable}>
+    <html lang="es" className={`${ibmPlexSans.variable} ${jetBrainsMono.variable}`}>
       <head>
         {/* JSON-LD Schemas for SEO & Rich Snippets (Web 2026) */}
         <Script

@@ -1,92 +1,162 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+// ============================================
+// ABOUT SECTION - Technical Capabilities
+// ============================================
+
 .section {
-  padding: 100px 0;
-  background: $color-bg-secondary;
+  padding: 120px 0;
+  background: #161616;
+  position: relative;
+  overflow: hidden;
 }
 
-.columns {
+.grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
 
   @include respond-to('lg') {
     grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 40px;
   }
 }
 
-// Left Column - Sobre KINETIA
-.leftColumn {
-  text-align: left;
+// ============================================
+// CONTENT COLUMN
+// ============================================
+
+.content {
+  color: #ffffff;
+}
+
+.label {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(15, 98, 254, 0.15);
+  border: 1px solid rgba(15, 98, 254, 0.3);
+  border-radius: 100px;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  color: #78a9ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
 
 .title {
   font-family: $font-display;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 600;
-  color: #161616;
-  margin-bottom: 28px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
   line-height: 1.2;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #0f62fe 0%, #4589ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .description {
-  font-size: 16px;
-  color: $color-text-secondary;
-  line-height: 1.8;
-  margin-bottom: 20px;
+  font-size: $font-size-lg;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
 
-  &:last-child {
-    margin-bottom: 0;
+// ============================================
+// STATS
+// ============================================
+
+.stats {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  @include respond-to('md') {
+    flex-wrap: wrap;
+    gap: 24px;
   }
 }
 
-// Right Column - Nuestros Valores
-.rightColumn {
-  text-align: left;
-}
-
-.valuesTitle {
-  font-family: $font-display;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 600;
-  color: #161616;
-  margin-bottom: 28px;
-  line-height: 1.2;
-}
-
-.values {
+.stat {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 4px;
 }
 
-.valueItem {
-  h4 {
-    font-family: $font-display;
-    font-size: 18px;
-    font-weight: 600;
-    color: $color-accent-primary;
-    margin-bottom: 10px;
-  }
+.statValue {
+  font-family: $font-display;
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  color: #0f62fe;
+}
 
-  p {
-    font-size: 15px;
-    color: $color-text-secondary;
-    line-height: 1.7;
-    margin: 0;
+.statLabel {
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// ============================================
+// TECH STACK
+// ============================================
+
+.techStack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.techLabel {
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.techBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: #ffffff;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(15, 98, 254, 0.2);
+    border-color: rgba(15, 98, 254, 0.4);
   }
 }
 
-// Closing paragraph - centered below columns
-.closing {
-  font-size: 17px;
-  color: $color-text-secondary;
-  line-height: 1.8;
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid $color-border;
-  text-align: center;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+// ============================================
+// TERMINAL WRAPPER
+// ============================================
+
+.terminalWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include respond-to('lg') {
+    margin-top: 20px;
+  }
 }

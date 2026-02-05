@@ -66,9 +66,9 @@ $shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
 // TYPOGRAPHY
 // ============================================
 
-$font-display: 'IBM Plex Sans', sans-serif;
-$font-body: 'IBM Plex Sans', sans-serif;
-$font-mono: 'IBM Plex Sans', sans-serif;
+$font-display: var(--font-ibm-plex), 'IBM Plex Sans', sans-serif;
+$font-body: var(--font-ibm-plex), 'IBM Plex Sans', sans-serif;
+$font-mono: var(--font-jetbrains), 'JetBrains Mono', 'Fira Code', monospace;
 
 // Font sizes - Semantic scale
 $font-size-xs: 0.75rem;      // 12px - Labels, captions
