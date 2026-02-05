@@ -1,0 +1,329 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+// ============================================
+// ENGINEERING LABS SECTION
+// ============================================
+
+.section {
+  padding: $section-padding 0;
+  background: linear-gradient(180deg, #0a0f1a 0%, #020617 100%);
+  position: relative;
+
+  @include respond-to('md') {
+    padding: $section-padding-mobile 0;
+  }
+}
+
+// ============================================
+// HEADER
+// ============================================
+
+.header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.sectionLabel {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #22c55e;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.highlight {
+  color: #22c55e;
+}
+
+.subtitle {
+  font-size: $font-size-base;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+// ============================================
+// PROJECTS GALLERY
+// ============================================
+
+.projectsGallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @include respond-to('md') {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================
+// PROJECT CARD
+// ============================================
+
+.projectCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: rgba(34, 197, 94, 0.2);
+  }
+}
+
+.projectHeader {
+  margin-bottom: 20px;
+}
+
+.projectMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.category {
+  font-size: 11px;
+  font-weight: 600;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.production {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+  }
+
+  &.beta {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+  }
+}
+
+.projectTitle {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+// ============================================
+// TERMINAL VISUAL
+// ============================================
+
+.projectVisual {
+  margin-bottom: 20px;
+}
+
+.terminalWindow {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminalDots {
+  display: flex;
+  gap: 6px;
+}
+
+.dotRed,
+.dotYellow,
+.dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dotRed { background: #ef4444; }
+.dotYellow { background: #f59e0b; }
+.dotGreen { background: #22c55e; }
+
+.terminalTitle {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.terminalBody {
+  padding: 16px;
+}
+
+.codeBlock {
+  font-family: $font-mono;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.comment {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.keyword {
+  color: #c084fc;
+}
+
+.function {
+  color: #60a5fa;
+}
+
+.method {
+  color: #22c55e;
+}
+
+// ============================================
+// PROJECT DESCRIPTION
+// ============================================
+
+.projectDescription {
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+// ============================================
+// TECH STACK
+// ============================================
+
+.stackSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.stackLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stackTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stackTag {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  font-family: $font-mono;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+// ============================================
+// METRICS
+// ============================================
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.metricItem {
+  padding: 12px;
+  background: rgba(34, 197, 94, 0.05);
+  border: 1px solid rgba(34, 197, 94, 0.1);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.metricValue {
+  display: block;
+  font-family: $font-mono;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #22c55e;
+  margin-bottom: 2px;
+}
+
+.metricLabel {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// ============================================
+// CTA
+// ============================================
+
+.labsCta {
+  text-align: center;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ctaText {
+  font-size: $font-size-base;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 20px;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: transparent;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 4px;
+  font-family: $font-display;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: #22c55e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.5);
+  }
+}

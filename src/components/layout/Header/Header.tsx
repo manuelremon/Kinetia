@@ -1,16 +1,47 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Container, RandomizedTextEffect, DemoModal } from '@/components/common';
+import { Container, DemoModal } from '@/components/common';
 import { MobileMenu } from './MobileMenu';
-import { NAV_LINKS } from '@/utils/constants';
 import styles from './Header.module.scss';
+
+// Corporate Navigation Structure
+const CORPORATE_NAV = [
+  {
+    label: 'Soluciones',
+    href: '#services',
+    dropdown: [
+      { label: 'Automatización de Procesos', href: '#services', description: 'RPA e integración de sistemas' },
+      { label: 'Inteligencia Artificial', href: '#services', description: 'ML, NLP y agentes autónomos' },
+      { label: 'Ingeniería de Datos', href: '#services', description: 'Pipelines y arquitectura cloud' },
+    ]
+  },
+  {
+    label: 'Industrias',
+    href: '#industries',
+    dropdown: [
+      { label: 'Retail & E-commerce', href: '#industries', description: 'Optimización de inventario y ventas' },
+      { label: 'Finanzas & Seguros', href: '#industries', description: 'Automatización de compliance' },
+      { label: 'Logística & Supply Chain', href: '#industries', description: 'Ruteo y demand planning' },
+    ]
+  },
+  {
+    label: 'Resultados',
+    href: '#case-studies',
+  },
+  {
+    label: 'Insights',
+    href: '#insights',
+  }
+];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,13 +59,28 @@ export function Header() {
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+      setActiveDropdown(null);
     }
+  };
+
+  const handleDropdownEnter = (label: string) => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setActiveDropdown(label);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
   };
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <Container>
         <div className={styles.inner}>
+          {/* Logo */}
           <a href="#" className={styles.logo} aria-label="KINETIA Home">
             <Image
               src="/logo.png"
@@ -45,31 +91,55 @@ export function Header() {
               style={{ width: 'auto', height: '38px' }}
               priority
             />
-            <RandomizedTextEffect text="KINETIA" />
+            <span className={styles.logoText}>KINETIA</span>
           </a>
 
+          {/* Corporate Navigation */}
           <nav className={styles.nav} aria-label="Main navigation">
             <ul className={styles.navLinks}>
-              {NAV_LINKS.map((link) => (
-                <li key={link.label}>
+              {CORPORATE_NAV.map((item) => (
+                <li
+                  key={item.label}
+                  className={item.dropdown ? styles.hasDropdown : ''}
+                  onMouseEnter={() => item.dropdown && handleDropdownEnter(item.label)}
+                  onMouseLeave={handleDropdownLeave}
+                >
                   <a
-                    href={link.href}
+                    href={item.href}
                     className={styles.navLink}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                    onClick={(e) => !item.dropdown && handleNavClick(e, item.href)}
                   >
-                    {link.label}
+                    {item.label}
+                    {item.dropdown && <span className={styles.arrow}>&#9662;</span>}
                   </a>
+
+                  {/* Dropdown Menu */}
+                  {item.dropdown && (
+                    <div className={`${styles.dropdown} ${activeDropdown === item.label ? styles.active : ''}`}>
+                      {item.dropdown.map((subItem) => (
+                        <a
+                          key={subItem.label}
+                          href={subItem.href}
+                          className={styles.dropdownItem}
+                          onClick={(e) => handleNavClick(e, subItem.href)}
+                        >
+                          <span className={styles.dropdownLabel}>{subItem.label}</span>
+                          <span className={styles.dropdownDesc}>{subItem.description}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
           </nav>
 
+          {/* CTA Button - Corporate */}
           <button
-            className={styles.squishyButton}
+            className={styles.ctaButton}
             onClick={() => setIsDemoModalOpen(true)}
           >
-            <span className={styles.squishyContent}>Solicitar Diagnóstico Gratuito</span>
-            <span className={styles.squishyGlow}></span>
+            Hablar con Consultor
           </button>
 
           {/* Mobile Menu Button */}

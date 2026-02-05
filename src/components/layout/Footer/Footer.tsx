@@ -16,7 +16,7 @@ export function Footer() {
                 width={38}
                 height={38}
                 className={styles.logoIcon}
-                priority
+                style={{ width: 'auto', height: '38px' }}
               />
               KINETIA
             </a>

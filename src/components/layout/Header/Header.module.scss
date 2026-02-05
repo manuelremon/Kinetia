@@ -1,42 +1,49 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+// ============================================
+// HEADER - Corporate B2B Enterprise
+// Referentes: Accenture, Globant, McKinsey
+// ============================================
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: $z-header;
-  padding: 20px 0;
-  background: #121619;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 0;
+  background: #020617;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   transition: all $transition-medium;
 
   &.scrolled {
-    padding: 16px 0;
-    background: rgba(18, 22, 25, 0.98);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 12px 0;
+    background: rgba(2, 6, 23, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 }
 
 .inner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  justify-content: space-between;
 }
+
+// ============================================
+// LOGO
+// ============================================
 
 .logo {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: $font-display;
-  font-size: 22px;
-  font-weight: 700;
-  transition: transform $transition-fast;
-  position: absolute;
-  left: 0;
+  text-decoration: none;
+  transition: opacity $transition-fast;
 
   &:hover {
-    transform: scale(1.05);
+    opacity: 0.9;
   }
 }
 
@@ -46,10 +53,25 @@
   object-fit: contain;
 }
 
+.logoText {
+  font-family: $font-display;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+// ============================================
+// NAVIGATION
+// ============================================
+
 .nav {
   display: flex;
   align-items: center;
-  gap: 40px;
+
+  @include respond-to('md') {
+    display: none;
+  }
 }
 
 .navLinks {
@@ -57,19 +79,8 @@
   align-items: center;
   gap: 0;
   list-style: none;
-
-  li {
-    padding: 0 24px;
-    border-right: 1px solid rgba(255, 255, 255, 0.15);
-
-    &:first-child {
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-    }
-  }
-
-  @include respond-to('md') {
-    display: none;
-  }
+  margin: 0;
+  padding: 0;
 }
 
 .hasDropdown {
@@ -77,43 +88,48 @@
 }
 
 .navLink {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #ffffff;
-  transition: color $transition-fast;
-  position: relative;
-  padding: 8px 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color $transition-fast;
 
   &:hover {
-    color: #4589ff;
+    color: #3b82f6;
   }
 }
 
 .arrow {
   font-size: 10px;
   transition: transform $transition-fast;
+  opacity: 0.6;
 
   .hasDropdown:hover & {
     transform: rotate(180deg);
   }
 }
 
+// ============================================
+// DROPDOWN MENU
+// ============================================
+
 .dropdown {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  min-width: 200px;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: $border-radius-md;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 280px;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  padding: 8px;
   opacity: 0;
   visibility: hidden;
   transition: all $transition-medium;
@@ -126,80 +142,65 @@
 }
 
 .dropdownItem {
-  display: block;
-  padding: 12px 20px;
-  font-size: 14px;
-  color: #525252;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  text-decoration: none;
   transition: all $transition-fast;
 
   &:hover {
-    background: #f4f4f4;
-    color: #0f62fe;
-    padding-left: 25px;
+    background: rgba(59, 130, 246, 0.1);
+
+    .dropdownLabel {
+      color: #3b82f6;
+    }
   }
 }
 
+.dropdownLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  transition: color $transition-fast;
+}
+
+.dropdownDesc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 // ============================================
-// SQUISHY BUTTON (Deformation Effect)
+// CTA BUTTON - Corporate
 // ============================================
 
-.squishyButton {
-  position: absolute;
-  right: 0;
+.ctaButton {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #ffffff 0%, #f4f4f4 100%);
+  background: #3b82f6;
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
   font-family: $font-display;
   font-size: 14px;
   font-weight: 600;
-  color: #0f62fe;
+  color: #ffffff;
   cursor: pointer;
-  transform-style: preserve-3d;
-  transition: box-shadow 0.3s ease;
-  overflow: hidden;
+  transition: all $transition-fast;
 
   &:hover {
-    box-shadow:
-      0 10px 40px rgba(0, 0, 0, 0.2),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+    background: #2563eb;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
 
-  @media (max-width: $breakpoint-md) {
+  @include respond-to('md') {
     display: none;
   }
 }
 
-.squishyContent {
-  position: relative;
-  z-index: 2;
-}
+// ============================================
+// HAMBURGER MENU
+// ============================================
 
-.squishyGlow {
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, #0f62fe, #4589ff, #78a9ff);
-  border-radius: 14px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-
-  .squishyButton:hover & {
-    opacity: 1;
-    animation: glowPulse 2s ease-in-out infinite;
-  }
-}
-
-@keyframes glowPulse {
-  0%, 100% {
-    background: linear-gradient(135deg, #0f62fe, #4589ff, #78a9ff);
-  }
-  50% {
-    background: linear-gradient(135deg, #78a9ff, #0f62fe, #4589ff);
-  }
-}
-
-// Hamburger Menu Button
 .hamburger {
   display: none;
   flex-direction: column;
@@ -212,8 +213,6 @@
   cursor: pointer;
   padding: 0;
   gap: 6px;
-  position: absolute;
-  right: 0;
 
   span {
     display: block;
@@ -225,12 +224,12 @@
   }
 
   &:hover span {
-    background-color: #4589ff;
+    background-color: #3b82f6;
   }
 
   &.active {
     span:nth-child(1) {
-      transform: rotate(45deg) translate(10px, 10px);
+      transform: rotate(45deg) translate(6px, 6px);
     }
 
     span:nth-child(2) {
@@ -238,7 +237,7 @@
     }
 
     span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
+      transform: rotate(-45deg) translate(6px, -6px);
     }
   }
 
@@ -247,7 +246,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #4589ff;
+    outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
 }

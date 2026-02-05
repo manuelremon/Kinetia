@@ -1,8 +1,37 @@
 'use client';
 
-import { useEffect } from 'react';
-import { NAV_LINKS } from '@/utils/constants';
+import { useEffect, useState } from 'react';
 import styles from './MobileMenu.module.scss';
+
+// Corporate Navigation Structure (same as Header)
+const CORPORATE_NAV = [
+  {
+    label: 'Soluciones',
+    href: '#services',
+    subItems: [
+      { label: 'Automatización de Procesos', href: '#services' },
+      { label: 'Inteligencia Artificial', href: '#services' },
+      { label: 'Ingeniería de Datos', href: '#services' },
+    ]
+  },
+  {
+    label: 'Industrias',
+    href: '#industries',
+    subItems: [
+      { label: 'Retail & E-commerce', href: '#industries' },
+      { label: 'Finanzas & Seguros', href: '#industries' },
+      { label: 'Logística & Supply Chain', href: '#industries' },
+    ]
+  },
+  {
+    label: 'Resultados',
+    href: '#case-studies',
+  },
+  {
+    label: 'Insights',
+    href: '#insights',
+  }
+];
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -11,6 +40,8 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ isOpen, onClose, onCTAClick }: MobileMenuProps) {
+  const [expandedItem, setExpandedItem] = useState<string | null>(null);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -51,6 +82,10 @@ export function MobileMenu({ isOpen, onClose, onCTAClick }: MobileMenuProps) {
     }
   };
 
+  const toggleExpanded = (label: string) => {
+    setExpandedItem(expandedItem === label ? null : label);
+  };
+
   return (
     <>
       {/* Backdrop */}
@@ -67,15 +102,42 @@ export function MobileMenu({ isOpen, onClose, onCTAClick }: MobileMenuProps) {
         aria-hidden={!isOpen}
       >
         <ul className={styles.menuLinks}>
-          {NAV_LINKS.map((link) => (
-            <li key={link.label}>
-              <a
-                href={link.href}
-                className={styles.menuLink}
-                onClick={(e) => handleNavClick(e, link.href)}
-              >
-                {link.label}
-              </a>
+          {CORPORATE_NAV.map((item) => (
+            <li key={item.label} className={styles.menuItem}>
+              {item.subItems ? (
+                <>
+                  <button
+                    className={styles.menuButton}
+                    onClick={() => toggleExpanded(item.label)}
+                  >
+                    {item.label}
+                    <span className={`${styles.expandIcon} ${expandedItem === item.label ? styles.expanded : ''}`}>
+                      &#9662;
+                    </span>
+                  </button>
+                  <ul className={`${styles.subMenu} ${expandedItem === item.label ? styles.expanded : ''}`}>
+                    {item.subItems.map((subItem) => (
+                      <li key={subItem.label}>
+                        <a
+                          href={subItem.href}
+                          className={styles.subMenuLink}
+                          onClick={(e) => handleNavClick(e, subItem.href)}
+                        >
+                          {subItem.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <a
+                  href={item.href}
+                  className={styles.menuLink}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                >
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -87,7 +149,7 @@ export function MobileMenu({ isOpen, onClose, onCTAClick }: MobileMenuProps) {
             onClose();
           }}
         >
-          Solicitar Diagnóstico
+          Hablar con Consultor
         </button>
       </nav>
     </>

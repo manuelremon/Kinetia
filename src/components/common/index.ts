@@ -13,6 +13,7 @@ export * from './MagneticButton';
 export * from './Modal';
 export * from './MorphLoader';
 export * from './ParallaxSection';
+export * from './PrecisionButton';
 export * from './RandomizedTextEffect';
 export * from './RobotIcon';
 export * from './ScrollProgress';

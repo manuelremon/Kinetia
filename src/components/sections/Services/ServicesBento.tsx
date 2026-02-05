@@ -6,68 +6,47 @@ import { Container } from '@/components/common';
 import styles from './ServicesBento.module.scss';
 
 // ============================================
-// BENTO SERVICES DATA
+// ENGINEERING SERVICES DATA
 // ============================================
 const services = [
   {
-    id: 'agentic-ai',
-    title: 'Agentic AI & LLMs',
-    subtitle: 'Agentes entrenados para vos',
+    id: 'neural-inventory',
+    title: 'Neural Inventory Engine',
+    subtitle: 'Predicción de Demanda con Python',
     description:
-      'Diseñamos y entrenamos agentes autónomos que comprenden contexto, toman decisiones y ejecutan tareas complejas 24/7.',
-    icon: '🤖',
-    gradient: 'linear-gradient(135deg, #0f62fe 0%, #6929c4 50%, #9f1853 100%)',
+      'Algoritmos de forecast en Python + Pandas. Reducción de capital inmovilizado y quiebres de stock mediante modelos de series temporales y machine learning.',
     size: 'featured',
-    metric: null,
-    tags: ['GPT-4', 'Claude', 'LangChain', 'RAG'],
+    tags: ['Python', 'Pandas', 'Prophet', 'XGBoost'],
+    visual: 'forecast',
   },
   {
-    id: 'automation',
-    title: 'Automatización de Procesos',
-    subtitle: 'RPA & Workflows inteligentes',
+    id: 'agentic-erp',
+    title: 'Agentic ERP Integration',
+    subtitle: 'IA que Opera tu Software',
     description:
-      'Transformamos tareas manuales en flujos de trabajo automatizados que liberan a tu equipo de trabajo.',
-    icon: '⚡',
-    gradient: 'linear-gradient(135deg, #0ea5e9 0%, #0f62fe 100%)',
+      'Agentes RAG que leen facturas, actualizan SQL, detectan anomalías y ejecutan acciones. No solo responden: actúan.',
     size: 'vertical',
-    metric: { value: '-30%', label: 'Costos Operativos' },
-    tags: ['n8n', 'Zapier', 'Python'],
+    tags: ['LangChain', 'RAG', 'Function Calling'],
+    visual: 'chip',
   },
   {
-    id: 'software',
-    title: 'Desarrollo a Medida',
-    subtitle: 'Sistemas escalados a tu negocio',
+    id: 'liquid-teams',
+    title: 'Liquid Engineering Teams',
+    subtitle: 'Arquitectura Senior + Ejecución Escalable',
     description:
-      'ERPs, CRMs y Sistemas construidos con tecnología de punta.',
-    icon: '🛠️',
-    gradient: 'linear-gradient(135deg, #6929c4 0%, #491d8b 100%)',
-    size: 'standard',
-    metric: null,
-    tags: ['Next.js', 'React', 'TypeScript'],
-  },
-  {
-    id: 'consulting',
-    title: 'Consultoría',
-    subtitle: 'Estrategia tecnológica',
-    description: null,
-    icon: '💡',
-    gradient: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
-    size: 'small',
-    metric: null,
-    tags: null,
-    badge: 'We are your trusted partner',
-  },
-  {
-    id: 'inventory',
-    title: 'Optimización de Inventarios',
-    subtitle: 'Predictive Analytics & ML',
-    description:
-      'Modelos de machine learning que predicen demanda, optimizan stock y reducen costos.',
-    icon: '📊',
-    gradient: 'linear-gradient(135deg, #10b981 0%, #0d9488 100%)',
+      'Células ágiles ensambladas para tu proyecto. Liderazgo técnico centralizado con red de expertos on-demand.',
     size: 'horizontal',
-    metric: { value: '-40%', label: 'Stock Muerto' },
-    tags: ['TensorFlow', 'Power BI', 'SQL'],
+    tags: ['Next.js 15', 'TypeScript', 'AWS'],
+    visual: 'team',
+  },
+  {
+    id: 'tech-stack',
+    title: 'Tech Stack',
+    subtitle: 'Herramientas de Precisión',
+    description: null,
+    size: 'small',
+    tags: null,
+    visual: 'stack',
   },
 ];
 
@@ -77,11 +56,10 @@ const services = [
 interface SpotlightCardProps {
   children: React.ReactNode;
   className?: string;
-  gradient?: string;
   id: string;
 }
 
-function SpotlightCard({ children, className = '', gradient, id }: SpotlightCardProps) {
+function SpotlightCard({ children, className = '', id }: SpotlightCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -109,7 +87,7 @@ function SpotlightCard({ children, className = '', gradient, id }: SpotlightCard
   const spotlightBackground = useTransform(
     [spotlightX, spotlightY],
     ([x, y]) =>
-      `radial-gradient(600px circle at ${x}px ${y}px, rgba(14, 165, 233, 0.15), transparent 40%)`
+      `radial-gradient(400px circle at ${x}px ${y}px, rgba(59, 130, 246, 0.08), transparent 40%)`
   );
 
   return (
@@ -120,20 +98,11 @@ function SpotlightCard({ children, className = '', gradient, id }: SpotlightCard
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      whileHover={{ scale: 1.02, y: -5 }}
-      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      {/* Gradient Background */}
-      {gradient && (
-        <div
-          className={styles.gradientBg}
-          style={{ background: gradient, opacity: isHovered ? 0.15 : 0.08 }}
-        />
-      )}
-
       {/* Spotlight Effect */}
       {isMounted && (
         <motion.div
@@ -159,68 +128,79 @@ function SpotlightCard({ children, className = '', gradient, id }: SpotlightCard
 }
 
 // ============================================
-// ANIMATED METRIC
+// FORECAST CHART - Animated SVG
 // ============================================
-function AnimatedMetric({ value, label }: { value: string; label: string }) {
+function ForecastChart() {
   return (
-    <motion.div
-      className={styles.metric}
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.3, duration: 0.5 }}
-    >
-      <span className={styles.metricValue}>{value}</span>
-      <span className={styles.metricLabel}>{label}</span>
-    </motion.div>
-  );
-}
+    <div className={styles.forecastContainer}>
+      <svg className={styles.forecastChart} viewBox="0 0 400 200" preserveAspectRatio="none">
+        {/* Grid Lines */}
+        <g className={styles.gridLines}>
+          {[0, 50, 100, 150, 200].map((y) => (
+            <line key={y} x1="0" y1={y} x2="400" y2={y} />
+          ))}
+        </g>
 
-// ============================================
-// ASTRONAUT ANIMATION
-// ============================================
-function AstronautAnimation() {
-  return (
-    <div className={styles.astronautContainer}>
-      <div className={styles.boxOfStar1}>
-        <div className={`${styles.star} ${styles.starPosition1}`}></div>
-        <div className={`${styles.star} ${styles.starPosition2}`}></div>
-      </div>
-      <div className={styles.boxOfStar2}>
-        <div className={`${styles.star} ${styles.starPosition3}`}></div>
-        <div className={`${styles.star} ${styles.starPosition4}`}></div>
-      </div>
-      <div className={styles.astronaut}>
-        <div className={styles.schoolbag}></div>
-        <div className={styles.head}></div>
-        <div className={styles.body}>
-          <div className={styles.panel}></div>
-        </div>
-        <div className={`${styles.arm} ${styles.armLeft}`}></div>
-        <div className={`${styles.arm} ${styles.armRight}`}></div>
-        <div className={`${styles.leg} ${styles.legLeft}`}></div>
-        <div className={`${styles.leg} ${styles.legRight}`}></div>
+        {/* Actual Data Line */}
+        <motion.path
+          className={styles.actualLine}
+          d="M0,150 L50,140 L100,120 L150,130 L200,100 L250,90 L300,110"
+          initial={{ pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+
+        {/* Forecast Line (Dashed) */}
+        <motion.path
+          className={styles.forecastLine}
+          d="M300,110 L350,80 L400,60"
+          initial={{ pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+        />
+
+        {/* Confidence Band */}
+        <motion.path
+          className={styles.confidenceBand}
+          d="M300,110 L350,80 L400,60 L400,100 L350,120 L300,110"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.2 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 1.5 }}
+        />
+
+        {/* Data Points */}
+        {[[0, 150], [50, 140], [100, 120], [150, 130], [200, 100], [250, 90], [300, 110]].map(([x, y], i) => (
+          <motion.circle
+            key={i}
+            cx={x}
+            cy={y}
+            r="4"
+            className={styles.dataPoint}
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: 0.1 * i }}
+          />
+        ))}
+      </svg>
+
+      <div className={styles.forecastLegend}>
+        <span className={styles.legendItem}>
+          <span className={styles.legendActual} /> Histórico
+        </span>
+        <span className={styles.legendItem}>
+          <span className={styles.legendForecast} /> Predicción
+        </span>
       </div>
     </div>
   );
 }
 
 // ============================================
-// NEWTON'S CRADLE ANIMATION
-// ============================================
-function NewtonsCradle() {
-  return (
-    <div className={styles.newtonsCradle}>
-      <div className={styles.newtonsCradleDot}></div>
-      <div className={styles.newtonsCradleDot}></div>
-      <div className={styles.newtonsCradleDot}></div>
-      <div className={styles.newtonsCradleDot}></div>
-    </div>
-  );
-}
-
-// ============================================
-// CHIP LOADER ANIMATION
+// CHIP LOADER - Processing Animation
 // ============================================
 function ChipLoader() {
   return (
@@ -237,79 +217,127 @@ function ChipLoader() {
         <path className={styles.traceBg} d="M170,60 L150,45" />
 
         {/* Traces Flow */}
-        <path className={`${styles.traceFlow} ${styles.yellow}`} d="M10,40 H50" />
-        <path className={`${styles.traceFlow} ${styles.blue}`} d="M150,40 H190" />
-        <path className={`${styles.traceFlow} ${styles.green}`} d="M100,10 V25" />
-        <path className={`${styles.traceFlow} ${styles.purple}`} d="M100,55 V70" />
-        <path className={`${styles.traceFlow} ${styles.red}`} d="M30,20 L50,35" />
-        <path className={`${styles.traceFlow} ${styles.yellow}`} d="M170,20 L150,35" />
-        <path className={`${styles.traceFlow} ${styles.blue}`} d="M30,60 L50,45" />
-        <path className={`${styles.traceFlow} ${styles.green}`} d="M170,60 L150,45" />
+        <path className={`${styles.traceFlow} ${styles.flowBlue}`} d="M10,40 H50" />
+        <path className={`${styles.traceFlow} ${styles.flowGreen}`} d="M150,40 H190" />
+        <path className={`${styles.traceFlow} ${styles.flowBlue}`} d="M100,10 V25" />
+        <path className={`${styles.traceFlow} ${styles.flowGreen}`} d="M100,55 V70" />
+        <path className={`${styles.traceFlow} ${styles.flowBlue}`} d="M30,20 L50,35" />
+        <path className={`${styles.traceFlow} ${styles.flowGreen}`} d="M170,20 L150,35" />
+        <path className={`${styles.traceFlow} ${styles.flowBlue}`} d="M30,60 L50,45" />
+        <path className={`${styles.traceFlow} ${styles.flowGreen}`} d="M170,60 L150,45" />
 
         {/* Chip Body */}
-        <rect className={styles.chipBody} x="50" y="25" width="100" height="30" rx="6" ry="6" />
+        <rect className={styles.chipBody} x="50" y="25" width="100" height="30" rx="4" />
 
         {/* Chip Pins */}
-        <line className={styles.chipPin} x1="60" y1="25" x2="60" y2="20" />
-        <line className={styles.chipPin} x1="80" y1="25" x2="80" y2="20" />
-        <line className={styles.chipPin} x1="100" y1="25" x2="100" y2="20" />
-        <line className={styles.chipPin} x1="120" y1="25" x2="120" y2="20" />
-        <line className={styles.chipPin} x1="140" y1="25" x2="140" y2="20" />
-        <line className={styles.chipPin} x1="60" y1="55" x2="60" y2="60" />
-        <line className={styles.chipPin} x1="80" y1="55" x2="80" y2="60" />
-        <line className={styles.chipPin} x1="100" y1="55" x2="100" y2="60" />
-        <line className={styles.chipPin} x1="120" y1="55" x2="120" y2="60" />
-        <line className={styles.chipPin} x1="140" y1="55" x2="140" y2="60" />
+        {[60, 80, 100, 120, 140].map((x) => (
+          <g key={x}>
+            <line className={styles.chipPin} x1={x} y1="25" x2={x} y2="18" />
+            <line className={styles.chipPin} x1={x} y1="55" x2={x} y2="62" />
+          </g>
+        ))}
 
         {/* Chip Text */}
-        <text className={styles.chipText} x="100" y="44" textAnchor="middle">KINETIA</text>
+        <text className={styles.chipText} x="100" y="43" textAnchor="middle">RAG</text>
+      </svg>
+
+      <div className={styles.chipStatus}>
+        <span className={styles.statusDot} />
+        <span>Procesando documentos...</span>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// TEAM VISUALIZATION
+// ============================================
+function TeamVisualization() {
+  return (
+    <div className={styles.teamContainer}>
+      <div className={styles.teamCore}>
+        <div className={styles.coreNode}>
+          <span>Lead</span>
+        </div>
+      </div>
+      <div className={styles.teamSatellites}>
+        {['Dev', 'ML', 'Data', 'QA'].map((role, i) => (
+          <motion.div
+            key={role}
+            className={styles.satelliteNode}
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: 0.1 * i }}
+          >
+            <span>{role}</span>
+          </motion.div>
+        ))}
+      </div>
+      <svg className={styles.teamLines} viewBox="0 0 200 200">
+        <motion.line
+          x1="100" y1="100" x2="50" y2="50"
+          className={styles.connectionLine}
+          initial={{ pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        />
+        <motion.line
+          x1="100" y1="100" x2="150" y2="50"
+          className={styles.connectionLine}
+          initial={{ pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        />
+        <motion.line
+          x1="100" y1="100" x2="50" y2="150"
+          className={styles.connectionLine}
+          initial={{ pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        />
+        <motion.line
+          x1="100" y1="100" x2="150" y2="150"
+          className={styles.connectionLine}
+          initial={{ pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        />
       </svg>
     </div>
   );
 }
 
 // ============================================
-// SQUARE LOADER ANIMATION
+// TECH STACK LOGOS
 // ============================================
-function SquareLoader() {
-  return (
-    <div className={styles.squareLoader}>
-      <div className={styles.loaderSquare}></div>
-      <div className={styles.loaderSquare}></div>
-      <div className={styles.loaderSquare}></div>
-      <div className={styles.loaderSquare}></div>
-      <div className={styles.loaderSquare}></div>
-      <div className={styles.loaderSquare}></div>
-      <div className={styles.loaderSquare}></div>
-      <div className={styles.loaderSquare}></div>
-    </div>
-  );
-}
+function TechStackLogos() {
+  const techs = [
+    { name: 'Python', color: '#3776ab' },
+    { name: 'Next.js', color: '#ffffff' },
+    { name: 'AWS', color: '#ff9900' },
+    { name: 'PostgreSQL', color: '#336791' },
+  ];
 
-// ============================================
-// LIGHTBULB LOADER ANIMATION
-// ============================================
-function LightbulbLoader() {
-  return <div className={styles.lightbulbLoader}></div>;
-}
-
-// ============================================
-// AI VISUALIZATION
-// ============================================
-function AIVisualization() {
   return (
-    <div className={styles.aiVisualization}>
-      <motion.div
-        className={styles.aiOrb}
-        animate={{
-          boxShadow: [
-            '0 0 20px rgba(59, 130, 246, 0.5)',
-            '0 0 40px rgba(139, 92, 246, 0.6)',
-            '0 0 20px rgba(59, 130, 246, 0.5)',
-          ],
-        }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
+    <div className={styles.stackContainer}>
+      {techs.map((tech, i) => (
+        <motion.div
+          key={tech.name}
+          className={styles.stackItem}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3, delay: 0.1 * i }}
+          whileHover={{ scale: 1.05 }}
+        >
+          <span className={styles.stackName} style={{ color: tech.color }}>{tech.name}</span>
+        </motion.div>
+      ))}
     </div>
   );
 }
@@ -318,12 +346,8 @@ function AIVisualization() {
 // MAIN COMPONENT
 // ============================================
 export function ServicesBento() {
-  const scrollToContact = () => {
-    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section className={styles.section} id="servicios">
+    <section className={styles.section} id="services">
       <Container>
         {/* Header */}
         <motion.div
@@ -333,9 +357,13 @@ export function ServicesBento() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <span className={styles.sectionLabel}>Servicios</span>
           <h2 className={styles.title}>
-            Desarrollo IA en <span className={styles.highlight}>SERIO</span>
+            Ingeniería <span className={styles.highlight}>Aplicada</span>
           </h2>
+          <p className={styles.subtitle}>
+            Soluciones técnicas para problemas operativos complejos.
+          </p>
         </motion.div>
 
         {/* Bento Grid */}
@@ -345,46 +373,29 @@ export function ServicesBento() {
               key={service.id}
               id={service.id}
               className={styles[service.size]}
-              gradient={service.gradient}
             >
-              {/* Featured Card */}
+              {/* Featured Card - Neural Inventory */}
               {service.size === 'featured' && (
                 <div className={styles.featuredContent}>
-                  <div className={styles.featuredHeader}>
-                    <AstronautAnimation />
+                  <div className={styles.featuredVisual}>
+                    <ForecastChart />
                   </div>
-                  <h3 className={styles.cardTitle}>{service.title}</h3>
-                  <p className={styles.cardSubtitle}>{service.subtitle}</p>
-                  <p className={styles.cardDescription}>{service.description}</p>
-                  <div className={styles.tags}>
-                    {service.tags?.map((tag) => (
-                      <span key={tag} className={styles.tag}>{tag}</span>
-                    ))}
+                  <div className={styles.featuredInfo}>
+                    <h3 className={styles.cardTitle}>{service.title}</h3>
+                    <p className={styles.cardSubtitle}>{service.subtitle}</p>
+                    <p className={styles.cardDescription}>{service.description}</p>
+                    <div className={styles.tags}>
+                      {service.tags?.map((tag) => (
+                        <span key={tag} className={styles.tag}>{tag}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
 
-              {/* Vertical Card */}
+              {/* Vertical Card - Agentic ERP */}
               {service.size === 'vertical' && (
                 <div className={styles.verticalContent}>
-                  <NewtonsCradle />
-                  <h3 className={styles.cardTitle}>{service.title}</h3>
-                  <p className={styles.cardSubtitle}>{service.subtitle}</p>
-                  <p className={styles.cardDescription}>{service.description}</p>
-                  {service.metric && (
-                    <AnimatedMetric value={service.metric.value} label={service.metric.label} />
-                  )}
-                  <div className={styles.tags}>
-                    {service.tags?.map((tag) => (
-                      <span key={tag} className={styles.tag}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Standard Card */}
-              {service.size === 'standard' && (
-                <div className={styles.standardContent}>
                   <ChipLoader />
                   <h3 className={styles.cardTitle}>{service.title}</h3>
                   <p className={styles.cardSubtitle}>{service.subtitle}</p>
@@ -397,28 +408,15 @@ export function ServicesBento() {
                 </div>
               )}
 
-              {/* Small Card */}
-              {service.size === 'small' && (
-                <div className={styles.smallContent}>
-                  <LightbulbLoader />
-                  <h3 className={styles.cardTitle}>{service.title}</h3>
-                  {service.badge && (
-                    <span className={styles.trustBadge}>{service.badge}</span>
-                  )}
-                </div>
-              )}
-
-              {/* Horizontal Card */}
+              {/* Horizontal Card - Liquid Teams */}
               {service.size === 'horizontal' && (
                 <div className={styles.horizontalContent}>
-                  <div className={styles.horizontalMain}>
-                    <div className={styles.horizontalHeader}>
-                      <SquareLoader />
-                      <div>
-                        <h3 className={styles.cardTitle}>{service.title}</h3>
-                        <p className={styles.cardSubtitle}>{service.subtitle}</p>
-                      </div>
-                    </div>
+                  <div className={styles.horizontalVisual}>
+                    <TeamVisualization />
+                  </div>
+                  <div className={styles.horizontalInfo}>
+                    <h3 className={styles.cardTitle}>{service.title}</h3>
+                    <p className={styles.cardSubtitle}>{service.subtitle}</p>
                     <p className={styles.cardDescription}>{service.description}</p>
                     <div className={styles.tags}>
                       {service.tags?.map((tag) => (
@@ -426,15 +424,19 @@ export function ServicesBento() {
                       ))}
                     </div>
                   </div>
-                  {service.metric && (
-                    <AnimatedMetric value={service.metric.value} label={service.metric.label} />
-                  )}
+                </div>
+              )}
+
+              {/* Small Card - Tech Stack */}
+              {service.size === 'small' && (
+                <div className={styles.smallContent}>
+                  <h3 className={styles.cardTitle}>{service.title}</h3>
+                  <TechStackLogos />
                 </div>
               )}
             </SpotlightCard>
           ))}
         </div>
-
       </Container>
     </section>
   );

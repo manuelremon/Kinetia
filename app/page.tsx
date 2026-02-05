@@ -4,11 +4,11 @@ import {
   Footer,
   Hero,
   ChooseRoute,
-  LogoCarousel,
   ProblemSolution,
   TrustBadges,
   ServicesBento,
   HorizontalGallery,
+  EngineeringLabs,
   Features,
   HowItWorks,
   About,
@@ -25,25 +25,25 @@ export default function HomePage() {
        {/* Global Effects */}
       <PageLoader />
       <ScrollProgress />
-      
+
       <Header />
-      
+
       {/* Main Content */}
       <Hero />
       <ChooseRoute />
       <ProblemSolution />
       <ServicesBento />
+      <EngineeringLabs />
       <HorizontalGallery />
       <TrustBadges />
-      <LogoCarousel />
       <Features />
       <HowItWorks />
       <About />
       <FAQ />
       <Contact />
-      
+
       <Footer />
-      
+
       {/* Componente Cliente Flotante */}
       <ChatWidget />
        {/* Scroll to Top */}

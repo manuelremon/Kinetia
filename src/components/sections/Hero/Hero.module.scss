@@ -2,23 +2,24 @@
 @use '@/styles/abstracts/mixins' as *;
 
 // ============================================
-// HERO SECTION - Cinematic & Agentic (Web 2026)
+// HERO SECTION - Engineering Precision
+// Boutique Software Engineering Aesthetic
 // ============================================
 
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 120px 0 80px;
+  padding: 120px 0 0;
   overflow: hidden;
   z-index: 10;
-
 }
 
 // ============================================
-// ANIMATED BACKGROUND
+// ENGINEERING BACKGROUND
 // ============================================
 
 .backgroundContainer {
@@ -28,50 +29,54 @@
   overflow: hidden;
 }
 
-.gradientLayer {
+.navyBase {
   position: absolute;
-  inset: -50%;
+  inset: 0;
   background: linear-gradient(
-    135deg,
-    #0f62fe 0%,
-    #4589ff 25%,
-    #0043ce 50%,
-    #002d9c 75%,
-    #001d6c 100%
+    180deg,
+    #020617 0%,
+    #0f172a 50%,
+    #1e293b 100%
   );
-  background-size: 400% 400%;
-  filter: blur(0);
 }
 
 .meshOverlay {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 160, 255, 0.3), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(69, 137, 255, 0.2), transparent),
-    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(0, 67, 206, 0.15), transparent);
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(59, 130, 246, 0.06), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(59, 130, 246, 0.04), transparent);
 }
 
-.particles {
+.darkOverlay {
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  background: rgba(2, 6, 23, 0.7);
 }
 
-.particle {
+.gridPattern {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  pointer-events: none;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%);
+}
+
+.dataLines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
 }
 
 // ============================================
-// SPLIT LAYOUT
+// CONTENT LAYOUT
 // ============================================
 
-.splitLayout {
+.contentWrapper {
   position: relative;
   z-index: 20;
   display: flex;
@@ -79,204 +84,183 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 1400px;
+  max-width: 900px;
   margin: 0 auto;
+  text-align: center;
 }
 
-.leftColumn {
+.mainContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  text-align: center;
 }
 
 // ============================================
-// BADGE
+// ENGINEERING BADGE
 // ============================================
 
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 100px;
-  font-size: $font-size-sm;
-  color: #ffffff;
-  width: fit-content;
-}
-
-.badgePulse {
-  width: 8px;
-  height: 8px;
-  background: #42be65;
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.2); }
-}
-
-// ============================================
-// GLASSMORPHISM CARD
-// ============================================
-
-.glassCard {
-  width: min(90vw, 1400px);
-  padding: 48px 64px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 24px;
-  box-shadow:
-    0 4px 30px rgba(0, 0, 0, 0.1),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-
-  @include respond-to('lg') {
-    width: min(95vw, 1200px);
-    padding: 40px 48px;
-  }
-
-  @include respond-to('md') {
-    width: 95vw;
-    padding: 24px;
-  }
-}
-
-// ============================================
-// TYPOGRAPHY
-// ============================================
-
-.title {
-  font-family: $font-display;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  margin-bottom: 1.5rem;
-}
-
-.kineticContainer {
-  display: inline-block;
-  perspective: 500px;
-  min-width: 280px;
-  height: 1.2em;
-  vertical-align: bottom;
-  overflow: hidden;
-
-  @include respond-to('md') {
-    min-width: 200px;
-  }
-}
-
-.kineticWord {
-  display: inline-block;
-  background: linear-gradient(135deg, #78a9ff 0%, #a6c8ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 700;
-  transform-style: preserve-3d;
-}
-
-.description {
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.7;
-  max-width: 500px;
-  margin-bottom: 2rem;
-}
-
-// ============================================
-// SQUISHY BUTTON (Deformation Effect)
-// ============================================
-
-.squishyButton {
-  position: relative;
-  padding: 16px 32px;
-  background: linear-gradient(135deg, #ffffff 0%, #f4f4f4 100%);
-  border: none;
-  border-radius: 12px;
-  font-family: $font-display;
-  font-size: $font-size-md;
+  padding: 8px 16px;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 4px;
+  font-size: $font-size-xs;
   font-weight: 600;
-  color: #0f62fe;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transition: box-shadow 0.3s ease;
-  overflow: hidden;
+  letter-spacing: 1px;
+  color: #3b82f6;
+  text-transform: uppercase;
+}
+
+.badgeIndicator {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: subtlePulse 2s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+// ============================================
+// ENGINEERING HEADLINE
+// ============================================
+
+.headline {
+  font-family: $font-display;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0;
+
+  @include respond-to('md') {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
+}
+
+.accentText {
+  color: #94a3b8;
+  display: inline-block;
+}
+
+// ============================================
+// VALUE PROPOSITION
+// ============================================
+
+.valueProposition {
+  font-size: clamp(0.95rem, 1.3vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 620px;
+  margin: 0;
+}
+
+// ============================================
+// TECH STACK
+// ============================================
+
+.techStack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.techBadge {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  font-family: $font-mono;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
 
   &:hover {
-    box-shadow:
-      0 10px 40px rgba(0, 0, 0, 0.2),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
   }
 }
 
-.squishyContent {
+// ============================================
+// PRECISION BUTTON
+// ============================================
+
+.precisionButton {
   position: relative;
-  z-index: 2;
-}
-
-.squishyGlow {
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, #78a9ff, #0f62fe, #78a9ff);
-  border-radius: 14px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-
-  .squishyButton:hover & {
-    opacity: 1;
-    animation: glowRotate 3s linear infinite;
-  }
-}
-
-@keyframes glowRotate {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-// ============================================
-// SECONDARY BUTTON
-// ============================================
-
-.secondaryButton {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 16px 24px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 4px;
   font-family: $font-display;
-  font-size: $font-size-md;
-  font-weight: 500;
-  color: #ffffff;
+  font-size: $font-size-sm;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  overflow: hidden;
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
+  &.primary {
+    background: #3b82f6;
+    color: #ffffff;
+
+    &:hover {
+      background: #2563eb;
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    }
+
+    .buttonGlow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    &:hover .buttonGlow {
+      transform: translateX(100%);
+    }
+  }
+
+  &.secondary {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
   }
 }
 
-.arrowIcon {
-  transition: transform 0.3s ease;
+.buttonContent {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  .secondaryButton:hover & {
+.arrowIcon {
+  transition: transform 0.2s ease;
+
+  .precisionButton:hover & {
     transform: translateX(4px);
   }
 }
@@ -287,59 +271,74 @@
 
 .ctaGroup {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 100%;
+  margin-top: 8px;
+
+  @include respond-to('md') {
+    flex-direction: column;
+    width: 100%;
+
+    .precisionButton {
+      width: 100%;
+      max-width: 260px;
+      justify-content: center;
+    }
+  }
 }
 
 // ============================================
-// STATS ROW
+// ENGINEERING METRICS
 // ============================================
 
-.statsRow {
+.metricsRow {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 32px;
-  padding: 24px 32px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  padding: 20px 32px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  margin-top: 16px;
 
   @include respond-to('md') {
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 20px;
     padding: 16px;
   }
 }
 
-.stat {
+.metric {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
 }
 
-.statValue {
-  font-family: $font-display;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
+.metricValue {
+  font-family: $font-mono;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3b82f6;
+  letter-spacing: -0.01em;
 }
 
-.statLabel {
-  font-size: $font-size-xs;
-  color: rgba(255, 255, 255, 0.7);
+.metricLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.statDivider {
+.metricDivider {
   width: 1px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 36px;
+  background: rgba(255, 255, 255, 0.08);
 
   @include respond-to('md') {
     display: none;
@@ -347,169 +346,37 @@
 }
 
 // ============================================
-// PRODUCT PREVIEW (Right Column)
+// LIQUID WORKFORCE BADGE
 // ============================================
 
-.productPreview {
-  position: relative;
+.liquidBadge {
   width: 100%;
-  max-width: 500px;
-  height: 500px;
-}
-
-.dashboardCard {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  background: rgba(22, 22, 22, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-}
-
-.dashboardHeader {
+  padding: 20px 24px;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dots {
-  display: flex;
-  gap: 6px;
-}
-
-.dotRed, .dotYellow, .dotGreen {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.dotRed { background: #ff5f56; }
-.dotYellow { background: #ffbd2e; }
-.dotGreen { background: #27ca40; }
-
-.dashboardTitle {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.dashboardContent {
-  padding: 20px;
-}
-
-.codeBlock {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #a6c8ff;
-  margin: 0;
-  white-space: pre-wrap;
-}
-
-// ============================================
-// FLOATING CARDS
-// ============================================
-
-.floatingCard {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 16px 24px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-}
-
-.card1 {
-  top: 10%;
-  right: 5%;
-}
-
-.card2 {
-  bottom: 15%;
-  left: 5%;
-}
-
-.cardIcon {
-  font-size: 24px;
-}
-
-.cardValue {
-  font-family: $font-display;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #161616;
-}
-
-.cardLabel {
-  font-size: $font-size-xs;
-  color: #6f6f6f;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-// ============================================
-// SCROLL INDICATOR
-// ============================================
-
-.scrollIndicator {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  color: rgba(255, 255, 255, 0.6);
-
-  span {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
+  margin-top: auto;
 
   @include respond-to('md') {
-    display: none;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
   }
 }
 
-.mouse {
-  width: 24px;
-  height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
-  position: relative;
+.liquidLabel {
+  font-size: $font-size-xs;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.wheel {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 2px;
-  animation: scrollWheel 2s ease-in-out infinite;
-}
-
-@keyframes scrollWheel {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateX(-50%) translateY(10px);
-    opacity: 0;
-  }
+.liquidValue {
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
 }

@@ -18,3 +18,4 @@ export { FinalCTA } from './FinalCTA';
 export { Contact } from './Contact';
 export { TerminalSection } from './TerminalSection';
 export { HorizontalGallery } from './ProjectGallery';
+export { EngineeringLabs } from './Labs';

@@ -4,7 +4,8 @@ import path from 'path';
 const nextConfig: NextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'src', 'styles')],
-    prependData: `@use "abstracts/variables" as *; @use "abstracts/mixins" as *;`,
+    additionalData: `@use "abstracts/variables" as *; @use "abstracts/mixins" as *;`,
+    silenceDeprecations: ['legacy-js-api'],
   },
   experimental: {
     serverActions: {

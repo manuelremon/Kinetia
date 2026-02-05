@@ -122,17 +122,22 @@ export function useWebVitals(
       // Fallback: CLS no soportado
     }
 
-    // TTFB - Time to First Byte (vía Navigation Timing)
-    if ('performance' in window && 'timing' in window.performance) {
-      const perfData = window.performance.timing;
-      const pageLoadTime = perfData.responseStart - perfData.navigationStart;
-      if (pageLoadTime > 0) {
-        onMetric?.({
-          name: 'TTFB',
-          value: Math.round(pageLoadTime),
-          rating: getRating('TTFB', pageLoadTime),
-        });
+    // TTFB - Time to First Byte (vía Navigation Timing API Level 2)
+    try {
+      const navigationEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+      if (navigationEntries.length > 0) {
+        const navEntry = navigationEntries[0];
+        const ttfb = navEntry.responseStart - navEntry.requestStart;
+        if (ttfb > 0) {
+          onMetric?.({
+            name: 'TTFB',
+            value: Math.round(ttfb),
+            rating: getRating('TTFB', ttfb),
+          });
+        }
       }
+    } catch {
+      // Navigation Timing API not supported
     }
 
     // Cleanup
