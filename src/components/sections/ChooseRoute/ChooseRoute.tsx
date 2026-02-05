@@ -95,7 +95,7 @@ export function ChooseRoute() {
   const currentRoute = ROUTES.find(r => r.id === activeRoute) || ROUTES[0];
 
   return (
-    <section className={styles.section}>
+    <section id="choose-route" className={styles.section}>
       <Container>
         <motion.h2
           className={styles.title}

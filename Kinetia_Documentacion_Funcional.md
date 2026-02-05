@@ -1,7 +1,7 @@
 # Documentación Funcional y Técnica: Proyecto Kinetia
 
 **Fecha de Última Actualización:** 05 de Febrero de 2026
-**Versión:** 2.0.0 (Migración a Next.js 15 + React 19)
+**Versión:** 2.1.0 (Optimización UI/UX y Loaders Animados)
 **Repositorio:** https://github.com/manuelremon/Kinetia
 
 ---
@@ -143,20 +143,19 @@ El proyecto utiliza TypeScript para asegurar la integridad de los datos que fluy
 |------------|-------------|
 | `Hero` | Sección principal con animaciones cinéticas y CTAs |
 | `ChooseRoute` | Selector de perfil de usuario (COO, CTO, CFO, etc.) |
-| `ProblemSolution` | Presentación problema-solución adaptativa |
-| `ServicesBento` | Grid Bento con servicios y efectos spotlight |
-| `CaseStudies` | Casos de estudio y resultados |
-| `HorizontalGallery` | Galería horizontal de proyectos |
-| `Stats` | Estadísticas animadas con contadores |
+| `ProblemSolution` | Presentación problema-solución con blob animations |
+| `ServicesBento` | Grid Bento con loaders animados (Newton's Cradle, Chip, Lightbulb) |
+| `HorizontalGallery` | Galería horizontal de proyectos (sin textos eyebrow) |
 | `TrustBadges` | Badges de confianza y certificaciones |
 | `LogoCarousel` | Carrusel de logos de clientes |
 | `Features` | Características destacadas |
 | `HowItWorks` | Proceso de trabajo en pasos |
 | `About` | Sección sobre la empresa |
-| `FAQ` | Preguntas frecuentes con accordions |
-| `FinalCTA` | Call-to-action final |
-| `Contact` | Formulario de contacto |
+| `FAQ` | Preguntas frecuentes con accordions (sin CTA inferior) |
+| `Contact` | Formulario de contacto con WhatsApp integrado |
 | `TerminalSection` | Terminal interactiva con código |
+
+> **Nota v2.1.0:** Las secciones `CaseStudies`, `Stats` y `FinalCTA` fueron eliminadas del flujo principal.
 
 ### Common Components
 | Componente | Descripción |
@@ -234,6 +233,12 @@ El diseño visual proyecta "Ingeniería, Precisión y Futuro" con estética Web 
 *   **Glassmorphism:** Cards con blur y transparencia.
 *   **Particles:** Partículas flotantes con posiciones determinísticas (SSR-safe).
 *   **View Transitions:** Transiciones suaves entre estados.
+*   **Loaders CSS Animados (v2.1.0):**
+    *   **Newton's Cradle:** Péndulo de Newton con física de movimiento.
+    *   **ChipLoader:** Chip SVG con texto "KINETIA" y flujo de datos animado.
+    *   **LightbulbLoader:** Bombilla con efecto flash pulsante.
+*   **Blob Bounce:** Animación de blob en ProblemSolution cards.
+*   **Squishy Button:** Botón 3D con gradiente de 3 azules (#0f62fe, #4589ff, #78a9ff).
 
 ---
 
@@ -283,7 +288,7 @@ El diseño visual proyecta "Ingeniería, Precisión y Futuro" con estética Web 
 
 3.  **El Director Financiero (CFO):**
     *   *Objetivo:* ROI y eficiencia de inventarios.
-    *   *Flujo:* ServicesBento "Optimización" → CaseStudies → Stats.
+    *   *Flujo:* ServicesBento "Optimización" → Features → Contact.
 
 4.  **Candidato / Talento:**
     *   *Objetivo:* Conocer cultura y tecnologías.
@@ -366,3 +371,52 @@ El diseño visual proyecta "Ingeniería, Precisión y Futuro" con estética Web 
 | `sass` | ^1.97.3 | Preprocesador CSS |
 | `eslint` | ^9.39.2 | Linting |
 | `eslint-config-next` | ^16.1.6 | Reglas ESLint para Next.js |
+
+---
+
+## 15. Changelog
+
+### v2.1.0 (05 Febrero 2026) - Optimización UI/UX
+
+#### Secciones Eliminadas
+- **CaseStudies:** Casos de estudio removidos del flujo principal.
+- **Stats:** Estadísticas animadas removidas.
+- **FinalCTA:** Call-to-action final eliminado.
+
+#### Nuevos Loaders CSS Animados (ServicesBento)
+Los iconos emoji fueron reemplazados por loaders CSS puro:
+- **NewtonsCradle:** Péndulo de Newton con animación `@keyframes` para física realista.
+- **ChipLoader:** Chip SVG con texto "KINETIA", trazas de circuito y flujo de datos.
+- **LightbulbLoader:** Bombilla con efecto `flash` pulsante (#f59e0b).
+
+#### Cambios de Contenido
+| Sección | Antes | Después |
+|---------|-------|---------|
+| ServicesBento título | "Soluciones que transforman" | "Desarrollo **IA en SERIO**" |
+| Agentic AI subtitle | "Inteligencia que actúa por ti" | "Agentes entrenados para vos" |
+| ServicesBento eyebrow | "Nuestros Servicios" | *Eliminado* |
+| HorizontalGallery eyebrow | "Proyectos Destacados" | *Eliminado* |
+| HorizontalGallery subtitle | "Casos de éxito..." | *Eliminado* |
+| HorizontalGallery scroll text | "Scroll para explorar" | *Eliminado* |
+| FAQ CTA | "¿No encontraste tu pregunta?" | *Eliminado* |
+
+#### Integraciones
+- **WhatsApp:** Añadido a redes sociales en Contact.
+  - Número: `+5492994673102`
+  - URL: `https://wa.me/5492994673102`
+  - Color: `#25D366` (verde WhatsApp)
+
+#### Ajustes de Estilos
+- **Squishy Button (Header):** Gradiente reducido a 3 azules:
+  - `#0f62fe` (IBM Blue)
+  - `#4589ff` (Light Blue)
+  - `#78a9ff` (Pale Blue)
+- **ProblemSolution:** Añadida animación `blobBounce` a las cards.
+- **ServicesBento background:** Ajustado a `#1a1a2e` (cards mantienen color oscuro original).
+
+### v2.0.0 (05 Febrero 2026) - Migración Next.js 15
+- Migración completa de Vite a Next.js 15 App Router.
+- Actualización a React 19 RC.
+- Server Actions para chat y formularios.
+- Web Vitals monitoring.
+- JSON-LD SEO schemas.

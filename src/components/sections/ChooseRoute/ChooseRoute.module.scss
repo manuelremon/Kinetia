@@ -2,20 +2,45 @@
 @use '@/styles/abstracts/mixins' as *;
 
 .section {
-  padding: 100px 0;
-  background: #f4f4f4;
+  position: relative;
+  padding: 120px 0 100px;
+  background: #ffffff;
+
+  // Degradado superior que se mezcla con Hero
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 400px;
+    background: linear-gradient(
+      180deg,
+      #0043ce 0%,
+      rgba(69, 137, 255, 0.6) 15%,
+      rgba(69, 137, 255, 0.2) 35%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 .title {
+  position: relative;
+  z-index: 1;
   text-align: center;
   font-family: $font-display;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 600;
-  color: #161616;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   margin-bottom: 40px;
 }
 
 .tabs {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   gap: 8px;
@@ -29,16 +54,17 @@
 
 .tab {
   padding: 12px 24px;
-  background: transparent;
-  border: 1px solid #e0e0e0;
-  border-radius: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   font-family: $font-body;
   font-size: $font-size-sm;
   font-weight: 500;
-  color: #525252;
+  color: #161616;
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: uppercase;
+  backdrop-filter: blur(10px);
   letter-spacing: 0.05em;
 
   &:hover {
@@ -59,8 +85,15 @@
 }
 
 .content {
+  position: relative;
+  z-index: 1;
   max-width: 900px;
   margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .contentGrid {

@@ -1,0 +1,436 @@
+// ============================================
+// HORIZONTAL GALLERY - Scroll-triggered horizontal scroll
+// ============================================
+
+$dark-bg: #050508;
+$dark-card: rgba(15, 15, 25, 0.7);
+$dark-border: rgba(255, 255, 255, 0.08);
+$dark-border-hover: rgba(255, 255, 255, 0.15);
+$text-primary: #ffffff;
+$text-secondary: rgba(255, 255, 255, 0.7);
+$text-muted: rgba(255, 255, 255, 0.5);
+$accent-cyan: #0ea5e9;
+$accent-blue: #0f62fe;
+$accent-purple: #6929c4;
+
+// ============================================
+// MAIN SECTION - Height for scroll distance
+// ============================================
+
+.section {
+  position: relative;
+  height: 300vh; // Scroll distance
+  background: $dark-bg;
+}
+
+// ============================================
+// BACKGROUND EFFECTS
+// ============================================
+
+.background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gradientOrb1 {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+}
+
+.gradientOrb2 {
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(105, 41, 196, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
+}
+
+.gridPattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+// ============================================
+// STICKY CONTAINER
+// ============================================
+
+.stickyContainer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px 0;
+}
+
+// ============================================
+// HEADER
+// ============================================
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $accent-cyan;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
+  padding: 8px 20px;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  border-radius: 100px;
+}
+
+.sectionTitle {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  line-height: $line-height-tight;
+  margin-bottom: 12px;
+}
+
+.highlight {
+  background: linear-gradient(135deg, $accent-cyan, $accent-blue, $accent-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionSubtitle {
+  font-size: $font-size-base;
+  color: $text-secondary;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-lg;
+  }
+}
+
+// ============================================
+// HORIZONTAL TRACK
+// ============================================
+
+.trackWrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.track {
+  display: flex;
+  gap: 24px;
+  padding: 20px 40px;
+  will-change: transform;
+
+  @media (min-width: $breakpoint-md) {
+    gap: 32px;
+    padding: 20px 60px;
+  }
+}
+
+// ============================================
+// PROJECT CARD
+// ============================================
+
+.card {
+  flex-shrink: 0;
+  width: 320px;
+  background: $dark-card;
+  border: 1px solid $dark-border;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: border-color $transition-medium, box-shadow $transition-medium;
+  cursor: pointer;
+
+  @media (min-width: $breakpoint-md) {
+    width: 380px;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    width: 420px;
+  }
+
+  &:hover {
+    border-color: $dark-border-hover;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+    .title {
+      color: $accent-cyan;
+    }
+
+    .imageOverlay {
+      opacity: 0.3;
+    }
+  }
+}
+
+// ============================================
+// IMAGE SECTION
+// ============================================
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+
+  @media (min-width: $breakpoint-md) {
+    height: 240px;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform $transition-slow;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(5, 5, 8, 0.4) 60%,
+    rgba(5, 5, 8, 0.9) 100%
+  );
+  opacity: 0.6;
+  transition: opacity $transition-medium;
+}
+
+.statsBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius-md;
+}
+
+.statsValue {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $accent-cyan;
+  line-height: 1;
+}
+
+.statsLabel {
+  font-size: 10px;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+// ============================================
+// CONTENT SECTION
+// ============================================
+
+.content {
+  padding: 20px 24px 24px;
+}
+
+.category {
+  font-size: 11px;
+  font-weight: $font-weight-semibold;
+  color: $accent-purple;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: 10px;
+  line-height: $line-height-snug;
+  transition: color $transition-fast;
+}
+
+.description {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  line-height: $line-height-relaxed;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: $font-weight-medium;
+  color: $text-muted;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 100px;
+  transition: all $transition-fast;
+
+  .card:hover & {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+// ============================================
+// CTA CARD
+// ============================================
+
+.ctaCard {
+  flex-shrink: 0;
+  width: 320px;
+  min-height: 380px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(105, 41, 196, 0.1));
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  border-radius: $border-radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color $transition-medium, box-shadow $transition-medium;
+
+  @media (min-width: $breakpoint-md) {
+    width: 380px;
+  }
+
+  &:hover {
+    border-color: rgba(14, 165, 233, 0.4);
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.15);
+  }
+}
+
+.ctaContent {
+  text-align: center;
+  padding: 32px;
+}
+
+.ctaIcon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.ctaTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: 12px;
+}
+
+.ctaText {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  margin-bottom: 24px;
+  line-height: $line-height-relaxed;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: #fff;
+  background: linear-gradient(135deg, $accent-blue, $accent-cyan);
+  border: none;
+  padding: 14px 28px;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+
+  svg {
+    transition: transform $transition-fast;
+  }
+}
+
+// ============================================
+// SCROLL INDICATOR
+// ============================================
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.scrollLine {
+  width: 120px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+
+  @media (min-width: $breakpoint-md) {
+    width: 200px;
+  }
+}
+
+.scrollProgress {
+  height: 100%;
+  background: linear-gradient(90deg, $accent-cyan, $accent-blue);
+  transform-origin: left;
+  border-radius: 2px;
+}
+
+.scrollText {
+  font-size: 12px;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

@@ -38,6 +38,9 @@ export const metadata: Metadata = {
   description: 'Especialistas en Automatización de Procesos, IA Agentic y Desarrollo de Software a medida. Optimiza tu operación con tecnología de vanguardia.',
   keywords: ['Automatización', 'IA', 'Software', 'Kinetia', 'ERP', 'Consultoría'],
   authors: [{ name: 'Kinetia Team' }],
+  icons: {
+    icon: '/favicon.svg',
+  },
   robots: 'index, follow',
   alternates: {
     canonical: 'https://kinetia.tech',

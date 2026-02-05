@@ -78,21 +78,6 @@ export function FAQ() {
           ))}
         </motion.div>
 
-        <motion.div
-          className={styles.cta}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <p className={styles.ctaText}>
-            ¿No encontraste tu pregunta?
-          </p>
-          <button className={styles.ctaButton} onClick={scrollToContact}>
-            Contáctanos
-            <span>→</span>
-          </button>
-        </motion.div>
       </Container>
     </section>
   );

@@ -42,6 +42,7 @@ export function Header() {
               width={38}
               height={38}
               className={styles.logoIcon}
+              style={{ width: 'auto', height: '38px' }}
               priority
             />
             <RandomizedTextEffect text="KINETIA" />
@@ -64,10 +65,11 @@ export function Header() {
           </nav>
 
           <button
-            className={styles.ctaButton}
+            className={styles.squishyButton}
             onClick={() => setIsDemoModalOpen(true)}
           >
-            <span>Solicitar Diagnóstico</span>
+            <span className={styles.squishyContent}>Solicitar Diagnóstico Gratuito</span>
+            <span className={styles.squishyGlow}></span>
           </button>
 
           {/* Mobile Menu Button */}

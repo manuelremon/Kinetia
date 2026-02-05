@@ -139,35 +139,63 @@
   }
 }
 
-.ctaButton {
+// ============================================
+// SQUISHY BUTTON (Deformation Effect)
+// ============================================
+
+.squishyButton {
   position: absolute;
   right: 0;
-  display: inline-block;
-  background-color: #0f62fe;
-  border: none;
-  cursor: pointer;
-  min-width: 150px;
   padding: 12px 24px;
-  transition: background-color 0.2s ease;
-
-  span {
-    position: relative;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    width: 100%;
-    color: #ffffff;
-    z-index: 1;
-  }
+  background: linear-gradient(135deg, #ffffff 0%, #f4f4f4 100%);
+  border: none;
+  border-radius: 12px;
+  font-family: $font-display;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f62fe;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
 
   &:hover {
-    background-color: #0353e9;
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
   }
 
   @media (max-width: $breakpoint-md) {
     display: none;
+  }
+}
+
+.squishyContent {
+  position: relative;
+  z-index: 2;
+}
+
+.squishyGlow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #0f62fe, #4589ff, #78a9ff);
+  border-radius: 14px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  .squishyButton:hover & {
+    opacity: 1;
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    background: linear-gradient(135deg, #0f62fe, #4589ff, #78a9ff);
+  }
+  50% {
+    background: linear-gradient(135deg, #78a9ff, #0f62fe, #4589ff);
   }
 }
 

@@ -7,16 +7,14 @@ import {
   LogoCarousel,
   ProblemSolution,
   TrustBadges,
-  Services,
-  CaseStudies,
-  Stats,
+  ServicesBento,
+  HorizontalGallery,
   Features,
   HowItWorks,
   About,
   ScrollToTop,
   ScrollProgress,
   FAQ,
-  FinalCTA,
   Contact,
   ChatWidget,
 } from '@/components';
@@ -34,16 +32,14 @@ export default function HomePage() {
       <Hero />
       <ChooseRoute />
       <ProblemSolution />
-      <Services />
-      <CaseStudies />
-      <Stats />
+      <ServicesBento />
+      <HorizontalGallery />
       <TrustBadges />
       <LogoCarousel />
       <Features />
       <HowItWorks />
       <About />
       <FAQ />
-      <FinalCTA />
       <Contact />
       
       <Footer />

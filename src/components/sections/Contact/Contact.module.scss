@@ -160,6 +160,16 @@
       background: rgba(#E4405F, 0.1);
     }
   }
+
+  // WhatsApp - Green
+  &.whatsapp {
+    color: #25D366;
+    border-color: #25D366;
+
+    &:hover {
+      background: rgba(#25D366, 0.1);
+    }
+  }
 }
 
 // Right side - Form

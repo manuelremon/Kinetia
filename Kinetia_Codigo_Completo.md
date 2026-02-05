@@ -1,7 +1,7 @@
 # Documento de Código Fuente: Kinetia
 
 **Última Actualización:** 05 de Febrero de 2026
-**Versión:** 2.0.0 (Next.js 15 + React 19)
+**Versión:** 2.1.0 (Next.js 15 + React 19 + Loaders Animados)
 
 Este documento contiene el código fuente completo del proyecto Kinetia, incluyendo archivos de configuración, Server Actions y componentes frontend.
 
@@ -303,16 +303,13 @@ import {
   ProblemSolution,
   TrustBadges,
   ServicesBento,
-  CaseStudies,
   HorizontalGallery,
-  Stats,
   Features,
   HowItWorks,
   About,
   ScrollToTop,
   ScrollProgress,
   FAQ,
-  FinalCTA,
   Contact,
   ChatWidget,
 } from '@/components';
@@ -331,27 +328,27 @@ export default function HomePage() {
       <ChooseRoute />
       <ProblemSolution />
       <ServicesBento />
-      <CaseStudies />
       <HorizontalGallery />
-      <Stats />
       <TrustBadges />
       <LogoCarousel />
       <Features />
       <HowItWorks />
       <About />
       <FAQ />
-      <FinalCTA />
       <Contact />
 
       <Footer />
 
-      {/* Floating Components */}
+      {/* Componente Cliente Flotante */}
       <ChatWidget />
+      {/* Scroll to Top */}
       <ScrollToTop />
     </main>
   );
 }
 ```
+
+> **Nota v2.1.0:** Se eliminaron las secciones `CaseStudies`, `Stats` y `FinalCTA` del flujo principal.
 
 ### `app/actions.ts`
 ```typescript
@@ -1029,13 +1026,39 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Container } from '@/components/common';
 import styles from './ServicesBento.module.scss';
 
+// Animated Loaders
+function NewtonsCradle() {
+  return (
+    <div className={styles.newtonsCradle}>
+      <div className={styles.newtonsCradleDot}></div>
+      <div className={styles.newtonsCradleDot}></div>
+      <div className={styles.newtonsCradleDot}></div>
+      <div className={styles.newtonsCradleDot}></div>
+    </div>
+  );
+}
+
+function ChipLoader() {
+  return (
+    <div className={styles.chipContainer}>
+      <svg className={styles.chipLoader} viewBox="0 0 200 80">
+        {/* Traces and chip body with KINETIA text */}
+      </svg>
+    </div>
+  );
+}
+
+function LightbulbLoader() {
+  return <div className={styles.lightbulbLoader}></div>;
+}
+
 const services = [
   {
     id: 'agentic-ai',
     title: 'Agentic AI & LLMs',
-    subtitle: 'Inteligencia que actúa por ti',
+    subtitle: 'Agentes entrenados para vos',
     description: 'Agentes autónomos que comprenden contexto y ejecutan tareas 24/7.',
-    icon: '🤖',
+    loader: 'chip',
     gradient: 'linear-gradient(135deg, #0f62fe 0%, #6929c4 50%, #9f1853 100%)',
     size: 'featured',
     tags: ['GPT-4', 'Claude', 'LangChain', 'RAG'],
@@ -1045,7 +1068,7 @@ const services = [
     title: 'Automatización de Procesos',
     subtitle: 'RPA & Workflows inteligentes',
     description: 'Transformamos tareas manuales en flujos automatizados.',
-    icon: '⚡',
+    loader: 'newtons',
     gradient: 'linear-gradient(135deg, #0ea5e9 0%, #0f62fe 100%)',
     size: 'vertical',
     metric: { value: '-30%', label: 'Costos Operativos' },
@@ -1065,7 +1088,7 @@ const services = [
     id: 'consulting',
     title: 'Consultoría',
     subtitle: 'Estrategia tecnológica',
-    icon: '💡',
+    loader: 'lightbulb',
     gradient: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
     size: 'small',
     badge: 'Trusted Partner',
@@ -1082,6 +1105,11 @@ const services = [
     tags: ['TensorFlow', 'Power BI', 'SQL'],
   },
 ];
+
+// Nota: Los iconos emoji fueron reemplazados por loaders CSS animados:
+// - NewtonsCradle: Péndulo de Newton animado
+// - ChipLoader: Chip SVG con texto "KINETIA"
+// - LightbulbLoader: Bombilla con efecto flash
 
 // SpotlightCard with mouse-following effect
 interface SpotlightCardProps {
@@ -1179,13 +1207,9 @@ export function ServicesBento() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className={styles.eyebrow}>Nuestros Servicios</span>
           <h2 className={styles.title}>
-            Soluciones que <span className={styles.highlight}>transforman</span>
+            Desarrollo <span className={styles.highlight}>IA en SERIO</span>
           </h2>
-          <p className={styles.subtitle}>
-            Combinamos IA, automatización y desarrollo a medida
-          </p>
         </motion.div>
 
         <div className={styles.bentoGrid}>
@@ -1314,20 +1338,22 @@ export { ChooseRoute } from './ChooseRoute';
 export { LogoCarousel } from './LogoCarousel';
 export { ProblemSolution } from './ProblemSolution';
 export { TrustBadges } from './TrustBadges';
-export { Stats } from './Stats';
 export { StatsTools } from './StatsTools';
 export { Services, ServicesBento } from './Services';
 export { Testimonials } from './Testimonials';
-export { CaseStudies } from './CaseStudies';
 export { Features } from './Features';
 export { HowItWorks } from './HowItWorks';
 export { CTA } from './CTA';
 export { About } from './About';
 export { FAQ } from './FAQ';
-export { FinalCTA } from './FinalCTA';
 export { Contact } from './Contact';
 export { TerminalSection } from './TerminalSection';
 export { HorizontalGallery } from './ProjectGallery';
+
+// Nota v2.1.0: Secciones eliminadas del flujo principal:
+// - Stats (estadísticas animadas)
+// - CaseStudies (casos de estudio)
+// - FinalCTA (call-to-action final)
 ```
 
 ### `src/components/common/index.ts`
@@ -1393,3 +1419,33 @@ export { Footer } from './Footer';
 - `WebVitalsProvider` - Monitoreo de performance
 - `SquishyButton` - Botón con efecto 3D
 - `KineticText` - Texto rotativo animado
+
+---
+
+## Resumen de Cambios v2.1.0
+
+### Secciones Eliminadas
+- **CaseStudies** - Casos de estudio removidos del flujo principal
+- **Stats** - Estadísticas animadas removidas
+- **FinalCTA** - Call-to-action final eliminado
+
+### Loaders CSS Animados (ServicesBento)
+Los iconos emoji fueron reemplazados por loaders CSS animados:
+- **NewtonsCradle** - Péndulo de Newton con animación física
+- **ChipLoader** - Chip SVG con texto "KINETIA" y flujo de datos
+- **LightbulbLoader** - Bombilla con efecto flash pulsante
+
+### Cambios de Texto
+- Título de servicios: "Desarrollo **IA en SERIO**"
+- Subtítulo Agentic AI: "Agentes entrenados para vos"
+- Eliminados: eyebrow "Nuestros Servicios", subtítulo descriptivo
+
+### Integración WhatsApp
+- Añadido WhatsApp a redes sociales en Contact (+5492994673102)
+- Estilos verdes (#25D366) con hover effect
+
+### Ajustes de UI
+- **Squishy Button (Header):** Reducido a 3 combinaciones de azul (#0f62fe, #4589ff, #78a9ff)
+- **HorizontalGallery:** Eliminados textos "Proyectos Destacados" y "Scroll para explorar"
+- **FAQ:** Eliminado CTA inferior "¿No encontraste tu pregunta?"
+- **ProblemSolution:** Añadida animación blob bounce a las cards

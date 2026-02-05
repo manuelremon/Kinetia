@@ -2,20 +2,320 @@
 @use '@/styles/abstracts/mixins' as *;
 
 .section {
-  padding: 100px 0;
+  position: relative;
+  padding: 100px 0 200px;
   background: #ffffff;
+  overflow: hidden;
+
+  // Degradado inferior para transición a ServicesBento
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 350px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(10, 10, 15, 0.05) 20%,
+      rgba(10, 10, 15, 0.2) 40%,
+      rgba(10, 10, 15, 0.5) 60%,
+      rgba(10, 10, 15, 0.8) 80%,
+      #0a0a0f 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Línea neón blanca - transición hacia sección oscura
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 10%,
+      rgba(255, 255, 255, 0.6) 30%,
+      #ffffff 50%,
+      rgba(255, 255, 255, 0.6) 70%,
+      rgba(255, 255, 255, 0.3) 90%,
+      transparent 100%
+    );
+    box-shadow:
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 40px rgba(255, 255, 255, 0.8),
+      0 0 80px rgba(255, 255, 255, 0.5),
+      0 -5px 30px rgba(255, 255, 255, 0.4),
+      0 5px 30px rgba(255, 255, 255, 0.4);
+    z-index: 10;
+  }
+}
+
+// Efecto de luz que recorre la línea
+.section .neonSweep {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 11;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.8) 30%,
+      #ffffff 50%,
+      rgba(255, 255, 255, 0.8) 70%,
+      transparent 100%
+    );
+    box-shadow:
+      0 0 30px #ffffff,
+      0 0 60px rgba(255, 255, 255, 0.8),
+      0 0 100px rgba(255, 255, 255, 0.5);
+    animation: neonSweep 4s ease-in-out infinite;
+  }
+}
+
+@keyframes neonSweep {
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+// ============================================
+// ANIMATED LOADER
+// ============================================
+
+.loader {
+  --color-one: #ffbf48;
+  --color-two: #be4a1d;
+  --color-three: #ffbf4780;
+  --color-four: #bf4a1d80;
+  --color-five: #ffbf4740;
+  --time-animation: 2s;
+  --size: 0.45;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  transform: scale(var(--size));
+  margin: 0 -10px;
+  box-shadow:
+    0 0 25px 0 var(--color-three),
+    0 20px 50px 0 var(--color-four);
+  animation: colorize calc(var(--time-animation) * 3) ease-in-out infinite;
+
+  @media (max-width: 768px) {
+    --size: 0.35;
+    margin: 0 -15px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-top: solid 1px var(--color-one);
+    border-bottom: solid 1px var(--color-two);
+    background: linear-gradient(180deg, var(--color-five), var(--color-four));
+    box-shadow:
+      inset 0 10px 10px 0 var(--color-three),
+      inset 0 -10px 10px 0 var(--color-four);
+  }
+}
+
+.loader .box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(
+    180deg,
+    var(--color-one) 30%,
+    var(--color-two) 70%
+  );
+  mask: url(#clipping);
+  -webkit-mask: url(#clipping);
+}
+
+.loader svg {
+  position: absolute;
+}
+
+.loader svg :global(#clipping) {
+  filter: contrast(15);
+  animation: roundness calc(var(--time-animation) / 2) linear infinite;
+}
+
+.loader svg :global(#clipping) polygon {
+  filter: blur(7px);
+}
+
+.loader svg :global(#clipping) polygon:nth-child(1) {
+  transform-origin: 75% 25%;
+  transform: rotate(90deg);
+}
+
+.loader svg :global(#clipping) polygon:nth-child(2) {
+  transform-origin: 50% 50%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+}
+
+.loader svg :global(#clipping) polygon:nth-child(3) {
+  transform-origin: 50% 60%;
+  animation: rotation var(--time-animation) linear infinite;
+  animation-delay: calc(var(--time-animation) / -3);
+}
+
+.loader svg :global(#clipping) polygon:nth-child(4) {
+  transform-origin: 40% 40%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+}
+
+.loader svg :global(#clipping) polygon:nth-child(5) {
+  transform-origin: 40% 40%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+  animation-delay: calc(var(--time-animation) / -2);
+}
+
+.loader svg :global(#clipping) polygon:nth-child(6) {
+  transform-origin: 60% 40%;
+  animation: rotation var(--time-animation) linear infinite;
+}
+
+.loader svg :global(#clipping) polygon:nth-child(7) {
+  transform-origin: 60% 40%;
+  animation: rotation var(--time-animation) linear infinite;
+  animation-delay: calc(var(--time-animation) / -1.5);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes roundness {
+  0% {
+    filter: contrast(15);
+  }
+  20% {
+    filter: contrast(3);
+  }
+  40% {
+    filter: contrast(3);
+  }
+  60% {
+    filter: contrast(15);
+  }
+  100% {
+    filter: contrast(15);
+  }
+}
+
+@keyframes colorize {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    filter: hue-rotate(-30deg);
+  }
+  40% {
+    filter: hue-rotate(-60deg);
+  }
+  60% {
+    filter: hue-rotate(-90deg);
+  }
+  80% {
+    filter: hue-rotate(-45deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 60px;
 }
 
 .title {
-  text-align: center;
   font-family: $font-display;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 600;
   color: #161616;
-  margin-bottom: 60px;
+  margin-bottom: 16px;
+}
+
+.arrow {
+  color: #0f62fe;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #6f6f6f;
+  margin: 0;
+  min-height: 1.5em;
+}
+
+.typewriter {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.cursor {
+  color: #0f62fe;
+  font-weight: 300;
+  margin-left: 2px;
+}
+
+.cursorBlink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
@@ -31,29 +331,317 @@
 }
 
 .card {
-  padding: 40px 32px;
-  background: #f4f4f4;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  position: relative;
+  border-radius: 14px;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  transition: all 0.3s ease;
 
   &:hover {
-    border-color: #c6c6c6;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+
+    .blob {
+      opacity: 1;
+    }
   }
+}
+
+.cardBg {
+  position: relative;
+  z-index: 2;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  margin: 5px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px);
+  border-radius: 10px;
+  overflow: hidden;
+  outline: 2px solid white;
+}
+
+.blob {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #0f62fe;
+  opacity: 0.6;
+  filter: blur(12px);
+  animation: blobBounce 5s infinite ease;
+}
+
+@keyframes blobBounce {
+  0% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+
+  50% {
+    transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+
+  75% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px 16px;
 }
 
 .cardTitle {
   font-family: $font-display;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #161616;
-  margin-bottom: 16px;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
-.cardText {
-  font-size: 1rem;
+.cardBody {
+  padding: 24px;
+}
+
+.problemBlock,
+.solutionBlock {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.problemBlock {
+  background: #f4f4f4;
+}
+
+.solutionBlock {
+  background: linear-gradient(135deg, rgba(15, 98, 254, 0.1) 0%, rgba(15, 98, 254, 0.05) 100%);
+  border: 1px solid rgba(15, 98, 254, 0.2);
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+
+  .problemBlock & {
+    color: #8d8d8d;
+  }
+
+  .solutionBlock & {
+    color: #0f62fe;
+  }
+}
+
+.problemText {
+  position: relative;
+  font-size: 0.9375rem;
   color: #525252;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
+  font-style: italic;
+  animation: glitch 2s infinite;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &::before {
+    color: #ff006e;
+    animation: glitchBefore 2s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    text-shadow: -2px 0 #ff006e;
+  }
+
+  &::after {
+    color: #00d4ff;
+    animation: glitchAfter 2s infinite;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    text-shadow: 2px 0 #00d4ff;
+  }
+}
+
+@keyframes glitch {
+  0%, 70% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  71% {
+    opacity: 0.7;
+    transform: translateX(-5px) skewX(-5deg);
+  }
+  72% {
+    opacity: 1;
+    transform: translateX(5px) skewX(3deg);
+  }
+  73% {
+    transform: translateX(-3px);
+  }
+  74% {
+    transform: translateX(3px) skewX(-2deg);
+  }
+  75% {
+    opacity: 0.8;
+    transform: translateX(-4px);
+  }
+  76%, 80% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  81% {
+    transform: translateX(6px) skewX(4deg);
+  }
+  82% {
+    transform: translateX(-6px) skewX(-3deg);
+  }
+  83% {
+    opacity: 0.6;
+    transform: translateX(2px);
+  }
+  84%, 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glitchBefore {
+  0%, 70% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  71% {
+    transform: translateX(-8px) skewX(-10deg);
+    opacity: 1;
+  }
+  72% {
+    transform: translateX(6px) skewX(5deg);
+    opacity: 0.8;
+  }
+  73% {
+    transform: translateX(-4px) skewX(-3deg);
+    opacity: 0.9;
+  }
+  74% {
+    transform: translateX(5px);
+    opacity: 0.7;
+  }
+  75%, 80% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  81% {
+    transform: translateX(10px) skewX(8deg);
+    opacity: 1;
+  }
+  82% {
+    transform: translateX(-7px) skewX(-6deg);
+    opacity: 0.9;
+  }
+  83% {
+    transform: translateX(4px);
+    opacity: 0.6;
+  }
+  84%, 100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes glitchAfter {
+  0%, 70% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  71% {
+    transform: translateX(7px) skewX(8deg);
+    opacity: 0.9;
+  }
+  72% {
+    transform: translateX(-8px) skewX(-6deg);
+    opacity: 1;
+  }
+  73% {
+    transform: translateX(5px) skewX(4deg);
+    opacity: 0.8;
+  }
+  74% {
+    transform: translateX(-3px);
+    opacity: 0.7;
+  }
+  75%, 80% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  81% {
+    transform: translateX(-9px) skewX(-7deg);
+    opacity: 1;
+  }
+  82% {
+    transform: translateX(8px) skewX(5deg);
+    opacity: 0.8;
+  }
+  83% {
+    transform: translateX(-5px);
+    opacity: 0.9;
+  }
+  84%, 100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+.solutionText {
+  font-size: 0.9375rem;
+  color: #161616;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.dividerArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  color: #0f62fe;
+  font-size: 1rem;
+  font-weight: 600;
 }

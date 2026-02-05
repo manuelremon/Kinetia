@@ -44,7 +44,7 @@ export function FinalCTA() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <span className={styles.pulse} />
-            Respuesta en menos de 24 horas
+            Te respondemos en menos de 24hs
           </motion.div>
 
           <motion.h2
@@ -64,8 +64,7 @@ export function FinalCTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Agenda una consulta gratuita y descubre cómo la automatización inteligente
-            puede impulsar tu negocio al siguiente nivel.
+            Coordinemos una consulta y descubrí cómo impulsar tu negocio a otro nivel.
           </motion.p>
 
           <motion.div
@@ -86,26 +85,6 @@ export function FinalCTA() {
             </button>
           </motion.div>
 
-          <motion.div
-            className={styles.features}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            <div className={styles.feature}>
-              <span className={styles.checkIcon}>✓</span>
-              Consulta gratuita
-            </div>
-            <div className={styles.feature}>
-              <span className={styles.checkIcon}>✓</span>
-              Sin compromiso
-            </div>
-            <div className={styles.feature}>
-              <span className={styles.checkIcon}>✓</span>
-              Diagnóstico personalizado
-            </div>
-          </motion.div>
         </motion.div>
       </Container>
     </section>
