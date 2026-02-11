@@ -1,57 +1,47 @@
 # Documentación Funcional y Técnica: Proyecto Kinetia
 
 **Fecha de Última Actualización:** 05 de Febrero de 2026
-**Versión:** 2.1.0 (Optimización UI/UX y Loaders Animados)
+**Versión:** 2.2.0 (Engineering Boutique Pivot)
 **Repositorio:** https://github.com/manuelremon/Kinetia
 
 ---
 
 ## 1. Visión General y Contexto del Negocio
 
-**Kinetia** es una consultora tecnológica de alto nivel especializada en la transformación digital operativa. La plataforma web sirve como el principal punto de contacto, portafolio y herramienta de conversión para clientes potenciales.
+**Kinetia** es una Boutique de Ingeniería de Software especializada en resolver problemas operativos complejos. Nos alejamos de la consultoría genérica para enfocarnos en soluciones técnicas de alta precisión.
 
 ### Propuesta de Valor
-Kinetia no solo desarrolla software, sino que optimiza procesos mediante tecnologías avanzadas:
-*   **Automatización de Procesos:** Transformación de tareas manuales en flujos digitales autónomos (RPA/BPA).
-*   **Optimización de Inventarios:** Uso de algoritmos predictivos y Machine Learning para gestión de stock.
-*   **Sistemas Personalizados:** Desarrollo de ERPs, CRMs y aplicaciones empresariales a medida.
-*   **Agentic AI:** Diseño y entrenamiento de agentes de Inteligencia Artificial autónomos con LLMs.
+*   **Ingeniería de Software para Operaciones:** Desarrollo de sistemas robustos para logística, retail y finanzas.
+*   **Neural Inventory Engine:** Algoritmos de predicción de demanda con Python y Pandas para optimizar stock.
+*   **Agentic ERP Integration:** Agentes de IA que no solo responden, sino que ejecutan acciones en sistemas empresariales (RAG + Function Calling).
+*   **Liquid Engineering Teams:** Células ágiles de desarrollo con liderazgo técnico centralizado y expertos on-demand.
 
 ### Asistente Virtual (KINA)
-La plataforma integra un agente de IA llamado **KINA**, impulsado por Google Gemini (modelo `gemini-2.0-flash`). KINA actúa como el primer nivel de soporte y ventas, capaz de explicar servicios y guiar al usuario hacia una demostración.
+La plataforma integra un agente de IA llamado **KINA**, impulsado por Google Gemini (modelo `gemini-2.0-flash`). KINA actúa como el primer nivel de soporte técnico y comercial.
 
 ---
 
 ## 2. Stack Tecnológico
 
-La arquitectura es moderna, basada en el ecosistema JavaScript/TypeScript con Next.js 15, priorizando el rendimiento SSR/SSG y la experiencia de usuario (UX).
+La arquitectura prioriza la solidez técnica y el rendimiento, combinando el ecosistema Next.js con herramientas de Data Science.
 
 ### Frontend (Cliente)
 *   **Framework:** Next.js 15 (App Router) con React 19 RC.
 *   **Lenguaje:** TypeScript (Tipado estático estricto).
-*   **Build Tool:** Next.js (Turbopack en desarrollo).
-*   **Estilizado:**
-    *   **SCSS Modules:** Para estilos locales y aislados (`.module.scss`).
-    *   **SCSS Global:** Variables, mixins y resets en `src/styles`.
-*   **Animaciones y Efectos:**
-    *   **Framer Motion:** Animaciones de componentes, transiciones y View Transitions API.
-    *   **Anime.js:** Animaciones complejas vectoriales o basadas en tiempo.
-    *   **Lenis:** Librería para "Smooth Scrolling" (desplazamiento suave de alto rendimiento).
-*   **Tipografía:**
-    *   **IBM Plex Sans:** Fuente principal (400, 500, 700).
-    *   **JetBrains Mono:** Fuente monoespaciada para terminales y código.
+*   **Estilizado:** SCSS Modules con enfoque en diseño corporativo y técnico.
+*   **Animaciones:** Framer Motion para visualizaciones de datos y transiciones de interfaz.
 
-### Backend (Next.js Server Actions)
-*   **Entorno:** Node.js con Next.js Server Actions.
-*   **Validación:** Zod para validación de esquemas en servidor.
-*   **Integraciones:**
-    *   **Google Gemini API (Modelo gemini-2.0-flash):** Cerebro del chatbot KINA via `@google/generative-ai`.
-    *   **Webhooks:** Sistema de reenvío de formularios (Contacto y Demo) a servicios externos.
+### Backend & Data
+*   **Server Actions:** Lógica de negocio en servidor con Next.js.
+*   **Python Integration:** Uso de Python (Pandas, Prophet, XGBoost) para modelos de predicción (en servicios satélite).
+*   **AI & LLMs:**
+    *   **LangChain:** Orquestación de agentes.
+    *   **RAG:** Retrieval-Augmented Generation para procesamiento de documentos.
+    *   **Google Gemini API:** Modelo base para KINA.
 
-### Monitoreo y Performance
-*   **Web Vitals:** Monitoreo en tiempo real de LCP, INP, CLS, TTFB.
-*   **Memory Monitoring:** Tracking de uso de memoria (Chrome/Edge).
-*   **SEO:** JSON-LD Schemas (Organization, ProfessionalService, FAQPage).
+### Infraestructura
+*   **Cloud:** AWS (arquitectura serverless y contenedores).
+*   **Database:** PostgreSQL (datos estructurados).
 
 ---
 
@@ -60,363 +50,97 @@ La arquitectura es moderna, basada en el ecosistema JavaScript/TypeScript con Ne
 ```
 kinetia/
 ├── app/                          # Next.js App Router
-│   ├── layout.tsx               # Root Layout (fonts, metadata, providers)
-│   ├── page.tsx                 # Home Page (composición de secciones)
-│   ├── actions.ts               # Server Actions (chat, forms)
-│   └── error.tsx                # Error Boundary
 ├── src/
 │   ├── components/
-│   │   ├── common/              # Componentes reutilizables
-│   │   ├── effects/             # Efectos visuales (PageLoader, etc.)
-│   │   ├── features/            # Componentes de features específicas
-│   │   ├── layout/              # Header, Footer
-│   │   ├── providers/           # Context Providers
-│   │   └── sections/            # Secciones de la página
+│   │   ├── common/              # Componentes UI (PrecisionButton, etc.)
+│   │   ├── sections/            # Secciones (Hero, Services, Labs)
 │   ├── hooks/                   # Custom Hooks
-│   ├── styles/                  # SCSS globales y abstracts
-│   ├── types/                   # TypeScript types
-│   └── utils/                   # Utilidades y constantes
-├── public/                      # Assets estáticos
-├── next.config.ts               # Configuración Next.js
-├── tsconfig.json                # Configuración TypeScript
-└── package.json                 # Dependencias
+│   ├── styles/                  # SCSS globales
+│   └── types/                   # TypeScript types
 ```
 
 ---
 
-## 4. Estructura de Datos y Tipado
-
-El proyecto utiliza TypeScript para asegurar la integridad de los datos que fluyen entre componentes y Server Actions.
-
-### Entidades Principales (`src/types/`)
-
-1.  **GeminiContent:** Estructura para comunicación con Gemini API.
-    ```typescript
-    interface GeminiContent {
-      role: 'user' | 'model';
-      parts: { text: string }[];
-    }
-    ```
-
-2.  **ChatMessage:** Representa la interacción en el chat.
-    ```typescript
-    interface ChatMessage {
-      id: string;
-      role: 'user' | 'model';
-      content: string;
-      timestamp: number;
-    }
-    ```
-
-3.  **WebVitalsMetric:** Métricas de rendimiento.
-    ```typescript
-    interface WebVitalsMetric {
-      name: string;
-      value: number;
-      rating: 'good' | 'needs-improvement' | 'poor';
-      delta?: number;
-    }
-    ```
-
-4.  **Contact Form Schema (Zod):**
-    ```typescript
-    const ContactFormSchema = z.object({
-      name: z.string().min(2),
-      email: z.string().email(),
-      phone: z.string().optional(),
-      message: z.string().min(10),
-    });
-    ```
-
----
-
-## 5. Componentes del Sistema
+## 4. Componentes del Sistema
 
 ### Layout Components
 | Componente | Descripción |
 |------------|-------------|
-| `Header` | Navegación principal con links y CTA |
-| `Footer` | Pie de página con enlaces y contacto |
+| `Header` | Navegación corporativa con dropdowns (Soluciones, Industrias) |
+| `Footer` | Pie de página técnico |
 
 ### Section Components
 | Componente | Descripción |
 |------------|-------------|
-| `Hero` | Sección principal con animaciones cinéticas y CTAs |
-| `ChooseRoute` | Selector de perfil de usuario (COO, CTO, CFO, etc.) |
-| `ProblemSolution` | Presentación problema-solución con blob animations |
-| `ServicesBento` | Grid Bento con loaders animados (Newton's Cradle, Chip, Lightbulb) |
-| `HorizontalGallery` | Galería horizontal de proyectos (sin textos eyebrow) |
-| `TrustBadges` | Badges de confianza y certificaciones |
-| `LogoCarousel` | Carrusel de logos de clientes |
-| `Features` | Características destacadas |
-| `HowItWorks` | Proceso de trabajo en pasos |
-| `About` | Sección sobre la empresa |
-| `FAQ` | Preguntas frecuentes con accordions (sin CTA inferior) |
-| `Contact` | Formulario de contacto con WhatsApp integrado |
-| `TerminalSection` | Terminal interactiva con código |
+| `Hero` | "Engineering Background" con grid técnico y `PrecisionButton` |
+| `ServicesBento` | Grid de servicios con visualizaciones técnicas animadas |
+| `EngineeringLabs` | Showcase de prototipos funcionales (StockFlow AI, ProcureBot) |
+| `ProblemSolution` | Presentación problema-solución |
+| `TrustBadges` | Badges de tecnologías y partners |
+| `Contact` | Formulario de contacto directo |
 
-> **Nota v2.1.0:** Las secciones `CaseStudies`, `Stats` y `FinalCTA` fueron eliminadas del flujo principal.
+### Visualizaciones en ServicesBento
+| Visualización | Servicio | Descripción |
+|---------------|----------|-------------|
+| `ForecastChart` | Neural Inventory | Gráfico SVG animado de predicción de series temporales |
+| `ChipLoader` | Agentic ERP | Chip visualizando flujo de datos RAG y procesamiento |
+| `TeamVisualization` | Liquid Teams | Grafo de nodos conectando Lead con expertos |
+| `TechStackLogos` | Tech Stack | Logos de tecnologías core (Python, Next.js, AWS) |
 
 ### Common Components
 | Componente | Descripción |
 |------------|-------------|
+| `PrecisionButton` | Botón estilo ingeniería, sólido y reactivo |
+| `TechBadge` | Badge para mostrar tecnologías utilizadas |
 | `ChatWidget` | Widget de chat flotante (KINA) |
-| `ScrollProgress` | Barra de progreso de scroll |
-| `ScrollToTop` | Botón para volver arriba |
-| `Container` | Wrapper de contenido con max-width |
-| `AnimatedButton` | Botones con animaciones |
-| `MagneticButton` | Botones con efecto magnético |
-| `GlitchText` | Texto con efecto glitch |
-| `CountUpOnScroll` | Contadores animados al scroll |
-| `ScrollReveal` | Revelado de elementos al scroll |
-
-### Effect Components
-| Componente | Descripción |
-|------------|-------------|
-| `PageLoader` | Loader de página inicial |
-| `BackgroundLayers` | Capas de fondo animadas |
-
-### Providers
-| Provider | Descripción |
-|----------|-------------|
-| `SmoothScrollProvider` | Wrapper para Lenis smooth scroll |
-| `WebVitalsProvider` | Monitoreo de Web Vitals |
 
 ---
 
-## 6. Lógica de Negocio y Flujos
+## 5. Lógica de Negocio y Flujos
 
-### Flujo del Asistente Virtual (KINA)
+### Flujo de Labs (Prototipos)
+La sección `EngineeringLabs` demuestra capacidades técnicas reales:
+1.  **StockFlow AI:** Dashboard de predicción de inventario.
+2.  **ProcureBot:** Agente autónomo de compras y negociación.
 
-1.  **Captura:** El usuario envía un mensaje a través de `ChatInput`.
-2.  **Estado Optimista:** La interfaz muestra el mensaje del usuario inmediatamente.
-3.  **Server Action (`chatWithKina`):**
-    *   Valida el historial con Zod (`GeminiContentSchema`).
-    *   Inyecta el *System Prompt* al inicio del chat.
-    *   Envía la petición a Google Gemini API.
-4.  **Respuesta:**
-    *   El servidor devuelve el texto generado.
-    *   El frontend actualiza el estado del chat.
-
-### Flujo de Formularios (Server Actions)
-
-1.  **Captura:** El usuario completa el formulario de contacto.
-2.  **Validación:** Zod valida los campos en el servidor.
-3.  **Procesamiento:** `submitContactForm` procesa y reenvía a webhooks.
-4.  **Feedback:** Respuesta de éxito/error al cliente.
-
-### Lógica de Segmentación de Usuarios (`ChooseRoute`)
-*   **Regla:** La página adapta el contenido visible basándose en la pestaña seleccionada.
-*   **Perfiles:** Dirección, Operaciones, Tecnología, Finanzas.
-*   **Implementación:** Estado local que filtra listas de componentes y altera textos.
+Cada tarjeta de proyecto incluye:
+*   Visualización de código (snippet de Python).
+*   Métricas de impacto (ej: "Precisión Forecast 94%").
+*   Stack tecnológico específico.
 
 ---
 
-## 7. Sistema de Diseño (UI/UX)
+## 6. Sistema de Diseño (UI/UX)
 
-El diseño visual proyecta "Ingeniería, Precisión y Futuro" con estética Web 2026.
+La identidad visual ha evolucionado hacia "Engineering Boutique": sobriedad, precisión y confianza técnica.
 
 ### Tipografía
-*   **Fuente Principal:** `IBM Plex Sans` (400, 500, 700).
-*   **Fuente Código:** `JetBrains Mono` (400, 500, 700).
-*   **Optimización:** Next.js Font con `display: swap` para Zero CLS.
+*   **Inter:** Fuente principal para interfaz limpia y legible.
+*   **JetBrains Mono:** Fuente para código y datos técnicos.
 
 ### Paleta de Colores
-*   **Primario:** Azul (`#0f62fe`, `#0ea5e9`).
-*   **Secundario:** Púrpura (`#6929c4`).
-*   **Acentos:** Gradientes dinámicos (cyan → blue → purple).
-*   **Fondo:** Dark theme con glassmorphism.
-
-### Efectos Visuales
-*   **Spotlight Cards:** Efecto de luz que sigue el cursor.
-*   **Kinetic Typography:** Texto animado con palabras rotativas.
-*   **Glassmorphism:** Cards con blur y transparencia.
-*   **Particles:** Partículas flotantes con posiciones determinísticas (SSR-safe).
-*   **View Transitions:** Transiciones suaves entre estados.
-*   **Loaders CSS Animados (v2.1.0):**
-    *   **Newton's Cradle:** Péndulo de Newton con física de movimiento.
-    *   **ChipLoader:** Chip SVG con texto "KINETIA" y flujo de datos animado.
-    *   **LightbulbLoader:** Bombilla con efecto flash pulsante.
-*   **Blob Bounce:** Animación de blob en ProblemSolution cards.
-*   **Squishy Button:** Botón 3D con gradiente de 3 azules (#0f62fe, #4589ff, #78a9ff).
+*   **Navy Base:** Fondo oscuro profundo para contraste técnico.
+*   **Blue Accent:** Azul corporativo para acciones y realces.
+*   **Tech Grid:** Patrones de grilla sutiles en fondos.
 
 ---
 
-## 8. Performance y Web Vitals
+## 7. Changelog
 
-### Métricas Monitoreadas
-| Métrica | Umbral Bueno | Umbral Pobre |
-|---------|--------------|--------------|
-| LCP | ≤ 2500ms | > 4000ms |
-| INP | ≤ 200ms | > 500ms |
-| CLS | ≤ 0.1 | > 0.25 |
-| TTFB | ≤ 600ms | > 1800ms |
+### v2.2.0 (05 Febrero 2026) - Engineering Boutique Pivot
 
-### Optimizaciones Implementadas
-*   **Font Optimization:** Next.js Font con preload y swap.
-*   **Image Optimization:** Next.js Image con lazy loading.
-*   **Code Splitting:** Automático por ruta con App Router.
-*   **Server Components:** Reducción de JavaScript en cliente.
-*   **Deterministic Particles:** Pre-cálculo para evitar hydration mismatch.
+#### Rebranding Estratégico
+Transformación de la identidad visual y de contenido para posicionar a Kinetia como una "Boutique de Ingeniería" en lugar de una agencia generalista.
 
----
+#### Cambios Principales
+*   **Hero Redesign:** Nuevo fondo "Engineering Background" con líneas de flujo de datos y botones "PrecisionButton".
+*   **ServicesBento:** Reemplazo de iconos genéricos por visualizaciones técnicas animadas (`ForecastChart`, `TeamVisualization`).
+*   **Nuevo Header:** Navegación corporativa con menús desplegables para Soluciones e Industrias.
+*   **Sección Labs:** Nueva sección `EngineeringLabs` para mostrar prototipos funcionales y código.
+*   **Tech Stack:** Inclusión explícita de Python, Pandas y AWS en la propuesta de valor.
 
-## 9. SEO y Metadata
+### v2.1.0 (Legacy)
+*   Optimización UI/UX anterior con loaders animados (NewtonsCradle, etc.) - *Reemplazados en v2.2.0*.
 
-### JSON-LD Schemas
-*   **Organization:** Datos de la empresa para Knowledge Graph.
-*   **ProfessionalService:** Catálogo de servicios con ofertas.
-*   **FAQPage:** Preguntas frecuentes para rich snippets.
-
-### Meta Tags
-*   Open Graph para redes sociales.
-*   Twitter Cards.
-*   Canonical URLs.
-*   Robots directives.
-
----
-
-## 10. Casos de Uso (Actores)
-
-1.  **El Director de Operaciones (COO):**
-    *   *Objetivo:* Reducir costes y errores manuales.
-    *   *Flujo:* Hero → ChooseRoute "Operaciones" → ServicesBento "Automatización" → Demo.
-
-2.  **El CTO / Líder Técnico:**
-    *   *Objetivo:* Evaluar calidad técnica y capacidad de integración.
-    *   *Flujo:* Inspecciona TerminalSection → Interactúa con KINA → Revisa Stack.
-
-3.  **El Director Financiero (CFO):**
-    *   *Objetivo:* ROI y eficiencia de inventarios.
-    *   *Flujo:* ServicesBento "Optimización" → Features → Contact.
-
-4.  **Candidato / Talento:**
-    *   *Objetivo:* Conocer cultura y tecnologías.
-    *   *Flujo:* Explora diseño visual → About → Features.
-
----
-
-## 11. Estrategia de Pruebas (QA)
-
-### Recomendaciones
-
-1.  **Unit Testing (Frontend):**
-    *   **Herramienta:** Vitest + React Testing Library.
-    *   **Objetivo:** Probar componentes aislados.
-
-2.  **Integration Testing (Server Actions):**
-    *   **Herramienta:** Vitest con mocks de Gemini API.
-    *   **Objetivo:** Verificar `chatWithKina` y `submitContactForm`.
-
-3.  **End-to-End (E2E):**
-    *   **Herramienta:** Playwright.
-    *   **Flujo Crítico:** Home → Navegación → Contacto → Envío → Confirmación.
-
-4.  **Performance Testing:**
-    *   **Herramienta:** Lighthouse CI.
-    *   **Objetivo:** Mantener Core Web Vitals en verde.
-
----
-
-## 12. Despliegue y CI/CD
-
-### Integración Continua (CI)
-*   **Linter:** `npm run lint` (ESLint con next/core-web-vitals).
-*   **Build Check:** `npm run build` verifica compilación sin errores.
-
-### Despliegue (CD)
-*   **Infraestructura:** Vercel (recomendado), Netlify, o VPS con Node.js.
-*   **Variables de Entorno:**
-    *   `GEMINI_API_KEY`: Requerida para el servicio de chat.
-    *   `CONTACT_WEBHOOK_URL`: URL para formulario de contacto.
-    *   `DEMO_WEBHOOK_URL`: URL para solicitudes de demo.
-
-### Pipeline Típico (GitHub Actions)
-1.  Push a `main`.
-2.  Instalación de dependencias (`npm ci`).
-3.  Ejecución de Lint y Build.
-4.  Si éxito → Despliegue a Producción.
-
----
-
-## 13. Archivos de Configuración Clave
-
-| Archivo | Descripción |
-|---------|-------------|
-| `next.config.ts` | Configuración de Next.js (SASS, Server Actions) |
-| `tsconfig.json` | Configuración TypeScript con paths aliases |
-| `package.json` | Dependencias y scripts |
-| `app/layout.tsx` | Root Layout con fonts, metadata y providers |
-| `app/actions.ts` | Server Actions para chat y formularios |
-
----
-
-## 14. Dependencias Principales
-
-### Producción
-| Paquete | Versión | Uso |
-|---------|---------|-----|
-| `next` | ^15.0.0 | Framework principal |
-| `react` | ^19.0.0-rc.1 | Librería UI |
-| `framer-motion` | ^12.31.0 | Animaciones |
-| `@google/generative-ai` | ^0.24.1 | Gemini API |
-| `zod` | ^4.3.6 | Validación de esquemas |
-| `lenis` | ^1.3.17 | Smooth scrolling |
-| `animejs` | ^4.2.2 | Animaciones complejas |
-
-### Desarrollo
-| Paquete | Versión | Uso |
-|---------|---------|-----|
-| `typescript` | ~5.6.2 | Tipado estático |
-| `sass` | ^1.97.3 | Preprocesador CSS |
-| `eslint` | ^9.39.2 | Linting |
-| `eslint-config-next` | ^16.1.6 | Reglas ESLint para Next.js |
-
----
-
-## 15. Changelog
-
-### v2.1.0 (05 Febrero 2026) - Optimización UI/UX
-
-#### Secciones Eliminadas
-- **CaseStudies:** Casos de estudio removidos del flujo principal.
-- **Stats:** Estadísticas animadas removidas.
-- **FinalCTA:** Call-to-action final eliminado.
-
-#### Nuevos Loaders CSS Animados (ServicesBento)
-Los iconos emoji fueron reemplazados por loaders CSS puro:
-- **NewtonsCradle:** Péndulo de Newton con animación `@keyframes` para física realista.
-- **ChipLoader:** Chip SVG con texto "KINETIA", trazas de circuito y flujo de datos.
-- **LightbulbLoader:** Bombilla con efecto `flash` pulsante (#f59e0b).
-
-#### Cambios de Contenido
-| Sección | Antes | Después |
-|---------|-------|---------|
-| ServicesBento título | "Soluciones que transforman" | "Desarrollo **IA en SERIO**" |
-| Agentic AI subtitle | "Inteligencia que actúa por ti" | "Agentes entrenados para vos" |
-| ServicesBento eyebrow | "Nuestros Servicios" | *Eliminado* |
-| HorizontalGallery eyebrow | "Proyectos Destacados" | *Eliminado* |
-| HorizontalGallery subtitle | "Casos de éxito..." | *Eliminado* |
-| HorizontalGallery scroll text | "Scroll para explorar" | *Eliminado* |
-| FAQ CTA | "¿No encontraste tu pregunta?" | *Eliminado* |
-
-#### Integraciones
-- **WhatsApp:** Añadido a redes sociales en Contact.
-  - Número: `+5492994673102`
-  - URL: `https://wa.me/5492994673102`
-  - Color: `#25D366` (verde WhatsApp)
-
-#### Ajustes de Estilos
-- **Squishy Button (Header):** Gradiente reducido a 3 azules:
-  - `#0f62fe` (IBM Blue)
-  - `#4589ff` (Light Blue)
-  - `#78a9ff` (Pale Blue)
-- **ProblemSolution:** Añadida animación `blobBounce` a las cards.
-- **ServicesBento background:** Ajustado a `#1a1a2e` (cards mantienen color oscuro original).
-
-### v2.0.0 (05 Febrero 2026) - Migración Next.js 15
-- Migración completa de Vite a Next.js 15 App Router.
-- Actualización a React 19 RC.
-- Server Actions para chat y formularios.
-- Web Vitals monitoring.
-- JSON-LD SEO schemas.
+### v2.0.0 (Migración Next.js 15)
+*   Migración completa a App Router y Server Actions.
