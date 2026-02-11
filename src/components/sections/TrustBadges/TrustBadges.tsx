@@ -2,7 +2,7 @@
 
 import { motion, Variants } from 'framer-motion';
 import { Container } from '@/components/common';
-import { TRUST_BADGES } from '@/utils/constants';
+import TRUST_BADGES from '@/data/trust-badges.json';
 import styles from './TrustBadges.module.scss';
 
 const containerVariants: Variants = {

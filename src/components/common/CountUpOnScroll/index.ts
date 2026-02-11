@@ -1,1 +1,0 @@
-export { CountUpOnScroll } from './CountUpOnScroll';

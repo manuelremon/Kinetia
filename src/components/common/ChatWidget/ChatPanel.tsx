@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ChatMessages } from './ChatMessages';
 import { ChatInput } from './ChatInput';
 import { useChat } from '@/hooks';
@@ -11,7 +11,12 @@ interface ChatPanelProps {
 }
 
 export function ChatPanel({ onClose }: ChatPanelProps) {
-  const { messages, isLoading, sendMessage } = useChat();
+  const { messages, isLoading, error, sendMessage, clearChat } = useChat();
+  const [showError, setShowError] = useState(false);
+
+  useEffect(() => {
+    if (error) setShowError(true);
+  }, [error]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -23,6 +28,11 @@ export function ChatPanel({ onClose }: ChatPanelProps) {
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [onClose]);
+
+  const handleRetry = () => {
+    setShowError(false);
+    clearChat();
+  };
 
   return (
     <div className={styles.panel}>
@@ -40,6 +50,13 @@ export function ChatPanel({ onClose }: ChatPanelProps) {
           </svg>
         </button>
       </div>
+
+      {showError && error && (
+        <div className={styles.errorBanner} role="alert">
+          <span>No se pudo conectar con KINA. Verifica tu conexión.</span>
+          <button onClick={handleRetry} className={styles.retryButton}>Reiniciar chat</button>
+        </div>
+      )}
 
       <ChatMessages messages={messages} isLoading={isLoading} />
 

@@ -2,11 +2,6 @@
 // TYPE DEFINITIONS
 // ============================================
 
-export interface TerminalCommand {
-  type: 'command' | 'output' | 'success';
-  text: string;
-}
-
 export interface FlipCardData {
   icon: string;
   label: string;
@@ -24,12 +19,6 @@ export interface StepData {
   title: string;
   description: string;
   cardContent: React.ReactNode;
-}
-
-export interface StatData {
-  target: number;
-  suffix: string;
-  label: string;
 }
 
 export interface NavLink {

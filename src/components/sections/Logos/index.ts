@@ -1,1 +1,0 @@
-export { LogosCarousel } from './LogosCarousel';

@@ -1,0 +1,32 @@
+{
+  "navLinks": [
+    { "href": "#services", "label": "Soluciones" },
+    { "href": "#industries", "label": "Industrias" },
+    { "href": "#case-studies", "label": "Casos de Éxito" }
+  ],
+  "footerColumns": [
+    {
+      "title": "Descubrir",
+      "links": [
+        { "href": "#", "label": "Inicio" },
+        { "href": "#", "label": "Blog" },
+        { "href": "#", "label": "Changelog" },
+        { "href": "#", "label": "Carreras" }
+      ]
+    },
+    {
+      "title": "Recursos",
+      "links": [
+        { "href": "#", "label": "Documentación" },
+        { "href": "#", "label": "Referencia API" },
+        { "href": "#", "label": "Soporte" }
+      ]
+    },
+    {
+      "title": "Contacto",
+      "links": [
+        { "href": "mailto:info@kinetia.com", "label": "info@kinetia.com" }
+      ]
+    }
+  ]
+}

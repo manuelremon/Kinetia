@@ -149,7 +149,15 @@ export function Contact() {
                   {error && (
                     <div className={styles.errorMessage} role="alert">
                       <span className={styles.errorIcon}>⚠</span>
-                      <p>{error}</p>
+                      <div>
+                        <p>{error}</p>
+                        <p style={{ marginTop: '8px', fontSize: '13px', opacity: 0.85 }}>
+                          También puedes escribirnos por{' '}
+                          <a href="https://wa.me/5492994673102" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', fontWeight: 600 }}>
+                            WhatsApp
+                          </a>.
+                        </p>
+                      </div>
                     </div>
                   )}
                   <form onSubmit={handleSubmit} className={styles.form}>

@@ -1,8 +1,11 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { chatWithKina } from '@app/actions';
 import type { ChatMessage, GeminiContent } from '@/types/chat';
+
+const STORAGE_KEY = 'kinetia-chat-messages';
+const MAX_STORED_MESSAGES = 50;
 
 const WELCOME_MESSAGE: ChatMessage = {
   id: 'welcome',
@@ -11,25 +14,49 @@ const WELCOME_MESSAGE: ChatMessage = {
   timestamp: Date.now(),
 };
 
+function loadMessages(): ChatMessage[] {
+  if (typeof window === 'undefined') return [WELCOME_MESSAGE];
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored) as ChatMessage[];
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch { /* ignore corrupt data */ }
+  return [WELCOME_MESSAGE];
+}
+
+function saveMessages(messages: ChatMessage[]) {
+  try {
+    const toStore = messages.slice(-MAX_STORED_MESSAGES);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(toStore));
+  } catch { /* storage full or unavailable */ }
+}
+
 export function useChat() {
-  const [messages, setMessages] = useState<ChatMessage[]>([WELCOME_MESSAGE]);
+  const [messages, setMessages] = useState<ChatMessage[]>(loadMessages);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Persist messages to localStorage
+  useEffect(() => {
+    saveMessages(messages);
+  }, [messages]);
 
   const sendMessage = useCallback(async (content: string) => {
     if (!content.trim()) return;
 
     setIsLoading(true);
     setError(null);
-    
+
     // 1. Optimistic Update (Mostrar mensaje del usuario inmediatamente)
-    const userMsg: ChatMessage = { 
-        role: 'user', 
-        content: content.trim(), 
+    const userMsg: ChatMessage = {
+        role: 'user',
+        content: content.trim(),
         id: `user-${Date.now()}`,
         timestamp: Date.now()
     };
-    
+
     let currentMessages: ChatMessage[] = [];
     setMessages(prev => {
         currentMessages = prev;
@@ -47,7 +74,7 @@ export function useChat() {
           }));
 
         const response = await chatWithKina(historyForAi, content);
-    
+
         if (response.success && response.text) {
              const assistantMessage: ChatMessage = {
                 id: `assistant-${Date.now()}`,
@@ -64,18 +91,19 @@ export function useChat() {
         const errorMessage = err instanceof Error ? err.message : 'Lo siento, hubo un error de conexión.';
         setError(errorMessage);
         setMessages(prev => [
-            ...prev, 
+            ...prev,
             { role: 'assistant', content: errorMessage, id: `error-${Date.now()}`, timestamp: Date.now() }
           ]);
     } finally {
         setIsLoading(false);
     }
-    
+
   }, []);
-  
+
   const clearChat = useCallback(() => {
     setMessages([WELCOME_MESSAGE]);
     setError(null);
+    try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
   }, []);
 
   return { messages, isLoading, error, sendMessage, clearChat };

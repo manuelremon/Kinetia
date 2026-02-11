@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Container } from '@/components/common';
-import { FAQ_ITEMS } from '@/utils/constants';
+import FAQ_ITEMS from '@/data/faq.json';
 import styles from './FAQ.module.scss';
 
 export function FAQ() {

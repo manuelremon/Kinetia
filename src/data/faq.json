@@ -1,0 +1,42 @@
+[
+  {
+    "category": "General",
+    "question": "¿Qué tipo de empresas pueden beneficiarse de sus servicios?",
+    "answer": "Trabajamos con PyMEs de diversos sectores que buscan automatizar procesos, optimizar inventarios o implementar soluciones de IA. Desde retail y manufactura hasta servicios profesionales y logística."
+  },
+  {
+    "category": "General",
+    "question": "¿Cuánto tiempo toma implementar una solución?",
+    "answer": "Depende de la complejidad del proyecto. Soluciones simples de automatización pueden estar listas en 2-4 semanas, mientras que sistemas más complejos pueden tomar 2-3 meses. Siempre entregamos en fases para que veas valor desde el inicio."
+  },
+  {
+    "category": "Técnico",
+    "question": "¿Necesito conocimientos técnicos para usar sus soluciones?",
+    "answer": "No. Diseñamos todas nuestras soluciones pensando en usuarios no técnicos. Proporcionamos capacitación completa y documentación, además de soporte continuo para asegurar una adopción exitosa."
+  },
+  {
+    "category": "Técnico",
+    "question": "¿Sus soluciones se integran con sistemas existentes?",
+    "answer": "Sí, nuestras soluciones están diseñadas para integrarse con la mayoría de sistemas empresariales (ERP, CRM, sistemas de inventario, etc.). Evaluamos tu infraestructura actual durante el diagnóstico inicial."
+  },
+  {
+    "category": "Proceso",
+    "question": "¿Cómo es el proceso de trabajo con KINETIA?",
+    "answer": "Comenzamos con un diagnóstico gratuito para entender tus necesidades. Luego diseñamos una solución personalizada, la implementamos por fases, y proporcionamos soporte continuo post-implementación."
+  },
+  {
+    "category": "Proceso",
+    "question": "¿Ofrecen mantenimiento y soporte post-implementación?",
+    "answer": "Sí, todos nuestros proyectos incluyen un período de soporte. También ofrecemos planes de mantenimiento continuo con SLA definido, actualizaciones y mejoras según evolucionen tus necesidades."
+  },
+  {
+    "category": "Precios",
+    "question": "¿Cuánto cuesta una solución de automatización?",
+    "answer": "Cada proyecto es único y el precio depende de la complejidad y alcance. Ofrecemos un diagnóstico gratuito donde evaluamos tus necesidades y proporcionamos un presupuesto detallado sin compromiso."
+  },
+  {
+    "category": "Precios",
+    "question": "¿Tienen opciones de financiamiento o pago en cuotas?",
+    "answer": "Sí, entendemos que la inversión en tecnología es importante. Ofrecemos planes de pago flexibles y podemos estructurar el proyecto en fases para distribuir la inversión en el tiempo."
+  }
+]

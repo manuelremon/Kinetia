@@ -35,11 +35,11 @@ export function PageLoader() {
       setProgress(100);
       setTimeout(() => {
         setIsLoaded(true);
-      }, 500);
+      }, 300);
     };
 
     if (document.readyState === 'complete') {
-      setTimeout(handleLoad, 800);
+      setTimeout(handleLoad, 400);
     } else {
       window.addEventListener('load', handleLoad);
     }
@@ -57,8 +57,8 @@ export function PageLoader() {
         <motion.div
           className={styles.pageLoader}
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: 'easeInOut' }}
         >
           <div className={styles.content}>
             {/* Logo */}

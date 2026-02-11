@@ -1,5 +1,5 @@
 import { Container, ScrollReveal } from '@/components/common';
-import { FEATURES } from '@/utils/constants';
+import FEATURES from '@/data/features.json';
 import type { FlipCardData } from '@/types';
 import styles from './Features.module.scss';
 

@@ -1,0 +1,7 @@
+[
+  { "icon": "☁️", "title": "AWS Partner", "subtitle": "Cloud Solutions" },
+  { "icon": "🔷", "title": "Google Cloud", "subtitle": "Certified Partner" },
+  { "icon": "🛡️", "title": "ISO 27001", "subtitle": "Seguridad Certificada" },
+  { "icon": "⚡", "title": "Microsoft", "subtitle": "Azure Partner" },
+  { "icon": "🔐", "title": "GDPR", "subtitle": "Compliant" }
+]
